@@ -1,4 +1,4 @@
-Team: Monkeys with Typewriters
+##Team: Monkeys with Typewriters
 
 Members: Jazlene Rae Guevarra, Nick Macdisi, Christine Cheng, Daniel Hanson, Eddie Ryan, Kiri Nicholson
 

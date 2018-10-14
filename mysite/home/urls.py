@@ -6,5 +6,5 @@ urlpatterns = [
     # ex: /home/
     path('', views.index, name='index'),
     # ex: /home/1/
-    path('<int:question_id>/', views.detail, name='detail'),
+    path('<int:post_id>/', views.detail, name='detail'),
 ]

@@ -3,8 +3,3 @@ include==0.2.2
 pygame==1.9.3
 pytz==2018.5
 wheel==0.29.0
-
-WhiteNoise==1.0.4
-gunicorn==19.1.1
-psycopg2==2.5.4
-dj-database-url==0.3.0

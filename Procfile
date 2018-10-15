@@ -1,1 +1,1 @@
-web: gunicorn mysite.wgsi
+web: gunicorn mysite/mysite.wgsi

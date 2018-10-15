@@ -5,6 +5,7 @@ cache: pip
 installs:
   -pip install pipenv
   -pipenv install
+  -pip install django
 
 scripts:
   -python manage.py test

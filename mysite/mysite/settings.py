@@ -26,7 +26,7 @@ SECRET_KEY = '6u6ct8_y7_rc4cngfwfi^j+n&d_08v$@0vu07#zb!=m=^vnkm0'
 DEBUG = True
 
 # changed this briefly for heroku app to deploy... maybe..
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

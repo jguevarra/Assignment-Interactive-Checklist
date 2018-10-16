@@ -1,1 +1,1 @@
-web: gunicorn calendar.wgsi
+web: gunicorn --pythonpath="$PWD/mysite" mysite.wsgi

@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath="$PWD" mysite.wsgi
+web: gunicorn --pythonpath="$PWD/mysite" mysite.wsgi

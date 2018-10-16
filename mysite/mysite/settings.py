@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASES = dj_database_url.config()
+DATABASES = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation

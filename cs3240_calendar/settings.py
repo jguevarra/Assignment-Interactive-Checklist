@@ -25,7 +25,7 @@ SECRET_KEY = 'tow61x!8915x7*w)hblk!wj#1@sqlbba9sl0qo_)4#)c5&bq_@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://uni-assignment-calendar.herokuapp.com/']
 
 
 # Application definition

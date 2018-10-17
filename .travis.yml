@@ -2,17 +2,11 @@ language: python
 python:
   - "3.6"
 
-services: 
-  -mysql
-
 # command to install dependencies
 installs:
-  -pip install -r requirements-travis.txt
   -pip install django
-
-
+  -pip install -r requirements-travis.txt
 
 # command to run tests
 scripts:
-  -mysql -e 'create test database;' -u root
   -python manage.py test

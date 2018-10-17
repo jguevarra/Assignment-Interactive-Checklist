@@ -15,7 +15,5 @@ installs:
 before_script:
   -psql -c "Create database;" -U postgres
   
-
 # command to run tests
-scripts:
-  -python manage.py test
+scripts: python manage.py test

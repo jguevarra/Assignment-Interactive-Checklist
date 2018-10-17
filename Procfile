@@ -1,0 +1,1 @@
+web: gunicorn cs3240_calendar.wsgi --log-file -

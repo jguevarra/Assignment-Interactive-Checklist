@@ -2,10 +2,19 @@ language: python
 python:
   - "3.6"
 
+services: postgresql
+
+env:
+  - DJANGO=2.1.1
+
 # command to install dependencies
 installs:
-  -pip install django
   -pip install -r requirements-travis.txt
+  -pip install django==$DJANGO
+
+before_script:
+  -psql -c "Create database;" -U postgres
+  
 
 # command to run tests
 scripts:

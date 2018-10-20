@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['uni-assignment-calendar.herokuapp.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'uni_assignment_calendar.apps.UniAssignmentCalendarConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,3 +130,4 @@ STATICFILES_FINDERS = (
 import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
+

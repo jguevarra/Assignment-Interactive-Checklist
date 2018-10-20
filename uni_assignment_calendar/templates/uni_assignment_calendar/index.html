@@ -6,7 +6,17 @@
 <body>
 
 <h1>Universal Assignment Calendar</h1>
-<p>henlo</p>
+
+<!-- Inserting published posts onto the /calendar/ url path page -->
+{% if latest_post_list %}
+    <ul>
+    {% for post in latest_post_list %}
+        <li><a href="/uni_assignment_calendar/{{ post.id }}/">{{ post.post_title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts have been posted.</p>
+{% endif %}
 
 </body>
 </html>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'schedule',
     'djangobower',
+    'cs3240_calendar',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'cs3240_calendar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['uni_assignment_calendar/templates/uni_assignment_calendar'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

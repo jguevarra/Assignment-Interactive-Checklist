@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from django.contrib import admin
+from .models import Event
 
-from .models import Post
+admin.site.register(Event)
 
-admin.site.register(Post)
+# registering the model
+class EventAdmin(admin.ModelAdmin):
+    list_display = ['day', 'start_time', 'end_time', 'notes']

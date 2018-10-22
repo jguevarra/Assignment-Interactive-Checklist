@@ -6,17 +6,18 @@
 <body>
 
 <!-- Header -->
-<h1>Universal Assignment Calendar</h1>
+<h1><center>Universal Assignment Calendar</center></h1>
 
 <!-- Inserting published posts onto the /calendar/ url path page -->
-{% if latest_post_list %}
+<h3>Recent Postings</h3>
+{% if latest_event_list %}
     <ul>
-    {% for post in latest_post_list %}
-        <li><a href="/uni_assignment_calendar/{{ post.id }}/">{{ post.post_title }}</a></li>
+    {% for event in latest_event_list %}
+    <li><a href="{% url 'calendar:detail' event.id %}">{{ event.event_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No posts have been posted.</p>
+    <p>No events have been posted.</p>
 {% endif %}
 
 </body>

@@ -1,22 +1,23 @@
 from django.http import HttpResponse
-from .models import Post
+from .models import Event
 from django.template import loader
 from calendar import monthrange
 from datetime import datetime, date
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
+from django.shortcuts import get_object_or_404, render
 
 
 def index(request):
-    latest_post_list = Post.objects.order_by('-post_date')[:5]
-    template = loader.get_template('uni_assignment_calendar/index.html')
+    latest_event_list = Event.objects.order_by('-day')[:5]
     context = {
-        'latest_post_list': latest_post_list,
+        'latest_event_list': latest_event_list,
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'uni_assignment_calendar/index.html', context)
 
-def detail(request, post_id):
-    return HttpResponse("You're looking at post # %s." % post_id)
+def detail(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    return render(request, 'uni_assignment_calendar/detail.html', {'event': event})
 
 
 

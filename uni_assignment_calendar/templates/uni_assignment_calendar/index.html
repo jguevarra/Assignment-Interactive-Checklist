@@ -8,6 +8,14 @@
 <!-- Header -->
 <h1><center>Universal Assignment Calendar</center></h1>
 
+<h3>Create a New Post</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.post }}
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
 <!-- Inserting published posts onto the /calendar/ url path page -->
 <h3>Recent Postings</h3>
 {% if latest_event_list %}

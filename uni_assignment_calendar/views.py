@@ -3,9 +3,11 @@ from .models import Event
 from django.template import loader
 from calendar import monthrange
 from datetime import datetime, date
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response, render, redirect
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render
+
+from .forms import IndexForm
 
 
 def index(request):
@@ -18,6 +20,20 @@ def index(request):
 def detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     return render(request, 'uni_assignment_calendar/detail.html', {'event': event})
+
+def get(self, request):
+    form = IndexForm()
+    return render(request, self.template_name, {'form': form})
+
+def post(self, request):
+    form = IndexForm(request.POST)
+    if form.is_valid():
+        text = form.cleaned_data['post']
+        form = IndexForm()
+        return redirect('calendar:calendar')
+
+    args = {'form': form, 'text': text}
+    return render(request, self)
 
 
 

@@ -12,9 +12,11 @@ import datetime
 #     given number of `days` offset to now (negative for questions published
 #     in the past, positive for questions that have yet to be published).
 #     """
-#     date = datetime.timedelta(days=days)
-#     return Event.objects.create(event_name=event_text, day=date)
+#     time = timezone.now() + datetime.timedelta(days=days)
+#     return Event.objects.create(event_name=event_text, day=time)
 
+
+# Testing Index View
 class EventIndexViewTests(TestCase):
     def test_no_events(self):
         """
@@ -24,12 +26,19 @@ class EventIndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No events have been posted.")
 
-    # def test_future_event(self):
+    # def test_future_events(self):
     #     """
     #     Post with a date in the future aren't displayed on
     #     the index page.
     #     """
-    #     create_event(event_text="Future post.", days=30)
+    #     response = self.client.get(reverse('calendar:index'))
+    #     self.assertContains(response, "No events have been posted.")
+    #
+    # def test_past_events(self):
+    #     """
+    #     Post with a date in the past aren't displayed on
+    #     the index page.
+    #     """
     #     response = self.client.get(reverse('calendar:index'))
     #     self.assertContains(response, "No events have been posted.")
 

@@ -11,29 +11,40 @@ from .forms import IndexForm
 
 
 def index(request):
-    latest_event_list = Event.objects.order_by('-day')[:5]
+    latest_event_list = Event.objects.order_by('-day')
     context = {
         'latest_event_list': latest_event_list,
     }
+
     return render(request, 'uni_assignment_calendar/index.html', context)
 
 def detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     return render(request, 'uni_assignment_calendar/detail.html', {'event': event})
 
-def get(self, request):
-    form = IndexForm()
-    return render(request, self.template_name, {'form': form})
 
-def post(self, request):
-    form = IndexForm(request.POST)
-    if form.is_valid():
-        text = form.cleaned_data['post']
-        form = IndexForm()
-        return redirect('calendar:calendar')
-
-    args = {'form': form, 'text': text}
-    return render(request, self)
+# # for the form
+# def get(self, request):
+#     form = IndexForm()
+#     events = Event.objects.all().order_by('-created')
+#
+#     args = {
+#         'form': form, "events": events
+#     }
+#     return render(request, 'uni_assignment_calendar/index.html', args)
+#
+# def post(self, request):
+#     form = IndexForm(request.POST)
+#     if form.is_valid():
+#         post = form.save(commit=False)
+#         post.save()
+#
+#         text = form.cleaned_data['post']
+#         form = IndexForm()
+#         return redirect('calendar:calendar')
+#
+#     args = {'form': form, 'text': text}
+#     return render(request, 'uni_assignment_calendar/index.html', args)
 
 
 

@@ -8,43 +8,81 @@
 <!-- Header -->
 <h1><center>Universal Assignment Calendar</center></h1>
 
-<h3>Create a New Post</h3>
-<form action="" method="POST">
-    {% csrf_token %}
-    <!--classes-->
-    Classes: <br>
-    <input type="radio" name="class" value="CS 3240"> CS 3240<br>
-    <input type="radio" name="class" value="ECE 3750"> ECE 3750<br><br>
-    <!--event_name-->
-    Event Name: <input type="text" name="Event_name" value= '{% if submitbutton == "Submit" %} {{ event_name }} {% endif %}'/><br><br>
-    <!--day-->
-    Day: <input type="date" name="Day" value= '{% if submitbutton == "Submit" %} {{ day }} {% endif %}'/><br><br>
-    <!--start_time-->
-    Start Time: <input type="time" name="Start_time" value= '{% if submitbutton == "Submit" %} {{ start_time }} {% endif %}'/><br><br>
-    <!--end_time-->
-    End Time: <input type="time" name="End_time" value= '{% if submitbutton == "Submit" %} {{ end_time }} {% endif %}'/><br><br>
-    <!--notes-->
-    Notes: <input type="text" name="Notes" value= '{% if submitbutton == "Submit" %} {{ notes }} {% endif %}'/><br><br>
-    <!--<button type="submit">Submit</button>-->
-    <input type="Submit" name="Submit" value="Submit"/>
-</form>
 
-{% if submitbutton == "Submit"  %}
-<h4> The event name is {{ event_name }}</h4>
-<h4> The day is {{ day }}</h4>
-{% endif %}
+<fieldset>
+    <legend><strong>Write a New Post</strong></legend>
 
-<!-- Inserting published posts onto the /calendar/ url path page -->
-<h3>Recent Postings</h3>
-{% if latest_event_list %}
-    <ul>
-    {% for event in latest_event_list %}
-    <li><a href="{% url 'calendar:detail' event.id %}">{{ event.event_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No events have been posted.</p>
-{% endif %}
+    <div>
+        <!--classes-->
+        Classes: <br>
+        <input type="radio" name="class" value="CS 3240"> CS 3240<br>
+        <input type="radio" name="class" value="ECE 3750"> ECE 3750<br><br>
+
+        <!--assignment_name-->
+        Assignment Name: <input type="text" name="Assignment_name" value= '{% if submitbutton == "Submit" %} {{ assignment_name }} {% endif %}'/><br><br>
+
+
+        <!--due date and time-->
+        <label for="due_date">Due Date:</label>
+        <input type="datetime-local" id="due_date"
+               name="due_date" value="2018-06-12T19:30"
+               min="2018-08-07T00:00" max="2019-06-14T00:00" /><br><br>
+
+        <!--description-->
+        Description: <input type="text" name="Description" value= '{% if submitbutton == "Submit" %} {{ description }} {% endif %}'/><br><br>
+
+        <input type="Submit" name="Submit" value="Submit"/>
+
+    </div>
+</fieldset>
+
+<!--<h3>Create a New Post</h3>-->
+<!--<form action="" method="POST">-->
+    <!--{% csrf_token %}-->
+    <!--&lt;!&ndash;classes&ndash;&gt;-->
+    <!--Classes: <br>-->
+    <!--<input type="radio" name="class" value="CS 3240"> CS 3240<br>-->
+    <!--<input type="radio" name="class" value="ECE 3750"> ECE 3750<br><br>-->
+    <!--&lt;!&ndash;event_name&ndash;&gt;-->
+    <!--Assignment Name: <input type="text" name="Assignment_name" value= '{% if submitbutton == "Submit" %} {{ assignment_name }} {% endif %}'/><br><br>-->
+    <!--&lt;!&ndash;due date and time&ndash;&gt;-->
+    <!--Due Date and Time: <input type="datetime"-->
+                              <!--name="Due_date"-->
+                              <!--value= '{% if submitbutton == "Submit" %} {{ due_date }} {% endif %}'-->
+                              <!--min="2018-08-07T00:00" max="2019-06-14T00:00" /><br><br>-->
+    <!--&lt;!&ndash;start_time&ndash;&gt;-->
+    <!--Description: <input type="text" name="Description" value= '{% if submitbutton == "Submit" %} {{ description }} {% endif %}'/><br><br>-->
+    <!--&lt;!&ndash;<button type="submit">Submit</button>&ndash;&gt;-->
+    <!--<input type="Submit" name="Submit" value="Submit"/>-->
+<!--</form>-->
+<!--=-->
+<!--{% if submitbutton == "Submit"  %}-->
+<!--<h4> The event name is {{ assignment_name }}</h4>-->
+<!--<h4> The day is {{ due_date }}</h4>-->
+<!--{% endif %}-->
+
+<br>
+
+<fieldset>
+    <legend><strong>Most Recent Posts</strong></legend>
+
+    <div>
+
+        <!-- Inserting published posts onto the /calendar/ url path page -->
+        <h3>Recent Postings</h3>
+        {% if latest_assignment_list %}
+            <ul>
+                {% for assignment in latest_assignment_list %}
+                    <li><a href="{% url 'calendar:detail' assignment.id %}">{{ assignment.assignment_name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No assignments have been posted.</p>
+        {% endif %}
+
+    </div>
+</fieldset>
+
 
 </body>
 </html>

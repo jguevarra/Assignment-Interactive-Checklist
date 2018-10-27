@@ -2,7 +2,7 @@ from django.test import TestCase
 import unittest
 from django.urls import reverse
 from django.utils import timezone
-from .models import Event
+from .models import Assignment
 import datetime
 
 

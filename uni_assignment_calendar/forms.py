@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event
+from .models import Assignment
 
 class IndexForm(forms.ModelForm):
     event_name = forms.CharField(widget=forms.TextInput(
@@ -10,5 +10,5 @@ class IndexForm(forms.ModelForm):
     ))
 
     class Meta:
-        model = Event
-        fields = ('event_name', 'day', 'start_time', 'end_time', 'notes',)
+        model = Assignment
+        fields = ('assignment_name', 'due_date', 'pub_date', 'description')

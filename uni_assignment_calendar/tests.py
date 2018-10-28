@@ -55,7 +55,7 @@ class AssignmentIndexViewTests(TestCase):
         """
         response = self.client.get(reverse('calendar:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "No assignments have been posted.")
+        self.assertContains(response, "No events have been posted.")
     #
     # def test_future_assignemnts(self):
     #     """

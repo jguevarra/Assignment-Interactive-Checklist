@@ -13,14 +13,15 @@
     <legend><strong>Write a New Post</strong></legend>
 
     <div>
-        <!--classes-->
-        Classes: <br>
-        <input type="radio" name="class" value="CS 3240"> CS 3240<br>
-        <input type="radio" name="class" value="ECE 3750"> ECE 3750<br><br>
+
+        <!--class_abbrev-->
+        Class: <input type="text" name="Class_abbrev" value= '{% if submitbutton == "Submit" %} {{ class_abbrev }} {% endif %}'/><br><br>
+
+        <!--class_num-->
+        Class Number: <input type="number" name="Class_num" value= '{% if submitbutton == "Submit" %} {{ class_num }} {% endif %}'/><br><br>
 
         <!--assignment_name-->
         Assignment Name: <input type="text" name="Assignment_name" value= '{% if submitbutton == "Submit" %} {{ assignment_name }} {% endif %}'/><br><br>
-
 
         <!--due date and time-->
         <label for="due_date">Due Date:</label>
@@ -70,14 +71,14 @@
 
         <!-- Inserting published posts onto the /calendar/ url path page -->
         <h3>Recent Postings</h3>
-        {% if latest_assignment_list %}
+        {% if latest_events_list %}
             <ul>
-                {% for assignment in latest_assignment_list %}
-                    <li><a href="{% url 'calendar:detail' assignment.id %}">{{ assignment.assignment_name }}</a></li>
+                {% for events in latest_events_list %}
+                    <li><a href="{% url 'calendar:detail' events.id %}">{{ events.events_name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No assignments have been posted.</p>
+            <p>No events have been posted.</p>
         {% endif %}
 
     </div>

@@ -2,10 +2,10 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Assignment
+from .models import Events
 
-admin.site.register(Assignment)
+admin.site.register(Events)
 
 # registering the model
-class AssignmentAdmin(admin.ModelAdmin):
-    list_display = ['assignment_name', 'due_date', 'pub_date', 'description']
+class EventsAdmin(admin.ModelAdmin):
+    list_display = ['class_abbrev', 'class_num', 'events_name', 'due_date', 'pub_date', 'description']

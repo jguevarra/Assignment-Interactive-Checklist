@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Assignment
+from .models import Events
 from django.template import loader
 from calendar import monthrange
 from datetime import datetime, date
@@ -10,16 +10,16 @@ from .forms import IndexForm
 
 
 def index(request):
-    latest_assignment_list = Assignment.objects.order_by('-due_date')
+    latest_events_list = Events.objects.order_by('-due_date')
     context = {
-        'latest_assignment_list': latest_assignment_list,
+        'latest_events_list': latest_events_list,
     }
 
     return render(request, 'uni_assignment_calendar/index.html', context)
 
-def detail(request, assignment_id):
-    assignment = get_object_or_404(Assignment, pk=assignment_id)
-    return render(request, 'uni_assignment_calendar/detail.html', {'assignment': assignment})
+def detail(request, events_id):
+    events = get_object_or_404(Events, pk=events_id)
+    return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
 
 
 

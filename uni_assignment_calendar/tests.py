@@ -2,48 +2,48 @@ from django.test import TestCase
 import unittest
 from django.urls import reverse
 from django.utils import timezone
-from .models import Assignment
+from .models import Events
 import datetime
 
 
-def create_assignment(assignment_text, days):
+def create_events(events_text, due_date):
     """
     Create a question with the given `question_text` and published the
     given number of `days` offset to now (negative for questions published
     in the past, positive for questions that have yet to be published).
     """
-    time = timezone.now() + datetime.timedelta(days=days)
-    return Assignment.objects.create(assignment_name=assignment_text, due_date=time)
+    time = timezone.now() + datetime.timedelta(due_date=due_date)
+    return Events.objects.create(events_name=events_text, due_date=time)
 
 
 # Testing Model View
 class AssignmentnModelTests(TestCase):
 
-    def test_was_published_recently_with_future_assignment(self):
+    def test_was_published_recently_with_future_events(self):
         """
-        was_published_recently() returns False for assignment whose pub_date
+        was_published_recently() returns False for events whose pub_date
         is in the future.
         """
         time = timezone.now() + datetime.timedelta(days=30)
-        future_question = Assignment(pub_date=time)
+        future_question = Events(pub_date=time)
         self.assertIs(future_question.was_published_recently(), False)
 
-    def test_was_published_recently_with_old_assignment(self):
+    def test_was_published_recently_with_old_events(self):
         """
-        was_published_recently() returns False for assignments whose pub_date
+        was_published_recently() returns False for events whose pub_date
         is older than 1 day.
         """
         time = timezone.now() - datetime.timedelta(days=1, seconds=1)
-        old_question = Assignment(pub_date=time)
+        old_question = Events(pub_date=time)
         self.assertIs(old_question.was_published_recently(), False)
 
-    def test_was_published_recently_with_recent_assignment(self):
+    def test_was_published_recently_with_recent_events(self):
         """
-        was_published_recently() returns True for assignments whose pub_date
+        was_published_recently() returns True for events whose pub_date
         is within the last day.
         """
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
-        recent_question = Assignment(pub_date=time)
+        recent_question = Events(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
 
 

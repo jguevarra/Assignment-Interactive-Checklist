@@ -1,14 +1,16 @@
 from django import forms
 from .models import Events
+import datetime
 
 class IndexForm(forms.ModelForm):
-    event_name = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class':'form-control',
-            'placeholder': 'Write a post...',
-        }
-    ))
+    # event_name = forms.CharField(widget=forms.TextInput(
+    #     attrs={
+    #         'class':'form-control',
+    #         'placeholder': 'Write a post...',
+    #     }
+    # ))
+	due_date = forms.DateTimeField(input_formats=["%m/%d/%Y %H:%M"], widget=forms.DateTimeInput())   
+	class Meta:
+		model = Events
+		exclude = ['pub_date']
 
-    class Meta:
-        model = Events
-        fields = ('class_abbrev', 'class_num', 'events_name', 'due_date', 'pub_date', 'description')

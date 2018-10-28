@@ -1,9 +1,14 @@
-<!--attempting to get information about each event to appear on the details page-->
-<!--<body style="background-color:powderblue;">-->
-<h1><center>{{ assignment.assignment_name }}</center></h1>
-<ul>
-    <p><strong>Due Date and Time:</strong> {{ assignment.due_date }}</p>
-    <p><strong>Published Date:</strong> {{ assignment.pub_date }}</p>
-    <p><strong>Description:</strong> {{ assignment.description }}</p>
-
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ assignment.assignment_name }} Detail</title>
+</head>
+<body>
+	<ul>
+		<p><strong>Course:</strong> {{ assignment.class_abbrev }} : {{ class_num }}</p>
+	    <p><strong>Due Date and Time:</strong> {{ assignment.due_date }}</p>
+	    <p><strong>Published Date:</strong> {{ assignment.pub_date }}</p>
+	    <p><strong>Description:</strong> {{ assignment.description }}</p>
+	</ul>
+</body>
+</html>

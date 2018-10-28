@@ -21,7 +21,19 @@ def detail(request, events_id):
     events = get_object_or_404(Events, pk=events_id)
     return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
 
+def create_assignment(request):
+    form = IndexForm()
 
+    if request.method == "POST":
+        form = IndexForm(request.POST)
+
+        if form.is_valid():          
+            form.save(commit=True)
+            return index(request)
+        else:
+            return HttpResponse("Form Not Valid")
+
+    return render(request, 'uni_assignment_calendar/create.html', {'form':form})
 
 
 

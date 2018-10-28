@@ -9,7 +9,7 @@ class IndexForm(forms.ModelForm):
     #         'placeholder': 'Write a post...',
     #     }
     # ))
-	due_date = forms.DateTimeField(input_formats=["%m/%d/%Y %H:%M"], widget=forms.DateTimeInput())   
+	due_date = forms.DateTimeField(input_formats=["%m/%d/%Y %H:%M"], widget=forms.DateTimeInput(format=["%m/%d/%Y %H:%M"]))   
 	class Meta:
 		model = Events
 		exclude = ['pub_date']

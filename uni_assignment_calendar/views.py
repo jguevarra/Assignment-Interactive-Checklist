@@ -14,12 +14,13 @@ def index(request):
     context = {
         'latest_events_list': latest_events_list,
     }
-
     return render(request, 'uni_assignment_calendar/index.html', context)
+
 
 def detail(request, events_id):
     events = get_object_or_404(Events, pk=events_id)
     return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
+
 
 def create_assignment(request):
     form = IndexForm()
@@ -29,7 +30,7 @@ def create_assignment(request):
 
         if form.is_valid():          
             form.save(commit=True)
-            return index(request)
+            return HttpResponse("Successfully Posted")
         else:
             return HttpResponse("Form Not Valid")
 

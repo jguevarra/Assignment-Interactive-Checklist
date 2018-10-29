@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CS 3240: Advanced Software Development</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<h1><center>Universal Assignment Calendar</center></h1>
+
+	<br>
+
+	<fieldset>
+	    <legend><strong>Most Recent Posts</strong></legend>
+
+	    <div>
+
+	        <h3>Recent Postings</h3>
+	        {% if latest_events_list %}
+	            <ul>
+	                {% for events in latest_events_list %}
+	                    <li><a href="{% url 'calendar:detail' events.id %}">{{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</a></li>
+	                {% endfor %}
+	            </ul>
+	        {% else %}
+	            <p>No events have been posted.</p>
+	        {% endif %}
+
+	    </div>
+	</fieldset>
+</body>
+</html>

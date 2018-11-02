@@ -58,28 +58,33 @@ class AssignmentIndexViewTests(TestCase):
         self.assertContains(response, "No events have been posted.")
         self.assertQuerysetEqual(response.context['latest_events_list'], [])
 
-    def test_future_assignments(self):
-
+    # def test_not_recently_posted_events(self):
         """
-        post with a pub_date in the future aren't displayed on
-        the index page.
+        the posts outside of the "Recently Posted" list should disappear
         """
-        create_events(events_name="Future Event.", pub_date=30)
-        response = self.client.get(reverse('calendar:index'))
-        self.assertContains(response, "No events are available.")
-        self.assertQuerysetEqual(response.context['latest_events_list'], [])
 
-    # def test_past_events(self):
+    # def test_future_assignments(self):
     #     """
-    #     post with a pub_date in the past are displayed on the
-    #     index page.
+    #     post with a pub_date in the future aren't displayed on
+    #     the index page.
     #     """
-    #     create_events(events_name="Past Event", due_date=-30)
+    #     create_events(events_name="Future Event.", pub_date=30)
     #     response = self.client.get(reverse('calendar:index'))
-    #     self.assertQuerysetEqual(
-    #         response.context['latest_question_list'],
-    #         ['<Question: Past question.>']
-    #     )
+    #     # self.assertContains(response, "No events are available.")
+    #     # self.assertQuerysetEqual(response.context['latest_events_list'], ['<Events: Future Event.>'])
+    #     self.assertQuerysetEqual(response.context['latest_events_list'], [])
+
+    def test_past_events(self):
+        """
+        post with a pub_date in the past are displayed on the
+        index page.
+        """
+        create_events(events_name="Past Event.", pub_date=-30)
+        response = self.client.get(reverse('calendar:index'))
+        self.assertQuerysetEqual(
+            response.context['latest_events_list'],
+            ['<Events: Past Event.>']
+        )
 
         """
         post with a due_date in the past are not displayed on the

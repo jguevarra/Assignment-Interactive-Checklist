@@ -17,7 +17,9 @@ def create_events(events_name, pub_date):
 
 def create_events_due_date(events_name, due_date):
     """
-    Insert comment about function here!!
+    Create a post with the given `events_name` and published the
+    given number of `days` offset to now (negative for posts with a due
+    date in the past, positive for posts with a due date in the future)
     """
     time = timezone.now() + datetime.timedelta(days=due_date)
     return Events.objects.create(events_name=events_name, due_date=time)

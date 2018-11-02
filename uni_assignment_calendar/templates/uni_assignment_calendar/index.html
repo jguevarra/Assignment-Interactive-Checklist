@@ -9,8 +9,8 @@
 
 	<br>
 
-	<fieldset>
-	    <legend><strong>Most Recent Posts</strong></legend>
+	<!--<fieldset>-->
+	    <!--<legend><strong>Most Recent Posts</strong></legend>-->
 
 	    <div>
 
@@ -19,13 +19,20 @@
 	            <ul>
 	                {% for events in latest_events_list %}
 	                    <li><a href="{% url 'calendar:detail' events.id %}">{{ events.due_date }} -- {{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</a></li>
-	                {% endfor %}
+						<!--{% if events.pub_date != timezone.now %}-->
+							<!--<li><a href="{% url 'calendar:detail' events.id %}">OVERDUE!! {{ events.due_date }} &#45;&#45; {{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</a></li>-->
+						<!--{% else %}-->
+							<!--<li><a href="{% url 'calendar:detail' events.id %}">{{ events.due_date }} &#45;&#45; {{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</a></li>-->
+	                	<!--{% endif %}-->
+					{% endfor %}
 	            </ul>
 	        {% else %}
 	            <p>No events have been posted.</p>
 	        {% endif %}
 
 	    </div>
-	</fieldset>
+
+
+	<!--</fieldset>-->
 </body>
 </html>

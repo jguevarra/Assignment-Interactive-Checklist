@@ -23,25 +23,10 @@ class IndexView(generic.ListView):
             pub_date__lte=timezone.now()
         ).order_by('-pub_date')[:5]
 
-    # def get_queryset_1(self):
-    #     """Return the upcoming due dates?"""
 
 class DetailView(generic.DetailView):
     model = Events
     template_name = 'uni_assignment_calendar/detail.html'
-
-
-# def index(request):
-#     latest_events_list = Events.objects.order_by('-due_date')
-#     context = {
-#         'latest_events_list': latest_events_list,
-#     }
-#     return render(request, 'uni_assignment_calendar/index.html', context)
-
-
-# def detail(request, events_id):
-#     events = get_object_or_404(Events, pk=events_id)
-#     return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
 
 
 def create_assignment(request):

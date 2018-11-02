@@ -9,9 +9,9 @@ from django.core.exceptions import ValidationError
 
 class Events(models.Model):
     class_abbrev= models.CharField(max_length=4)
-    class_num = models.IntegerField()
+    class_num = models.TextField(max_length=4, blank=True, null=True, default='')
     events_name = models.CharField(max_length=200)
-    due_date = models.DateTimeField()
+    due_date = models.DateTimeField(null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)
     def __str__(self):

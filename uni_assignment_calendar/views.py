@@ -7,19 +7,41 @@ from django.shortcuts import render_to_response, render, redirect
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render
 from .forms import IndexForm
+from django.views import generic
+from django.utils import timezone
 
 
-def index(request):
-    latest_events_list = Events.objects.order_by('-due_date')
-    context = {
-        'latest_events_list': latest_events_list,
-    }
-    return render(request, 'uni_assignment_calendar/index.html', context)
+# generic view
+class IndexView(generic.ListView):
+    template_name = 'uni_assignment_calendar/index.html'
+    context_object_name = "latest_events_list"
+
+    def get_queryset(self):
+        """Return the last five published assignments
+        (not including those set to be published in the future)"""
+        return Events.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:5]
+
+    # def get_queryset_1(self):
+    #     """Return the upcoming due dates?"""
+
+class DetailView(generic.DetailView):
+    model = Events
+    template_name = 'uni_assignment_calendar/detail.html'
 
 
-def detail(request, events_id):
-    events = get_object_or_404(Events, pk=events_id)
-    return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
+# def index(request):
+#     latest_events_list = Events.objects.order_by('-due_date')
+#     context = {
+#         'latest_events_list': latest_events_list,
+#     }
+#     return render(request, 'uni_assignment_calendar/index.html', context)
+
+
+# def detail(request, events_id):
+#     events = get_object_or_404(Events, pk=events_id)
+#     return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
 
 
 def create_assignment(request):

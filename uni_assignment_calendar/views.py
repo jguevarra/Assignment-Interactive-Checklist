@@ -9,6 +9,9 @@ from django.shortcuts import get_object_or_404, render
 from .forms import IndexForm
 from django.views import generic
 from django.utils import timezone
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
 
 # generic view
@@ -27,6 +30,24 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Events
     template_name = 'uni_assignment_calendar/detail.html'
+
+# class vote(request, events_id):
+#     events = get_object_or_404(Events, pk=events_id)
+#     try:
+#         selected_choice = events.choice_set.get(pk=request.POST['choice'])
+#     except (KeyError, Choice.DoesNotExist):
+#         # Redisplay the question voting form.
+#         return render(request, 'polls/detail.html', {
+#             'question': question,
+#             'error_message': "You didn't select a choice.",
+#         })
+#     else:
+#         selected_choice.votes += 1
+#         selected_choice.save()
+#         # Always return an HttpResponseRedirect after successfully dealing
+#         # with POST data. This prevents data from being posted twice if a
+#         # user hits the Back button.
+#         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
 def create_assignment(request):

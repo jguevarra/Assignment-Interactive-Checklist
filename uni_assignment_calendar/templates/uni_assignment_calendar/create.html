@@ -8,6 +8,7 @@
 
     <div class="container">
         <h1><center>Universal Assignment Calendar</center></h1>
+        <h2><center>New Post</center></h2>
         <p><center>Note: Input Due Date must match format: mm/dd/yyyy hh:mm</center></p>
         <form method="POST">
             {{ form.as_p }}
@@ -16,28 +17,17 @@
         </form>
     </div>
 
-<!-- <fieldset>
-    <legend><strong>Write a New Post</strong></legend>
+    <br>
 
-    <div>
-
-        Class: <input type="text" name="Class_abbrev" value= '{% if submitbutton == "Submit" %} {{ class_abbrev }} {% endif %}'/><br><br>
-
-        Class Number: <input type="number" name="Class_num" value= '{% if submitbutton == "Submit" %} {{ class_num }} {% endif %}'/><br><br>
-
-        Assignment Name: <input type="text" name="Assignment_name" value= '{% if submitbutton == "Submit" %} {{ assignment_name }} {% endif %}'/><br><br>
-
-        <label for="due_date">Due Date:</label>
-        <input type="datetime-local" id="due_date"
-               name="due_date" value="2018-06-12T19:30"
-               min="2018-08-07T00:00" max="2019-06-14T00:00" /><br><br>
-
-        Description: <input type="text" name="Description" value= '{% if submitbutton == "Submit" %} {{ description }} {% endif %}'/><br><br>
-
-        <input type="Submit" name="Submit" value="Submit"/>
-
+    <div class="container">
+        <!--button to go back to the "/calendar" page-->
+        <form method="get" action="/calendar">
+            <!--<button type="submit">Cancel</button>-->
+            <input type="submit" class="btn btn-primary" value="Cancel">
+        </form>
     </div>
-</fieldset> -->
+
+
 
 <!-- <h3>Create a New Post</h3> -->
 <!--<form action="" method="POST">-->

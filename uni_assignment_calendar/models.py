@@ -7,16 +7,18 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 class Courses(models.Model):
-    class_id = models.IntegerField()
+    class_id = models.IntegerField(null=False, default=0)
     class_abbrev = models.CharField(max_length=4)
     class_num = models.TextField(max_length=4, blank=True, null=True, default='')
     class_title = models.TextField(max_length=50)
     instructor = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
+    def __str__(self):
+        return self.class_title
 
 
 class Events(models.Model):
-    class_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, default=0)
     events_name = models.CharField(max_length=200)
     due_date = models.DateTimeField(null=True)
     pub_date = models.DateTimeField(auto_now_add=True)

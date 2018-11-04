@@ -16,7 +16,7 @@ class Courses(models.Model):
 
 
 class Events(models.Model):
-    class_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    #class_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
     events_name = models.CharField(max_length=200)
     due_date = models.DateTimeField(null=True)
     pub_date = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Events
+from .models import Events, Choice
 from django.template import loader
 from calendar import monthrange
 from datetime import datetime, date
@@ -14,7 +14,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 
-# generic view
+# generic views
+
 class IndexView(generic.ListView):
     template_name = 'uni_assignment_calendar/index.html'
     context_object_name = "latest_events_list"
@@ -24,30 +25,36 @@ class IndexView(generic.ListView):
         (not including those set to be published in the future)"""
         return Events.objects.filter(
             pub_date__lte=timezone.now()
-        ).order_by('-pub_date')[:5]
+        ).order_by('-pub_date')[:10]
 
 
 class DetailView(generic.DetailView):
     model = Events
     template_name = 'uni_assignment_calendar/detail.html'
 
-# class vote(request, events_id):
-#     events = get_object_or_404(Events, pk=events_id)
-#     try:
-#         selected_choice = events.choice_set.get(pk=request.POST['choice'])
-#     except (KeyError, Choice.DoesNotExist):
-#         # Redisplay the question voting form.
-#         return render(request, 'polls/detail.html', {
-#             'question': question,
-#             'error_message': "You didn't select a choice.",
-#         })
-#     else:
-#         selected_choice.votes += 1
-#         selected_choice.save()
-#         # Always return an HttpResponseRedirect after successfully dealing
-#         # with POST data. This prevents data from being posted twice if a
-#         # user hits the Back button.
-#         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+def results(request, events_id):
+    events = get_object_or_404(Events, pk=events_id)
+    return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
+
+def vote(request, events_id):
+    events = get_object_or_404(Events, pk=events_id)
+    try:
+        selected_choice = events.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        # Redisplay the question voting form.
+        return render(request, 'polls/detail.html', {
+            'events': events,
+            # 'error_message': "You didn't select a choice.",
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse('polls:results', args=(events.id,)))
+
 
 
 def create_assignment(request):

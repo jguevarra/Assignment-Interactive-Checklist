@@ -8,6 +8,10 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     # ex: /calendar/1/
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
-    #path('home/', views.calendar,{'year': 2018, 'month':10}),
+    # ex: /calendar/create
     path('create/', views.create_assignment, name='create'),
+    # ex: /calendar/1/results/
+    path('<int:events_id>/results/', views.results, name='results'),
+    # ex: /calendar/1/vote/
+    path('<int:events_id>/vote/', views.vote, name='vote'),
 ]

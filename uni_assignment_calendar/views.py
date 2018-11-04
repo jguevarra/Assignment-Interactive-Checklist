@@ -65,7 +65,7 @@ def create_assignment(request):
 
         if form.is_valid():          
             form.save(commit=True)
-            return HttpResponse("Successfully Posted")
+            return HttpResponseRedirect('../')
         else:
             return HttpResponse("Form Not Valid")
 

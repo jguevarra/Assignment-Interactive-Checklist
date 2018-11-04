@@ -65,10 +65,11 @@ body {
   <a href="#">About Us</a>
 </div>
 
+<!--margin changes with the sidebar navigation-->
 <div id="main">
-	<div class="main">
+	<!--<div class="main">-->
 		<h1><center>Universal Assignment Calendar</center></h1>
-	</div>
+	<!--</div>-->
 	<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 	<div class="main">
 		<!--button that takes user to "calendar/create" page-->
@@ -97,6 +98,14 @@ body {
 	</div>
 </div>
 
+<!--<div id="welcomeDiv"  style="display:none;" class="answer_list" > WELCOME</div>-->
+<!--<input type="button" name="answer" value="Show Div" onclick="showDiv()" />-->
+
+<!--Javascript function-->
+<!--function showDiv() {-->
+   <!--document.getElementById('welcomeDiv').style.display = "block";-->
+<!--}-->
+
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -107,6 +116,7 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
+
 </script>
 
 </body>

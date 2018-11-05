@@ -1,45 +1,9 @@
 {% extends 'base.html' %}
 
-<<<<<<< HEAD
-<head>
-	<title>CS 3240: Advanced Software Development</title>
-	<script>
-			function onSignIn(googleUser) {
-			  // Useful data for your client-side scripts:
-			  var profile = googleUser.getBasicProfile();
-			  alert(profile.getEmail);
-			  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-			  console.log('Full Name: ' + profile.getName());
-			  console.log("Email: " + profile.getEmail());
-	  
-			  // The ID token you need to pass to your backend:
-			  var id_token = googleUser.getAuthResponse().id_token;
-			  console.log("ID Token: " + id_token);
-			};
-		  </script>
-	<div class="g-signin2" data-onsuccess="onSignIn"></div>
-	<a href="#" onclick="signOut();">Sign out</a>
-	<script>
-	function signOut() {
-		var auth2 = gapi.auth2.getAuthInstance();
-		auth2.signOut().then(function () {
-		console.log('User signed out.');
-		});
-	}
-	</script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-</head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-    font-family: "Lato", sans-serif;
-}
-=======
 {% block content %}
->>>>>>> 3ece365217176170eef71275aa12c864eaa47b65
 
 <div class="container">
-		<h1><center>Universal Assignment Calendar</center></h1>	
+		<h1><center>Universal Assignment Calendar</center></h1>
 	<div class="main">
 		<br>
 		{% if messages %}
@@ -49,7 +13,7 @@ body {
 		  {% endfor %}
 		</ul>
 		{% endif %}
-		<br>		
+		<br>
 		<form method="get" action="/calendar/create">
 			<input type="submit" class="btn btn-primary" value="Post an Assignment">
 		</form>

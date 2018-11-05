@@ -14,4 +14,7 @@ urlpatterns = [
     path('<int:events_id>/results/', views.results, name='results'),
     # ex: /calendar/1/vote/
     path('<int:events_id>/vote/', views.vote, name='vote'),
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
 ]

@@ -1,5 +1,6 @@
 from django import forms
 from .models import Events
+from django.contrib.auth.models import User
 import datetime
 
 class IndexForm(forms.ModelForm):
@@ -14,3 +15,8 @@ class IndexForm(forms.ModelForm):
 		model = Events
 		exclude = ['pub_date']
 
+
+class UserForm(forms.ModelForm):
+    class Meta():
+        model = User
+        fields = ('username','password')

@@ -1,16 +1,12 @@
-from django.http import HttpResponse
-from .models import Events, Choice
-from django.template import loader
+from .models import Events, Choice, Courses
 from calendar import monthrange
 from datetime import datetime, date
-from django.shortcuts import render_to_response, render, redirect
-from django.template import RequestContext
-from django.shortcuts import get_object_or_404, render
+from django.template import RequestContext, loader
 from .forms import IndexForm
 from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect, render_to_response
 from django.urls import reverse
 
 
@@ -36,6 +32,7 @@ class DetailView(generic.DetailView):
 def results(request, events_id):
     events = get_object_or_404(Events, pk=events_id)
     return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
+
 
 def vote(request, events_id):
     events = get_object_or_404(Events, pk=events_id)

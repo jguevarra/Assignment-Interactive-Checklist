@@ -7,7 +7,8 @@ urlpatterns = [
     # ex: /calendar/
     path('', views.IndexView.as_view(), name='index'),
     # ex: /calendar/1/
-    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    # path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:events_id>/', views.detail, name='detail'),
     # ex: /calendar/create
     path('create/', views.create_assignment, name='create'),
     # ex: /calendar/1/results/

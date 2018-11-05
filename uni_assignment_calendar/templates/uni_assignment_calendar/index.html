@@ -5,8 +5,7 @@
 
 <head>
 	<title>CS 3240: Advanced Software Development</title>
-	<div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <script>
+	<script>
 			function onSignIn(googleUser) {
 			  // Useful data for your client-side scripts:
 			  var profile = googleUser.getBasicProfile();
@@ -20,6 +19,7 @@
 			  console.log("ID Token: " + id_token);
 			};
 		  </script>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
 	<a href="#" onclick="signOut();">Sign out</a>
 	<script>
 	function signOut() {

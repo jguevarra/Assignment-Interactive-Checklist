@@ -2,10 +2,9 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Events, Choice, Courses
+from .models import Events, Courses
 
 admin.site.register(Events)
-admin.site.register(Choice)
 admin.site.register(Courses)
 
 # registering the model

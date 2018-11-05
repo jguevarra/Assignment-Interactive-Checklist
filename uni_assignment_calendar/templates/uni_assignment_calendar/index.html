@@ -2,26 +2,25 @@
 
 {% block content %}
 
-<div class="container">
-		<h1><center>Universal Assignment Calendar</center></h1>
-	<div class="main">
-		<br>
+<div class="main">
+
+	<h1><center>Universal Assignment Calendar</center></h1>
+
+	<div class="container">
 		{% if messages %}
-		<ul class="messages">
-		  {% for message in messages %}
-		  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-		  {% endfor %}
-		</ul>
-		{% endif %}
-		<br>
+			<ul class="messages">
+		  	{% for message in messages %}
+		  		<li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		  	{% endfor %}
+			</ul>
+		{% endif %}<br>
+
 		<form method="get" action="/calendar/create">
 			<input type="submit" class="btn btn-primary" value="Post an Assignment">
 		</form>
-	</div>
+	</div><br>
 
-	<br>
-
-	<div class="main">
+	<div class="container">
 		<h3>Recent Postings</h3>
 		{% if latest_events_list %}
 		<ul>

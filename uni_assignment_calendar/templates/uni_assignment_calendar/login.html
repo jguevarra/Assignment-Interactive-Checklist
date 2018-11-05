@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="{% url 'calendar:login' %}" method="POST">
-	{% csrf_token %}
-	<label for="username">Username:</label>
-	<input type="text" name="username" placeholder="Enter Username">
+<div class="main">
 
-	<label for="password">Password:</label>
-	<input type="password" name="password" placeholder="Enter Password">
+	<div class="container">
+		<h3>Login Page</h3><br>
 
-	<input type="submit" name="" value="Login">
+		<form action="{% url 'calendar:login' %}" method="POST">
+		{% csrf_token %}
+		<label for="username">Username:</label>
+		<input type="text" name="username" placeholder="Enter Username">
+
+		<label for="password">Password:</label>
+		<input type="password" name="password" placeholder="Enter Password">
+
+		<br><br><input type="submit" class="btn btn-primary" value="Sign Up">
+	</div>
+
 </form>
+</div>
+
 {% endblock %}

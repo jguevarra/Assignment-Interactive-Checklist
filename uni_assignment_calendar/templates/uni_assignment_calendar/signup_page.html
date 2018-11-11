@@ -12,7 +12,6 @@
             {% else %}
                 <form class="signup-form" action="" method="post">
                 {% csrf_token %}
-                <!--{{ form.as_p }}-->
                 <h2 class="text-center">Sign Up</h2>
 
                 <div class="form-group">
@@ -28,11 +27,8 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
                     </form>
                     </div>
-
-		        <!--<div class="clearfix">-->
-                <!--<label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>-->
-                <!--</div>-->
 			    </form>
+                <p class="text-center small">Have an account already? <a href="../">Login here!</a></p>
 		    {% endif %}
         </div>
 

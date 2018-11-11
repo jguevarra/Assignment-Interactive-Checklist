@@ -87,4 +87,4 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     messages.success(request, "Log out successfully")
-    return HttpResponseRedirect('../')
+    return HttpResponseRedirect('/calendar/')

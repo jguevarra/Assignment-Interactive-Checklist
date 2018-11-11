@@ -73,7 +73,7 @@ def user_login(request):
             if user.is_active:
                 login(request,user)
                 messages.success(request, "Log in successfully")
-                return HttpResponseRedirect('/calendar/home')
+                return HttpResponseRedirect('/home')
             else:
                 return HttpResponse("accounts not active")
         else:

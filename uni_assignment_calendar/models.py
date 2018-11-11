@@ -20,7 +20,7 @@ class Courses(models.Model):
 class Events(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE, default=0)
     events_name = models.CharField(max_length=200)
-    due_date = models.DateTimeField(null=True)
+    due_date = models.DateField(null=True)
     due_time = models.TimeField((u"Due Time"), blank=True, default="11:59")
     pub_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)

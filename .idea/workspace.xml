@@ -4,7 +4,6 @@
     <list default="true" id="4caa779d-fcc6-4e4c-b632-8c8f057234fa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uni_assignment_calendar/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/uni_assignment_calendar/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+            <state relative-caret-position="255">
+              <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -82,7 +81,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cs3240_calendar/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
@@ -156,8 +155,8 @@
         <option value="$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/signup_page.html" />
         <option value="$PROJECT_DIR$/cs3240_calendar/urls.py" />
         <option value="$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/login_page.html" />
-        <option value="$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/base.html" />
         <option value="$PROJECT_DIR$/uni_assignment_calendar/urls.py" />
+        <option value="$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/base.html" />
       </list>
     </option>
   </component>
@@ -188,6 +187,19 @@
             <path>
               <item name="102-monkeys-with-typewriters" type="b2602c69:ProjectViewProjectNode" />
               <item name="102-monkeys-with-typewriters" type="462c0819:PsiDirectoryNode" />
+              <item name="uni_assignment_calendar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="102-monkeys-with-typewriters" type="b2602c69:ProjectViewProjectNode" />
+              <item name="102-monkeys-with-typewriters" type="462c0819:PsiDirectoryNode" />
+              <item name="uni_assignment_calendar" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="102-monkeys-with-typewriters" type="b2602c69:ProjectViewProjectNode" />
+              <item name="102-monkeys-with-typewriters" type="462c0819:PsiDirectoryNode" />
+              <item name="uni_assignment_calendar" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="uni_assignment_calendar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -364,13 +376,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/uni_assignment_calendar/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -382,6 +387,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uni_assignment_calendar/templates/uni_assignment_calendar/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
         </state>
       </provider>
     </entry>

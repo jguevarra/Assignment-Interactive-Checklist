@@ -60,7 +60,7 @@ def signup(request):
             return HttpResponse("Form Not Valid")
     else:
         form = UserForm()
-    return render(request,'uni_assignment_calendar/signup.html',{'form':form, 'registered':registered})
+    return render(request,'uni_assignment_calendar/signup_page.html',{'form':form, 'registered':registered})
 
 # Login
 def user_login(request):
@@ -73,14 +73,14 @@ def user_login(request):
             if user.is_active:
                 login(request,user)
                 messages.success(request, "Log in successfully")
-                return HttpResponseRedirect('../')
+                return HttpResponseRedirect('/calendar/home')
             else:
                 return HttpResponse("accounts not active")
         else:
             return HttpResponse("invalid login")
     
     else:
-        return render(request,'uni_assignment_calendar/login.html',{})
+        return render(request,'uni_assignment_calendar/login_page.html',{})
 
 # Logout
 @login_required

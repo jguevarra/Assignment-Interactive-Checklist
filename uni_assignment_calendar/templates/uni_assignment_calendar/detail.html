@@ -1,30 +1,11 @@
 <!--attempting to get information about each event to appear on the details page-->
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	{% block title %}<title>{{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</title>{% endblock %}
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-</head>
-<style>
-	.button {
-		margin-left: 350px;
-	}
+{% block content %}
 
-	.vote {
-		margin-left: 350px;
-	}
+<div class="container">
 
-	.vote_results {
-		margin-left: 350px;
-	}
-
-
-</style>
-<body>
-
-
-<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ events.events_name }}</center></h1>.
+	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ events.events_name }}</center></h1>.
 
 	<ul>
 		<p><strong>Course:</strong> {{ events.class_abbrev }}  {{ events.class_num }}</p>
@@ -33,38 +14,6 @@
 	    <p><strong>Description:</strong> {{ events.description }}</p>
 	</ul>
 
-	<!--radio button for vote and vote submit button-->
-	<div class="vote">
-		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-		<form action="{% url 'calendar:detail' events.id %}" method="post">
-			{% csrf_token %}
-			{% for events in events.choice_set.all %}
-				<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-				<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-			{% endfor %}
-			<input type="submit" value="Vote">
-		</form>
-	</div>
+</div>
 
-	<!--displays "Vote Again?" link and the result count (I think)-->
-	<div class="vote_results">
-		<ul>
-			{% for events in events.choice_set.all %}
-    			<li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-			{% endfor %}
-		</ul>
-	<a href="{% url 'calendar:detail' events.id %}">Vote again?</a>
-
-	</div>
-
-	<br><br>
-
-	<!--Back Button-->
-	<div class="button">
-		<form method="get" action="/calendar">
-			<input type="submit" class="btn btn-primary" value="Back">
-		</form>
-	</div>
-
-</body>
-</html>
+{% endblock %}

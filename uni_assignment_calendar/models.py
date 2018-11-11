@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 class Courses(models.Model):
-    class_id = models.IntegerField(null=False, default=0)
+    class_id = models.IntegerField(primary_key=True, null=False, default=0)
     class_abbrev = models.CharField(max_length=4)
     class_num = models.TextField(max_length=4, blank=True, null=True, default='')
     class_title = models.TextField(max_length=50)
@@ -37,3 +37,4 @@ class Events(models.Model):
 #     votes = models.IntegerField(default=0)
 #     def __str__(self):
 #         return self.choice_text
+

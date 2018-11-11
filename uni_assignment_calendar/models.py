@@ -11,7 +11,7 @@ class Courses(models.Model):
     class_abbrev = models.CharField(max_length=4)
     class_num = models.TextField(max_length=4, blank=True, null=True, default='')
     class_title = models.TextField(max_length=50)
-    instructor = models.CharField(max_length=50)
+    instructor = models.CharField(max_length=200)
     description = models.TextField(max_length=500)
 
 

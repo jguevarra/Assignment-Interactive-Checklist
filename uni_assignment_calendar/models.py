@@ -31,10 +31,11 @@ class Events(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
-class Choice(models.Model):
-    events = models.ForeignKey(Events, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-    def __str__(self):
-        return self.choice_text
+# class Choice(models.Model):
+#     events = models.ForeignKey(Events, on_delete=models.CASCADE)
+#     choice_text = models.CharField(max_length=200)
+#     votes = models.IntegerField(default=0)
+#     def __str__(self):
+#     def __str__(self):
+#         return self.choice_text
 

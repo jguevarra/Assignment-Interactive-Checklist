@@ -38,7 +38,7 @@ def create_assignment(request):
 
         if form.is_valid():          
             form.save(commit=True)
-            return HttpResponseRedirect('../')
+            return HttpResponseRedirect('/home')
         else:
             return HttpResponse("Form Not Valid")
 

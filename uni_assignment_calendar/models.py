@@ -21,6 +21,7 @@ class Events(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE, default=0)
     events_name = models.CharField(max_length=200)
     due_date = models.DateTimeField(null=True)
+    # due_date = models.TimeField()
     pub_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)
     def __str__(self):

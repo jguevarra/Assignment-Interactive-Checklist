@@ -5,7 +5,7 @@ from django.utils import timezone
 from .models import Events
 import datetime
 
-
+# helper functions
 def create_events(events_name, pub_date):
     """
     Create a post with the given `events_name` and published the
@@ -155,6 +155,8 @@ class EventsDetailViewTests(TestCase):
     Similar to test_future_events(self) function
     """
 
+# testing database
 
+# testing login/logout/signup
 
 

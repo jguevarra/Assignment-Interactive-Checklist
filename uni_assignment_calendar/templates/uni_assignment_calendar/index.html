@@ -15,7 +15,7 @@
 			</ul>
 		{% endif %}<br>
 
-		<form method="get" action="/calendar/create">
+		<form method="get" action="/create">
 			<input type="submit" class="btn btn-primary" value="Post an Assignment">
 		</form>
 	</div><br>
@@ -25,7 +25,7 @@
 		{% if latest_events_list %}
 		<ul>
 			{% for events in latest_events_list %}
-			<li><a href="{% url 'calendar:detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</a></li>
+			<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</a></li>
 			{% endfor %}
 		</ul>
 		{% else %}

@@ -14,10 +14,23 @@
 
 	<ul>
 		{% for element in result%}
-		
 		<li><a href="/course/{{ element.class_id }}/">{{element}}</a></li>
 		{% endfor %}
 	</ul>
+
+	<div>
+		<h2>My Schedule</h2>
+		{% if enrolled_course_list %}
+		<ul>
+			{% for item in enrolled_course_list %}
+			<li>item</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No enrolled courses.</p>
+		{% endif %}
+	</div>
+
 
 	<div class="container">
 		<h3>Assignment Lists</h3>

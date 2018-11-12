@@ -1,4 +1,4 @@
-from .models import Events, Courses
+from .models import Events, Courses, Enrollment
 from django.template import loader, RequestContext
 from calendar import monthrange
 from datetime import datetime, date
@@ -28,6 +28,11 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Events
     template_name = 'uni_assignment_calendar/detail.html'
+
+# Detail (generic view)
+class CourseDetailView(generic.DetailView):
+    model = Courses
+    template_name = 'uni_assignment_calendar/course_detail.html'
 
 # Form for creating an assignment
 def create_assignment(request):

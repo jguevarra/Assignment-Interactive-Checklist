@@ -14,8 +14,8 @@
 
 	<ul>
 		{% for element in result%}
-		<a> href="/course/{{ element.class_id }}/">{{element}}</a>
-		<li>{{element}}</li>
+		
+		<li><a> href="/course/{{ element.class_id }}/">{{element}}</a></li>
 		{% endfor %}
 	</ul>
 

@@ -33,8 +33,8 @@ class DetailView(generic.DetailView):
 
 # If GET request, displays the course detail
 # If POST request, enroll user in this class  
-def course_detail(request, class_id, class_abbrev, class_num):
-    courses = get_object_or_404(Courses, class_id=class_id, class_abbrev=class_abbrev, class_num=class_num)
+def course_detail(request, class_id):
+    courses = get_object_or_404(Courses, class_id=class_id)
     status = ""
 
     if request.method == "POST":

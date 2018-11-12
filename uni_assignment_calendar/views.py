@@ -24,6 +24,7 @@ class IndexView(generic.ListView):
             pub_date__lte=timezone.now()
         ).order_by('-pub_date')[:10]
 
+
 # Detail (generic view)
 class DetailView(generic.DetailView):
     model = Events
@@ -44,6 +45,16 @@ def course_detail(request, class_id):
         return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
     
     return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
+
+
+def schedule(request):
+    events_list = []
+    enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
+    for c in enrolled_course_list:
+        course = get_object_or_404(Courses,class_id=c.class_id)
+        events_list += Events.objects.filter(course=course)
+    context = {'events_list':events_list}
+    return render(request,'uni_assignment_calendar/schedule.html',context)
 
 
 # Form for creating an assignment

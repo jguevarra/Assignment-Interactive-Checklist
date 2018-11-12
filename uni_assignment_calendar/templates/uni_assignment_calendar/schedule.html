@@ -12,7 +12,11 @@
 		<button type="submit">Search</button>
 	</form>
 
-
+	<ul>
+		{% for element in result%}
+		<li>{{element}}</li>
+		{% endfor %}
+	</ul>
 
 	<div class="container">
 		<h3>Assignment Lists</h3>

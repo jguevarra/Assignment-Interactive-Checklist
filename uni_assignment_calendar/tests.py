@@ -4,12 +4,14 @@ from django.urls import reverse
 from django.utils import timezone
 from .models import Events
 import datetime
+from django.test import Client
+
 
 # helper functions
 def create_events(events_name, pub_date):
     """
     Create a post with the given `events_name` and published the
-    given number of `days` offset to now (negative for psots published
+    given number of `days` offset to now (negative for posts published
     in the past, positive for psots that have yet to be published).
     """
     time = timezone.now() + datetime.timedelta(days=pub_date)
@@ -23,6 +25,9 @@ def create_events_due_date(events_name, due_date):
     """
     time = timezone.now() + datetime.timedelta(days=due_date)
     return Events.objects.create(events_name=events_name, due_date=time)
+
+
+
 
 
 # Testing Model View
@@ -157,6 +162,76 @@ class EventsDetailViewTests(TestCase):
 
 # testing database
 
+def test_if_delete_once_overdue(self):
+    """
+    Tests to see if an assignment is deleted once the due date is passed
+    """
+    time = timezone.now() - datetime.timedelta(days=1)
+    #time one day ago
+    test_assignment = Events(due_date=time)
+    #make assignment with due date one day ago
+    #self.assertIs(*in the db*, False)
+    #assert that it does not exist in the database
+
+
 # testing login/logout/signup
 
+def test_if_invalid_form_do_not_go_to_homepage(self):
+    """
+    Test to see if it is an invalid form it does not go to the homepage
+    """
+    c = Client()
+    response = c.post('/login/', {'username': '', 'password': ''})
+    url = response.url
+    self.assertIs(url == 'https://uni-assignment-calendar.herokuapp.com/home/', False)
+
+
+def test_if_successfully_logged_in(self):
+    """
+    Test if successfully logged in
+    """
+    c = Client()
+    response = c.post('/login/',{'username': 'admin', 'password': 'password'})
+    url = response.url
+    self.assertEqual(url, 'https://uni-assignment-calendar.herokuapp.com/home/')
+
+
+def test_if_invalid_remain_at_login(self):
+    """
+    if it's invalid, remain at the login screen
+    """
+    c = Client()
+    response = c.post('/login/',{'username': '','password': ''})
+    url = response.url
+    self.assertEqual(url, 'https://uni-assignment-calendar.herokuapp.com/login/')
+
+
+def test_if_invalid_sign_up_form_do_not_go_to_homepage(self):
+    """
+    Test to see if the sign up form is invalid and if it is do not go to homepage
+    """
+    c = Client()
+    response = c.post('/signup_page/', {'username': '', 'password': ''})
+    url = response.url
+    self.assertIs(url == 'https://uni-assignment-calendar.herokuapp.com/home/', False)
+
+
+def test_if_invalid_remain_at_sign_up(self):
+    """
+    Tests to see if it's invalid it remains at the login page sign up
+    """
+    c = Client()
+    response = c.post('/signup/', {'username': '', 'password': ''})
+    url = response.url
+    self.assertEqual(url, 'https://uni-assignment-calendar.herokuapp.com/signup/')
+
+
+def test_if_successfully_signed_up(self):
+    """
+    Test if successfully signed up and redirects to homepage
+    """
+    c = Client()
+    response = c.post('/signup/',{'username': 'username1','password':'password'})
+    url = response.url
+    self.assertEqual(url, 'https://uni-assignment-calendar.herokuapp.com/home/')
 

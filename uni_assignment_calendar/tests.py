@@ -9,8 +9,8 @@ import datetime
 def create_events(events_name, pub_date):
     """
     Create a post with the given `events_name` and published the
-    given number of `days` offset to now (negative for psots published
-    in the past, positive for psots that have yet to be published).
+    given number of `days` offset to now (negative for posts published
+    in the past, positive for posts that have yet to be published).
     """
     time = timezone.now() + datetime.timedelta(days=pub_date)
     return Events.objects.create(events_name=events_name, pub_date=time)

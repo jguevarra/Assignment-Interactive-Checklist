@@ -122,3 +122,4 @@ def user_logout(request):
     logout(request)
     messages.success(request, "Log out successful.")
     return HttpResponseRedirect("/")
+

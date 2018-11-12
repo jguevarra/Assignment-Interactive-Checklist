@@ -49,10 +49,11 @@ def course_detail(request, class_id):
 
 def schedule(request):
     events_list = []
-    '''
+    
     if request.method == 'GET':
-        return Courses.objects.filter(class_id=request.GET.get('search_box'))
-    '''
+        result  = Courses.objects.filter(class_id=request.post.class_id)
+        context = {'result':result}
+
     enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
     for c in enrolled_course_list:
         course = get_object_or_404(Courses,class_id=c.class_id)

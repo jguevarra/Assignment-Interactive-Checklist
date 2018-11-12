@@ -47,6 +47,11 @@ def course_detail(request, class_id):
     return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
 
 
+def ScheduleResults(request):
+        result  = Courses.objects.filter(class_id=request.GET['search_box'])
+        context = {'result':result}
+        return render(request,'uni_assignment_calendar/schedule.html',context)
+
 def schedule(request):
     events_list = []
     enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
@@ -66,7 +71,7 @@ def create_assignment(request):
 
         if form.is_valid():          
             form.save(commit=True)
-            return HttpResponseRedirect('/home')
+            return HttpResponseRedirect("/home")
         else:
             return HttpResponse("Form Not Valid")
 
@@ -101,8 +106,8 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                messages.success(request, "Log in successfully")
-                return HttpResponseRedirect('/home')
+                messages.success(request, "Log in successful.")
+                return HttpResponseRedirect("/home")
             else:
                 return HttpResponse("accounts not active")
         else:
@@ -115,5 +120,6 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    messages.success(request, "Log out successfully")
-    return HttpResponseRedirect('/')
+    messages.success(request, "Log out successful.")
+    return HttpResponseRedirect("/")
+

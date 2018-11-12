@@ -12,6 +12,8 @@ urlpatterns = [
     path('create/', views.create_assignment, name='create'),
     path('signup/', views.signup, name='signup'),
     path('login/', views.user_login, name='login'),
+    path('accounts/login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('schedule/', views.schedule, name='schedule'),
+    path('schedule/ScheduleResults/',views.ScheduleResults,name='ScheduleResults')
 ]

@@ -10,7 +10,13 @@ from django.utils.timezone import now
 # helper functions -- needa edit
 def create_event_pub_date(events_name, pub_date):
     """
+<<<<<<< HEAD
     Creates a post with a custom published/posted date using pub_date
+=======
+    Create a post with the given `events_name` and published the
+    given number of `days` offset to now (negative for posts published
+    in the past, positive for posts that have yet to be published).
+>>>>>>> d7300ebdedb42e66272c109d2a0b99410b742f6e
     """
     new_pub_date = now() + timedelta(days=pub_date)
     return Events.objects.create(events_name=events_name, pub_date=new_pub_date)

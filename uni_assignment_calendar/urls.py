@@ -15,5 +15,5 @@ urlpatterns = [
     path('accounts/login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('schedule/', views.schedule, name='schedule'),
-    parth('ScheduleResults/',views.ScheduleResults,name='ScheduleResults')
+    path('ScheduleResults/',views.ScheduleResults,name='ScheduleResults')
 ]

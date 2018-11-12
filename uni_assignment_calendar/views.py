@@ -47,7 +47,7 @@ def course_detail(request, class_id):
     return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
 
 
-def ScheduleResults(request):
+def results(request):
         result  = Courses.objects.filter(class_id=request.GET['search_box'])
         context = {'result':result}
         return render(request,'uni_assignment_calendar/schedule.html',context)

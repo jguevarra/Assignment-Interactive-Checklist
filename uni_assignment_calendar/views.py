@@ -47,13 +47,13 @@ def course_detail(request, class_id):
     return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
 
 
+def ScheduleResults(request):
+        result  = Courses.objects.filter(class_id=request.GET.class_id)
+        context = {'result':result}
+        return 'uni_assignment_calendar/schedule.html',context)
+
 def schedule(request):
     events_list = []
-    
-    if request.method == 'GET':
-        result  = Courses.objects.filter(class_id=request.GET['class_id'])
-        context = {'result':result}
-    
     enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
     for c in enrolled_course_list:
         course = get_object_or_404(Courses,class_id=c.class_id)

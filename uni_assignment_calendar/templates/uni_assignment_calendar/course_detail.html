@@ -13,6 +13,12 @@
 	    <p><strong>Description:</strong> {{ courses.description }}</p>
 	</ul>
 
+	<form method="POST">
+		{% csrf_token %}
+		<input type="submit" class="btn btn-primary" value="Add Course">
+	</form>
+	<p>{{ status }}</p>
+
 </div>
 
 {% endblock %}

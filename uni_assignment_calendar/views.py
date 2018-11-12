@@ -29,10 +29,22 @@ class DetailView(generic.DetailView):
     model = Events
     template_name = 'uni_assignment_calendar/detail.html'
 
-# Detail (generic view)
-class CourseDetailView(generic.DetailView):
-    model = Courses
-    template_name = 'uni_assignment_calendar/course_detail.html'
+
+# If GET request, displays the course edtail
+# If POST request, enroll user in this class  
+def course_detail(request, class_id):
+    courses = get_object_or_404(Courses, class_id=class_id)
+    status = ""
+
+    if request.method == "POST":
+        username = request.user.username
+        new_enroll = Enrollment(username=username,class_id=class_id)
+        new_enroll.save()
+        status = "Course Successfully Added!"
+        return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
+    
+    return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
+
 
 # Form for creating an assignment
 def create_assignment(request):
@@ -48,6 +60,7 @@ def create_assignment(request):
             return HttpResponse("Form Not Valid")
 
     return render(request, 'uni_assignment_calendar/create.html', {'form':form})
+
 
 # Signup
 def signup(request):

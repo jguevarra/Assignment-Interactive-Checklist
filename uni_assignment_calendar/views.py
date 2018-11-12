@@ -50,7 +50,7 @@ def course_detail(request, class_id):
 def ScheduleResults(request):
         result  = Courses.objects.filter(class_id=request.GET.class_id)
         context = {'result':result}
-        return 'uni_assignment_calendar/schedule.html',context)
+        return (request,'uni_assignment_calendar/schedule.html',context)
 
 def schedule(request):
     events_list = []

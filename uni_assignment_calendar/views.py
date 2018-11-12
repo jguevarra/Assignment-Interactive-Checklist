@@ -101,7 +101,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                messages.success(request, "Log in successfully")
+                messages.success(request, "Log in successful.")
                 return HttpResponseRedirect('/home')
             else:
                 return HttpResponse("accounts not active")
@@ -115,5 +115,5 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    messages.success(request, "Log out successfully")
+    messages.success(request, "Log out successful.")
     return HttpResponseRedirect('../')

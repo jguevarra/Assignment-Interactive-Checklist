@@ -60,8 +60,9 @@ body {
 <body>
 
 <div id="mySidenav" class="sidenav">
-  <a href="{% url 'index' %}">Home</a>
-  <a href="{% url 'logout' %}">Log Out</a>
+  <a href="/home">Home</a>
+  <a href="/schedule">My Schedule</a>
+  <a href="/logout">Log Out</a>
 </div>
 
 {% block content %}

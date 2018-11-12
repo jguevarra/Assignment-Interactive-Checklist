@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main">
+
+	<h1><center>Universal Assignment Calendar</center></h1>
+
+	<form type="get" action="ScheduleResults" style = "margin:0">
+		<input type="search" placeholder="Search by course ID" name="search_box" 
+			value='{{ query }}' required>
+		<button type="submit">Search</button>
+	</form>
+
+	<ul>
+		{% for element in result%}
+		
+		<li><a href="/course/{{ element.class_id }}/">{{element}}</a></li>
+		{% endfor %}
+	</ul>
+
+	<div class="container">
+		<h3>Assignment Lists</h3>
+		{% if events_list %}
+		<ul>
+			{% for events in events_list %}
+			<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No events have been posted.</p>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

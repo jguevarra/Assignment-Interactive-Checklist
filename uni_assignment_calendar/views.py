@@ -50,7 +50,7 @@ def course_detail(request, class_id):
 def schedule(request):
     events_list = []
     if request.method == 'GET':
-        search_query = request.GET.get('search_box')
+        return Courses.objects.filter(class_id=request.GET.get('search_box'))
 
     enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
     for c in enrolled_course_list:

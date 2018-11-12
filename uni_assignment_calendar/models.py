@@ -24,6 +24,8 @@ class Events(models.Model):
     due_time = models.TimeField((u"Due Time"), blank=True, default="11:59")
     pub_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)
+    class Meta:
+        ordering = ["course"]
     def __str__(self):
         return self.events_name
 

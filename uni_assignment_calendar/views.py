@@ -51,7 +51,7 @@ def schedule(request):
     events_list = []
     
     if request.method == 'GET':
-        result  = Courses.objects.filter(class_id=request.POST.class_id)
+        result  = Courses.objects.filter(class_id=request.GET.class_id)
         context = {'result':result}
 
     enrolled_course_list = Enrollment.objects.filter(username=request.user.username)

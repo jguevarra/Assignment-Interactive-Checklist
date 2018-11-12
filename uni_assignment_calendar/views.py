@@ -31,10 +31,10 @@ class DetailView(generic.DetailView):
     template_name = 'uni_assignment_calendar/detail.html'
 
 
-# If GET request, displays the course edtail
+# If GET request, displays the course detail
 # If POST request, enroll user in this class  
-def course_detail(request, class_id):
-    courses = get_object_or_404(Courses, class_id=class_id)
+def course_detail(request, class_id, class_abbrev, class_num):
+    courses = get_object_or_404(Courses, class_id=class_id, class_abbrev=class_abbrev, class_num=class_num)
     status = ""
 
     if request.method == "POST":

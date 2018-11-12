@@ -51,9 +51,9 @@ def schedule(request):
     events_list = []
     
     if request.method == 'GET':
-        result  = Courses.objects.filter(class_id=request.GET.class_id)
+        result  = Courses.objects.filter(class_id=request.GET['class_id'])
         context = {'result':result}
-
+    
     enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
     for c in enrolled_course_list:
         course = get_object_or_404(Courses,class_id=c.class_id)

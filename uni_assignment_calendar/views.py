@@ -85,7 +85,12 @@ def signup(request):
     if request.method == "POST":
         form = UserForm(data=request.POST)
 
-        if form.is_valid():          
+        if form.is_valid():
+
+            if request.POST.get('password') != request.POST.get('password2'):
+                messages.error(request, "Password Not Equal")
+                return render(request,'uni_assignment_calendar/signup_page.html',{})            
+                            
             user = form.save()
             user.set_password(user.password)
             user.save()

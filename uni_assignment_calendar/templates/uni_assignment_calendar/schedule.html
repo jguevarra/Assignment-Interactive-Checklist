@@ -6,33 +6,36 @@
 
 	<h1><center>Universal Assignment Calendar</center></h1>
 
-	<form type="get" action="{% url 'ScheduleResults' %}" style = "margin:0">
-		<input type="search" placeholder="Search by course ID" name="search_box" 
-			value='{{ query }}' required>
-		<button type="submit">Search</button>
-	</form>
-
-	<ul>
-		{% for element in result%}
-		<li><a href="/course/{{ element.class_id }}/">{{element}}</a></li>
-		{% endfor %}
-	</ul>
-
-	<div>
-		<h2>My Schedule</h2>
-		{% if enrolled_course_list %}
-		<ul>
-			{% for item in enrolled_course_list %}
-			<li>{{item}}</li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		<p>No enrolled courses.</p>
-		{% endif %}
-	</div>
-
 
 	<div class="container">
+
+		<form type="get" action="{% url 'ScheduleResults' %}" style = "margin:0">
+			<input type="search" placeholder="Search by course ID" name="search_box" 
+				value='{{ query }}' required>
+			<button type="submit" class="btn btn-primary">Search</button>
+		</form>
+
+		<ul>
+			{% for element in result%}
+			<li><a href="/course/{{ element.class_id }}/">{{element}}</a></li>
+			{% endfor %}
+		</ul>
+
+
+		<div>
+			<h2>My Schedule</h2>
+			{% if enrolled_course_list %}
+			<ul>
+				{% for item in enrolled_course_list %}
+				<li>{{item}}</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+			<p>No enrolled courses.</p>
+			{% endif %}
+		</div>
+
+
 		<h3>To-Do</h3>
 		{% if events_list %}
 		<ul>

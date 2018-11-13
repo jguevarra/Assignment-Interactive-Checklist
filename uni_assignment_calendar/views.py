@@ -39,9 +39,13 @@ def course_detail(request, class_id):
 
     if request.method == "POST":
         username = request.user.username
-        new_enroll = Enrollment(username=username,class_id=class_id)
-        new_enroll.save()
-        status = "Course Successfully Added!"
+        try:
+            enrolled = Enrollment.objects.get(username=username,class_id=class_id)
+            status = "You have enrolled in this course before!"
+        except ObjectDoesNotExist:
+            new_enroll = Enrollment(username=username,class_id=class_id)
+            new_enroll.save()
+            status = "Course Successfully Added!"           
         return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
     
     return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
@@ -55,10 +59,12 @@ def ScheduleResults(request):
 def schedule(request):
     events_list = []
     enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
+    
     for c in enrolled_course_list:
         course = get_object_or_404(Courses,class_id=c.class_id)
         events_list += Events.objects.filter(course=course)
     context = {'events_list':events_list,'enrolled_course_list':enrolled_course_list}
+    
     return render(request,'uni_assignment_calendar/schedule.html',context)
 
 
@@ -90,7 +96,7 @@ def signup(request):
             if request.POST.get('password') != request.POST.get('password2'):
                 messages.error(request, "Password Not Equal")
                 return render(request,'uni_assignment_calendar/signup_page.html',{})            
-                            
+
             user = form.save()
             user.set_password(user.password)
             user.save()
@@ -114,9 +120,10 @@ def user_login(request):
                 messages.success(request, "Log in successful.")
                 return HttpResponseRedirect("/home")
             else:
-                return HttpResponse("accounts not active")
+                messages.warning(request, "Warning: Account Not Active")
         else:
-            return HttpResponse("invalid login")
+            messages.error(request, "Error: Login Invalid")    
+        return render(request,'uni_assignment_calendar/login_page.html',{})
     
     else:
         return render(request,'uni_assignment_calendar/login_page.html',{})

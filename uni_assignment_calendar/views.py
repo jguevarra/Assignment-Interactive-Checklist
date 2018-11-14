@@ -36,16 +36,26 @@ class DetailView(generic.DetailView):
 def course_detail(request, class_id):
     courses = get_object_or_404(Courses, class_id=class_id)
     status = ""
-
+    
     if request.method == "POST":
         username = request.user.username
-        try:
-            enrolled = Enrollment.objects.get(username=username,class_id=class_id)
-            status = "You have enrolled in this course before!"
-        except ObjectDoesNotExist:
-            new_enroll = Enrollment(username=username,class_id=class_id)
-            new_enroll.save()
-            status = "Course Successfully Added!"           
+        enrolled = Enrollment.objects.filter(username=username,class_id=class_id)
+        
+        if enrolled.count() != 0:
+            if request.POST.get('add') != None:
+                status = "You have enrolled in this class"
+            if request.POST.get('cancel') != None:
+                enrolled.delete()
+                status = "Course Successfully Deleted from Your Schedule!"
+
+        else:
+            if request.POST.get('add') != None:
+                new_enroll = Enrollment(username=username,class_id=class_id)
+                new_enroll.save()
+                status = "Course Successfully Added!"        
+            if request.POST.get('cancel') != None:   
+                status = "You haven't Enrolled, why click remove?"
+
         return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
     
     return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})

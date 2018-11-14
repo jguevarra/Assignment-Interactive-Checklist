@@ -13,11 +13,19 @@
 		    <p><strong>Instructor:</strong> {{ courses.instructor }}</p>
 		    <p><strong>Description:</strong> {{ courses.description }}</p>
 		</ul>
+		
+		<form method="POST">
+			{% csrf_token %}
+			<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+		</form>
+
+		<br>
 
 		<form method="POST">
 			{% csrf_token %}
-			<input type="submit" class="btn btn-primary" value="Add Course">
+			<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
 		</form>
+
 		<p>{{ status }}</p>
 	</div>
 

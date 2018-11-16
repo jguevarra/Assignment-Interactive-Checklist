@@ -32,10 +32,10 @@
 
 		<div>
 			<h2>My Schedule</h2>
-			{% if enrolled_course_list %}
+			{% if course_list %}
 			<ul>
-				{% for item in enrolled_course_list %}
-				<li>{{item}}</li>
+				{% for item in course_list %}
+				<li><a href="/course/{{ item.class_id }}/">{{ item.class_abbrev }} {{ item.class_num }} -- {{ item.class_title }}</a></li>
 				{% endfor %}
 			</ul>
 			{% else %}
@@ -43,17 +43,21 @@
 			{% endif %}
 		</div>
 
+		<br>
 
-		<h3>To-Do</h3>
-		{% if events_list %}
-		<ul>
-			{% for events in events_list %}
-			<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</a></li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		<p>No events have been posted.</p>
-		{% endif %}
+		<div>
+			<h3>To-Do</h3>
+			{% if events_list %}
+			<ul>
+				{% for events in events_list %}
+				<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</a></li>
+				{% endfor %}
+			</ul>
+			{% else %}
+			<p>No events have been posted.</p>
+			{% endif %}			
+		</div>
+
 	</div>
 </div>
 

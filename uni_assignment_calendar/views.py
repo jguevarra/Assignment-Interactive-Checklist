@@ -92,12 +92,15 @@ def ScheduleResults(request):
 
 def schedule(request):
     events_list = []
-    enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
+    course_list = []
+    enrollments = Enrollment.objects.filter(username=request.user.username)
     
-    for c in enrolled_course_list:
-        course = get_object_or_404(Courses,class_id=c.class_id)
+    for c in enrollments:
+        #course = get_object_or_404(Courses,class_id=c.class_id)
+        course = Courses.objects.get(class_id=c.class_id)
         events_list += Events.objects.filter(course=course)
-    context = {'events_list':events_list,'enrolled_course_list':enrolled_course_list}
+        course_list.append(course)
+    context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
     
     return render(request,'uni_assignment_calendar/schedule.html',context)
 

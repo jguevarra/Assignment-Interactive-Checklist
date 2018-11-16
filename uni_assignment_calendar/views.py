@@ -41,11 +41,10 @@ class DetailView(generic.DetailView):
 def course_detail(request, class_id):
     courses = get_object_or_404(Courses, class_id=class_id)
     status = ""
+    username = request.user.username
+    enrolled = Enrollment.objects.filter(username=username,class_id=class_id)
     
     if request.method == "POST":
-        username = request.user.username
-        enrolled = Enrollment.objects.filter(username=username,class_id=class_id)
-        
         if enrolled.count() != 0:
             if request.POST.get('add') != None:
                 status = "You have enrolled in this class"
@@ -61,15 +60,35 @@ def course_detail(request, class_id):
             if request.POST.get('cancel') != None:   
                 status = "You haven't Enrolled, why click remove?"
 
-        return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
+        return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status,'enrolled':enrolled})
     
-    return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
+    return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status,'enrolled':enrolled})
 
 
 def ScheduleResults(request):
-        result  = Courses.objects.filter(class_id=request.GET['search_box'])
-        context = {'result':result}
-        return render(request,'uni_assignment_calendar/schedule.html',context)
+    message = ""
+    result = []
+
+    if request.GET['search_id'] != "":
+        message += 'search_id: ' + request.GET['search_id']
+        result = Courses.objects.filter(class_id=request.GET['search_id'])
+
+    if request.GET['search_abb'] != "":
+        message += 'search_abb: ' + request.GET['search_abb']
+        if result == []:
+            result = Courses.objects.filter(class_abbrev=request.GET['search_abb'])
+        else:
+            result = result.filter(class_abbrev=request.GET['search_abb'])
+        
+    if request.GET['search_num'] != "":
+        message += 'search_num: ' + request.GET['search_num']
+        if result == []:
+            result = Courses.objects.filter(class_num=request.GET['search_num'])
+        else:
+            result = result.filter(class_num=request.GET['search_num'])
+
+    return render(request,'uni_assignment_calendar/schedule.html',{'result':result, 'message':message})
+
 
 def schedule(request):
     events_list = []

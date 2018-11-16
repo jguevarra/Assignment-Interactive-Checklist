@@ -21,10 +21,12 @@
 
 		<br>
 
+		{% if enrolled %}
 		<form method="POST">
 			{% csrf_token %}
 			<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
 		</form>
+		{% endif %}
 
 		<p>{{ status }}</p>
 	</div>

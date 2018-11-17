@@ -13,6 +13,8 @@ class Courses(models.Model):
     class_title = models.TextField(max_length=50)
     instructor = models.CharField(max_length=200)
     description = models.TextField(max_length=500)
+    class Meta:
+        ordering = ["class_title"]
     def __str__(self):
         return self.class_title
 

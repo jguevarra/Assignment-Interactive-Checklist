@@ -11,11 +11,10 @@
 
 	<div class="container">
 
-		<form type="get" action="{% url 'ScheduleResults' %}" style = "margin:0">
+		<form type="get" action="{% url 'ScheduleResults' %}">
 			<input type="search" placeholder="Search by course ID" name="search_id" value='{{ query }}'>
 			<input type="search" placeholder="Search by course Abbreviation" name="search_abb" value='{{ query }}'>
 			<input type="search" placeholder="Search by course Number" name="search_num" value='{{ query }}'>
-			
 			<button type="submit" class="btn btn-primary">Search</button>
 		</form>
 

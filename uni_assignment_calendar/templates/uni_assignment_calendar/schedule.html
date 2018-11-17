@@ -11,7 +11,7 @@
 
 	<div class="container">
 
-		<form type="get" action="{% url 'ScheduleResults' %}">
+		<form type="get" action="{% url 'ScheduleResults' %}" style = "margin:0">
 			<input type="search" placeholder="Search by course ID" name="search_id" value='{{ query }}'>
 			<input type="search" placeholder="Search by course Abbreviation" name="search_abb" value='{{ query }}'>
 			<input type="search" placeholder="Search by course Number" name="search_num" value='{{ query }}'>

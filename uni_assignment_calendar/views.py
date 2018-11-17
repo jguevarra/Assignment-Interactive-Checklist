@@ -154,12 +154,10 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                messages.success(request, "Log in successful.")
                 return HttpResponseRedirect("/home")
             else:
                 messages.warning(request, "Warning: Account Not Active")
         else:
-            messages.error(request, "Error: Login Invalid")    
         return render(request,'uni_assignment_calendar/login_page.html',{})
     
     else:
@@ -169,6 +167,5 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    messages.success(request, "Log out successful.")
     return HttpResponseRedirect("/")
 

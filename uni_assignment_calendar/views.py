@@ -98,9 +98,10 @@ def schedule(request):
     for c in enrollments:
         #course = get_object_or_404(Courses,class_id=c.class_id)
         course = Courses.objects.get(class_id=c.class_id)
-        events_list += Events.objects.filter(course=course)
+        events_list += Events.objects.filter(course=course).order_by('due_date','due_time')
         course_list.append(course)
     context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
+
     
     return render(request,'uni_assignment_calendar/schedule.html',context)
 

@@ -53,7 +53,7 @@
 			{% if events_list %}
 			<ul>
 				{% for events in events_list %}
-				<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</a></li>
+				<li class = assignment><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</a></li>
 				{% endfor %}
 			</ul>
 			{% else %}

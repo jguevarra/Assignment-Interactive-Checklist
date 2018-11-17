@@ -158,7 +158,7 @@ def user_login(request):
             else:
                 messages.warning(request, "Warning: Account Not Active")
         else:
-        return render(request,'uni_assignment_calendar/login_page.html',{})
+            return render(request,'uni_assignment_calendar/login_page.html',{})
     
     else:
         return render(request,'uni_assignment_calendar/login_page.html',{})

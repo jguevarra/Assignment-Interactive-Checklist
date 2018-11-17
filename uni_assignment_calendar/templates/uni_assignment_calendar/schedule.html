@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'uni_assignment_calendar/todoList.css' %}">
 <div class="main">
 	
-	<h1><center>Universal Assignment Calendar</center></h1>
+	<h1><center>Universal Assignment Scheduler</center></h1>
 
 
 	<div class="container">
@@ -86,7 +86,8 @@ for (i = 0; i < close.length; i++) {
 }
 
 // Add a "checked" symbol when clicking on a list item
-var list = document.querySelector("ul");
+var list = document.getElementsByClassName("assignment");
+console.log(list);
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');

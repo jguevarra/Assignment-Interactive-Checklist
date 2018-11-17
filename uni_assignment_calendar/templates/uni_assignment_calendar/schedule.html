@@ -89,8 +89,9 @@ for (i = 0; i < close.length; i++) {
 var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
-  	if (ev.target.tagName === 'LI') {
-    	ev.target.classList.toggle('checked');
+		if (ev.target.tagName === 'LI') {
+			console.log('event triggered')
+			ev.target.classList.toggle('checked');
   }
 }, false);
 }

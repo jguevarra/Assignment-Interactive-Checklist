@@ -1,16 +1,18 @@
 from .models import Events, Courses, Enrollment
-from django.template import loader, RequestContext
-from calendar import monthrange
-from datetime import datetime, date
-from django.shortcuts import render_to_response, render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from .forms import IndexForm, UserForm
 from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+
+# def LandingView(request):
+#     context = {}
+#     template = 'uni_assignment_calendar/index.html'
+#     return render(request, template, context)
 
 # Index (generic views) -- home page
 class IndexView(generic.ListView):
@@ -29,36 +31,92 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Events
     template_name = 'uni_assignment_calendar/detail.html'
+# def events_detail(request, pk):
+#     events = get_object_or_404(Events, pk=pk)
+#     courses = events.course
+#     return render(request, 'uni_assignment_calendar/detail.html', {'events':events, 'courses':courses})
 
 
-# If GET request, displays the course edtail
+
+# If GET request, displays the course detail
 # If POST request, enroll user in this class  
 def course_detail(request, class_id):
     courses = get_object_or_404(Courses, class_id=class_id)
     status = ""
-
-    if request.method == "POST":
-        username = request.user.username
-        new_enroll = Enrollment(username=username,class_id=class_id)
-        new_enroll.save()
-        status = "Course Successfully Added!"
-        return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
+    username = request.user.username
+    enrolled = Enrollment.objects.filter(username=username,class_id=class_id)
     
-    return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status})
+    if request.method == "POST":
+        if enrolled.count() != 0:
+            if request.POST.get('add') != None:
+                status = "You have enrolled in this class"
+            if request.POST.get('cancel') != None:
+                enrolled.delete()
+                status = "Course Successfully Deleted from Your Schedule!"
+
+        else:
+            if request.POST.get('add') != None:
+                new_enroll = Enrollment(username=username,class_id=class_id)
+                new_enroll.save()
+                status = "Course Successfully Added!"        
+            if request.POST.get('cancel') != None:   
+                status = "You haven't Enrolled, why click remove?"
+
+        return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status,'enrolled':enrolled})
+    
+    return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status,'enrolled':enrolled})
 
 
 def ScheduleResults(request):
-        result  = Courses.objects.filter(class_id=request.GET['search_box'])
-        context = {'result':result}
-        return render(request,'uni_assignment_calendar/schedule.html',context)
+    message = ""
+    result = []
+
+    if request.GET['search_id'] != "":
+        message += 'search_id: ' + request.GET['search_id']
+        result = Courses.objects.filter(class_id=request.GET['search_id'])
+
+    if request.GET['search_abb'] != "":
+        message += 'search_abb: ' + request.GET['search_abb']
+        if result == []:
+            result = Courses.objects.filter(class_abbrev=request.GET['search_abb'])
+        else:
+            result = result.filter(class_abbrev=request.GET['search_abb'])
+        
+    if request.GET['search_num'] != "":
+        message += 'search_num: ' + request.GET['search_num']
+        if result == []:
+            result = Courses.objects.filter(class_num=request.GET['search_num'])
+        else:
+            result = result.filter(class_num=request.GET['search_num'])
+
+    events_list = []
+    course_list = []
+    enrollments = Enrollment.objects.filter(username=request.user.username)
+    
+    for c in enrollments:
+        #course = get_object_or_404(Courses,class_id=c.class_id)
+        course = Courses.objects.get(class_id=c.class_id)
+        events_list += Events.objects.filter(course=course).order_by('due_date','due_time')
+        course_list.append(course)
+
+    context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list,'result':result, 'message':message}
+
+    return render(request,'uni_assignment_calendar/schedule.html',context)
+
 
 def schedule(request):
     events_list = []
-    enrolled_course_list = Enrollment.objects.filter(username=request.user.username)
-    for c in enrolled_course_list:
-        course = get_object_or_404(Courses,class_id=c.class_id)
-        events_list += Events.objects.filter(course=course)
-    context = {'events_list':events_list}
+    course_list = []
+    enrollments = Enrollment.objects.filter(username=request.user.username)
+    
+    for c in enrollments:
+        #course = get_object_or_404(Courses,class_id=c.class_id)
+        course = Courses.objects.get(class_id=c.class_id)
+        events_list += Events.objects.filter(course=course).order_by('due_date','due_time')
+        course_list.append(course)
+    context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
+
+    
     return render(request,'uni_assignment_calendar/schedule.html',context)
 
 
@@ -85,7 +143,12 @@ def signup(request):
     if request.method == "POST":
         form = UserForm(data=request.POST)
 
-        if form.is_valid():          
+        if form.is_valid():
+
+            if request.POST.get('password') != request.POST.get('password2'):
+                messages.error(request, "Password Not Equal")
+                return render(request,'uni_assignment_calendar/signup_page.html',{})            
+
             user = form.save()
             user.set_password(user.password)
             user.save()
@@ -106,12 +169,11 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                messages.success(request, "Log in successful.")
                 return HttpResponseRedirect("/home")
             else:
-                return HttpResponse("accounts not active")
+                messages.warning(request, "Warning: Account Not Active")
         else:
-            return HttpResponse("invalid login")
+            return render(request,'uni_assignment_calendar/login_page.html',{})
     
     else:
         return render(request,'uni_assignment_calendar/login_page.html',{})
@@ -120,6 +182,5 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    messages.success(request, "Log out successful.")
     return HttpResponseRedirect("/")
 

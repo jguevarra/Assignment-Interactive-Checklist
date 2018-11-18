@@ -6,6 +6,8 @@ from .models import Events
 import datetime
 from datetime import timedelta
 from django.utils.timezone import now
+from django.test import Client
+
 
 # helper functions -- needa edit
 def create_event_pub_date(events_name, pub_date):
@@ -151,78 +153,102 @@ class EventsDetailViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-# testing database
-class DatabaseTests(TestCase):
-    """
-    insert tests here!
-    """
+# # testing database
+# class DatabaseTests(TestCase):
+#     """
+#     insert tests here!
+#     """
 
 
 # login/signup/logout helper functions
+class LoginLogoutTests(TestCase): # works
+
+    def test_no_inputs(self):
+        """
+        If login form is invalid with no username or password, url should
+        remain on login page
+        """
+        c = Client()
+        c.login(user="", password="")
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code,200)
+
+    def test_no_password_input(self):
+        """
+        If login form is invalid with no password, url should remain on
+        login page
+        """
+        c = Client()
+        c.login(user="user", password="")
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_no_username_input(self):
+        """
+        If login form is invalid with no username, url should remain on
+        login page
+        """
+        c = Client()
+        c.login(user="", password="passwd")
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_if_successfully_logged_in(self): # works
+        """
+        Test if successfully logged in
+        """
+        c = Client()
+        c.login(user="user", password="passwd")
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_if_invalid_sign_up_form_do_not_go_to_homepage(self):
+        """
+        Test to see if the sign up form is invalid and if it is do not go to homepage
+        """
+        c = Client()
+        c.login(user="", password="")
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_if_invalid_remain_at_sign_up(self):
+        """
+        Tests to see if it's invalid it remains at the login page sign up
+        """
+        c = Client()
+        c.login(user="", password="12345")
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_if_successfully_signed_up(self): # works
+        """
+        Test if successfully signed up and redirects to homepage
+        """
+        c = Client()
+        c.login(user="user123", password="passwd123")
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code,200)
 
 
-# testing signup view
-class SignupViewTests(TestCase):
+class LogoutViewTests(TestCase):
 
-    # create a helper function to create a new user
-
-    # create a helper function with a login that already exists?
-
-    #def test_username_invalid(self):
+    # def test_logged_in_logout(self):
     """
-    signup -- if a username is taken already, page should display
-    "invalid form"
+    if the user is logged in and logout is requested, "Logout successfully"
     """
 
-    #def test_username_valid(self):
-    """
-    signup -- if a user successfully signup, page should display
-    "thank you for registering!"
-    """
 
-    #def test_form_valid(self):
-    """
-    signup -- if form is valid, registered == True
-    """
 
-    #def test_form_invalid(self):
-    """
-    signup -- if form is invalid, registered == False
-    """
 
-# class LoginViewTests(TestCase):
-#
-#     # use helper functions for Signup view Tests
-#
-#     def test_login(self):
-#         # send login data
-#         response = self.client.post('/login/', self.credentials, follow=True)
-#         # should be logged in now
-#         self.assertTrue(response.context['user'].is_active)
-#
-#     #def test_authenticated_active(self):
-#     """
-#     if user is authenticated and active, the httpresponse should be
-#     "log in successfully"
-#     """
-#
-#     #def test_authenticated_inactive(self):
-#     """
-#     if user is authenticated and inactive, the httpresponse should
-#     be "account not active"
-#     """
-#
-#     #def test_not_authenticated(self):
-#     """
-#     if user is not authenticated, the httpresponse should be "invalid
-#     login"
-#     """
-#
-# class LogoutViewTests(TestCase):
-#
-#     # user helper functions to login into page
-#
-#     # def test_logged_in_logout(self):
-#     """
-#     if the user is logged in and logout is requested, "Logout successfully"
-#     """
+#REFERENCES
+#Title: Django : Testing if the page has redirected to the desired url
+#Author:
+#Date: 11/12/2018
+#Code Version:
+#Availability: https://stackoverflow.com/questions/14951356/django-testing-if-the-page-has-redirected-to-the-desired-url
+
+#Title: Testing Tools
+#Author:
+#Date: 11/12/2018
+#Code Version:
+#Availability: https://docs.djangoproject.com/en/2.1/topics/testing/tools/

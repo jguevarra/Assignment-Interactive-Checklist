@@ -2,20 +2,23 @@
 
 {% block content %}
 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'uni_assignment_calendar/todoList.css' %}">
 <div class="main">
-
-	<h1><center>Universal Assignment Calendar</center></h1>
+	
+	<h1><center>Universal Assignment Scheduler</center></h1>
 
 
 	<div class="container">
 
-		<form type="get" action="{% url 'ScheduleResults' %}" style = "margin:0">
+		<form type="get" action="{% url 'ScheduleResults' %}">
 			<input type="search" placeholder="Search by course ID" name="search_id" value='{{ query }}'>
 			<input type="search" placeholder="Search by course Abbreviation" name="search_abb" value='{{ query }}'>
 			<input type="search" placeholder="Search by course Number" name="search_num" value='{{ query }}'>
 			<button type="submit" class="btn btn-primary">Search</button>
 		</form>
 
+		<br>
 <!-- 		<p>{{ message }}</p> -->
 
 		{% if result %}		
@@ -31,7 +34,7 @@
 		<br>
 
 		<div>
-			<h2>My Schedule</h2>
+			<h2><center>My Schedule</center></h2>
 			{% if course_list %}
 			<ul>
 				{% for item in course_list %}
@@ -46,11 +49,11 @@
 		<br>
 
 		<div>
-			<h3>To-Do</h3>
+			<h3><center>To-Do</center></h3>
 			{% if events_list %}
 			<ul>
 				{% for events in events_list %}
-				<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</a></li>
+				<li class = assignment><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</a></li>
 				{% endfor %}
 			</ul>
 			{% else %}
@@ -60,5 +63,65 @@
 
 	</div>
 </div>
+<script>
+	// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByClassName("assignment");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.getElementsByClassName("assignment");
+for (var i = 0; i < list.length;i++){
+	list[i].addEventListener('click', function(ev) {
+		if (ev.target.tagName === 'LI') {
+			ev.target.classList.toggle('checked');
+  }
+}, false);
+}
+
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
 
 {% endblock %}

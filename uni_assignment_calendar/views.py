@@ -89,7 +89,19 @@ def ScheduleResults(request):
         else:
             result = result.filter(class_num=request.GET['search_num'])
 
-    return render(request,'uni_assignment_calendar/schedule.html',{'result':result, 'message':message})
+    events_list = []
+    course_list = []
+    enrollments = Enrollment.objects.filter(username=request.user.username)
+    
+    for c in enrollments:
+        #course = get_object_or_404(Courses,class_id=c.class_id)
+        course = Courses.objects.get(class_id=c.class_id)
+        events_list += Events.objects.filter(course=course).order_by('due_date','due_time')
+        course_list.append(course)
+
+    context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list,'result':result, 'message':message}
+
+    return render(request,'uni_assignment_calendar/schedule.html',context)
 
 
 def schedule(request):
@@ -100,9 +112,10 @@ def schedule(request):
     for c in enrollments:
         #course = get_object_or_404(Courses,class_id=c.class_id)
         course = Courses.objects.get(class_id=c.class_id)
-        events_list += Events.objects.filter(course=course)
+        events_list += Events.objects.filter(course=course).order_by('due_date','due_time')
         course_list.append(course)
     context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
+
     
     return render(request,'uni_assignment_calendar/schedule.html',context)
 
@@ -156,13 +169,11 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                messages.success(request, "Log in successful.")
                 return HttpResponseRedirect("/home")
             else:
                 messages.warning(request, "Warning: Account Not Active")
         else:
-            messages.error(request, "Error: Login Invalid")    
-        return render(request,'uni_assignment_calendar/login_page.html',{})
+            return render(request,'uni_assignment_calendar/login_page.html',{})
     
     else:
         return render(request,'uni_assignment_calendar/login_page.html',{})
@@ -171,6 +182,5 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    messages.success(request, "Log out successful.")
     return HttpResponseRedirect("/")
 

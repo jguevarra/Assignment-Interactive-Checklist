@@ -10,24 +10,32 @@
 	<div class="container">
 
 		<form type="get" action="{% url 'ScheduleResults' %}" style = "margin:0">
-			<input type="search" placeholder="Search by course ID" name="search_box" 
-				value='{{ query }}' required>
+			<input type="search" placeholder="Search by course ID" name="search_id" value='{{ query }}'>
+			<input type="search" placeholder="Search by course Abbreviation" name="search_abb" value='{{ query }}'>
+			<input type="search" placeholder="Search by course Number" name="search_num" value='{{ query }}'>
 			<button type="submit" class="btn btn-primary">Search</button>
 		</form>
 
+<!-- 		<p>{{ message }}</p> -->
+
+		{% if result %}		
 		<ul>
 			{% for element in result%}
 			<li><a href="/course/{{ element.class_id }}/">{{element}}</a></li>
 			{% endfor %}
 		</ul>
+		{% else %}
+		<p>No Results Found.</p>
+		{% endif %}
 
+		<br>
 
 		<div>
 			<h2>My Schedule</h2>
-			{% if enrolled_course_list %}
+			{% if course_list %}
 			<ul>
-				{% for item in enrolled_course_list %}
-				<li>{{item}}</li>
+				{% for item in course_list %}
+				<li><a href="/course/{{ item.class_id }}/">{{ item.class_abbrev }} {{ item.class_num }} -- {{ item.class_title }}</a></li>
 				{% endfor %}
 			</ul>
 			{% else %}
@@ -35,17 +43,21 @@
 			{% endif %}
 		</div>
 
+		<br>
 
-		<h3>To-Do</h3>
-		{% if events_list %}
-		<ul>
-			{% for events in events_list %}
-			<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.class_abbrev }} {{ events.class_num }} : {{ events.events_name }}</a></li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		<p>No events have been posted.</p>
-		{% endif %}
+		<div>
+			<h3>To-Do</h3>
+			{% if events_list %}
+			<ul>
+				{% for events in events_list %}
+				<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</a></li>
+				{% endfor %}
+			</ul>
+			{% else %}
+			<p>No events have been posted.</p>
+			{% endif %}			
+		</div>
+
 	</div>
 </div>
 

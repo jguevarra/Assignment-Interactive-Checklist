@@ -152,7 +152,7 @@ class EventsDetailViewTests(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-#
+
 # # testing database
 # class DatabaseTests(TestCase):
 #     """
@@ -161,16 +161,37 @@ class EventsDetailViewTests(TestCase):
 
 
 # login/signup/logout helper functions
-
 class LoginLogoutTests(TestCase): # works
-    def test_if_invalid_form_do_not_go_to_homepage(self):
+
+    def test_no_inputs(self):
         """
-        Test to see if it is an invalid form it does not go to the homepage
+        If login form is invalid with no username or password, url should
+        remain on login page
         """
         c = Client()
         c.login(user="", password="")
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code,200)
+
+    def test_no_password_input(self):
+        """
+        If login form is invalid with no password, url should remain on
+        login page
+        """
+        c = Client()
+        c.login(user="user", password="")
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_no_username_input(self):
+        """
+        If login form is invalid with no username, url should remain on
+        login page
+        """
+        c = Client()
+        c.login(user="", password="passwd")
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
 
     def test_if_successfully_logged_in(self): # works
         """
@@ -181,27 +202,10 @@ class LoginLogoutTests(TestCase): # works
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
 
-    def test_if_invalid_remain_at_login(self):
-        """
-        if it's invalid, remain at the login screen
-        """
-        # c = Client()
-        # response = c.post('/login/', {'username': '', 'password': ''})
-        # url = response.url
-        # self.assertEqual(url, 'https://uni-assignment-calendar.herokuapp.com/login/')
-        c = Client()
-        c.login(user="user", password="")
-        response = self.client.get(reverse('login'))
-        self.assertEqual(response.status_code, 200)
-
     def test_if_invalid_sign_up_form_do_not_go_to_homepage(self):
         """
         Test to see if the sign up form is invalid and if it is do not go to homepage
         """
-        # c = Client()
-        # response = c.post('/signup_page/', {'username': '', 'password': ''})
-        # url = response.url
-        # self.assertIs(url == 'https://uni-assignment-calendar.herokuapp.com/home/', False)
         c = Client()
         c.login(user="", password="")
         response = self.client.get(reverse('login'))
@@ -226,14 +230,14 @@ class LoginLogoutTests(TestCase): # works
         self.assertEqual(response.status_code,200)
 
 
-# class LogoutViewTests(TestCase):
-#
-#     # user helper functions to login into page
-#
-#     # def test_logged_in_logout(self):
-#     """
-#     if the user is logged in and logout is requested, "Logout successfully"
-#     """
+class LogoutViewTests(TestCase):
+
+    # def test_logged_in_logout(self):
+    """
+    if the user is logged in and logout is requested, "Logout successfully"
+    """
+
+
 
 
 #REFERENCES

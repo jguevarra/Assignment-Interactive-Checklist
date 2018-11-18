@@ -1,24 +1,41 @@
-	body {
-		color: #7a7a7a;
-		background: #ADD8E6;
-	}
+    body {
+        background: url('images/Background-opera-speeddials-community-web-simple-backgrounds.jpg') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        font-family: "Lato", sans-serif;
+        margin: 0;
+       }
+
+    .container {
+        margin-top: 100px;
+       }
+
+
+
 	.form-control {
         min-height: 41px;
 		background: #fff;
 		box-shadow: none !important;
 		border-color: #e3e3e3;
 	}
+
 	.form-control:focus {
 		border-color: #70c5c0;
 	}
+
     .form-control, .btn {
         border-radius: 2px;
     }
+
 	.login-form {
 		width: 350px;
-		margin: 0 auto;
+		margin-top: -250px;
+		margin-left: 1100px;
 		padding: 100px 0 30px;
 	}
+
 	.login-form form {
 		color: #7a7a7a;
 		border-radius: 2px;
@@ -29,18 +46,16 @@
         padding: 30px;
         position: relative;
     }
+
 	.login-form h2 {
 		font-size: 22px;
         margin: 35px 0 25px;
     }
 
-    .login-form input[type="checkbox"] {
-        margin-top: 2px;
-    }
     .login-form .btn {
         font-size: 16px;
         font-weight: bold;
-		background: #70c5c0;
+		background: #337ab7;
 		border: none;
 		margin-bottom: 20px;
     }
@@ -48,17 +63,68 @@
 		background: #50b8b3;
         outline: none !important;
 	}
+
 	.login-form a {
 		color: #7a7a7a;
 		text-decoration: underline;
 	}
+
 	.login-form a:hover {
 		text-decoration: none;
 	}
+
 	.login-form form a {
 		color: #7a7a7a;
 		text-decoration: none;
 	}
+
 	.login-form form a:hover {
 		text-decoration: underline;
 	}
+
+
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

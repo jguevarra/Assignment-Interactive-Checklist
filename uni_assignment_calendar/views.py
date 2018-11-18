@@ -1,16 +1,18 @@
 from .models import Events, Courses, Enrollment
-from django.template import loader, RequestContext
-from calendar import monthrange
-from datetime import datetime, date
-from django.shortcuts import render_to_response, render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from .forms import IndexForm, UserForm
 from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+
+# def LandingView(request):
+#     context = {}
+#     template = 'uni_assignment_calendar/index.html'
+#     return render(request, template, context)
 
 # Index (generic views) -- home page
 class IndexView(generic.ListView):

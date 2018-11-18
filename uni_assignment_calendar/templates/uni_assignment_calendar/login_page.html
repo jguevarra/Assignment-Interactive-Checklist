@@ -2,30 +2,46 @@
 
 {% block content %}
 
-<div class="login-form">
-    <div class="form">
-        <form class="login" action="" method="post">
-            {% csrf_token %}
-            <h2 class="text-center">Member Login</h2>
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <div class="row">
+            <!--Text-->
+          <div class="col-lg-6">
+            <h1 class="mt-5">Monkey's With Typewriters: Universal Assignment Calendar</h1>
+            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt voluptates rerum eveniet sapiente-->
+                <!--repellat esse, doloremque quod recusandae deleniti nostrum assumenda vel beatae sed aut modi nesciunt-->
+                <!--porro quisquam voluptatem.</p>-->
+              <center><img src="/static/uni_assignment_calendar/images/157858-200.png" style="width:128px;height:128px;"></center>
+          </div>
 
-            <div class="form-group">
-        	    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+            <!--login form-->
+            <div class="col-lg-6">
+                <div class="form">
+                    <form class="login" action="" method="post">
+                        {% csrf_token %}
+                        <h2 class="text-center">Member Login</h2>
+
+                        <div class="form-group">
+        	                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                        </div>
+
+		                <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <form method="get" action="/home">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+                <p class="text-center small">Don't have an account? <a href="/signup/">Sign up here!</a></p>
             </div>
-
-		    <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-            </div>
-
-            <div class="form-group">
-                <form method="get" action="/home">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-                </form>
-            </div>
-        </form>
-
+        </div>
     </div>
-    <p class="text-center small">Don't have an account? <a href="/signup/">Sign up here!</a></p>
+</section>
 
-</div>
 
 {% endblock %}

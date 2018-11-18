@@ -31,8 +31,6 @@
 
 	.login-form {
 		width: 350px;
-		margin-top: -250px;
-		margin-left: 750px;
 		padding: 100px 0 30px;
 		position: fixed;
 	}

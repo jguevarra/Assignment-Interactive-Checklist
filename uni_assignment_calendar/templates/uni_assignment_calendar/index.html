@@ -22,14 +22,14 @@
 				<p>Be sure to follow the appropriate form guidelines in order to submit successfully</p><br>
 				<form method="get" action="/create">
 					<input type="submit" class="btn btn-primary" value="Post an Assignment">
-				</form>
+				</form><br>
 			</div>
 
 			<div class="col-lg-2">
 				<img src="/static/uni_assignment_calendar/images/img_486548.png" style="width:60px;height:60px;">
 			</div>
 
-			<div class="col-lg-4">
+			<div class="col-lg-5">
 				<h3>Recent Postings</h3>
 				{% if latest_events_list %}
 				<ul>
@@ -40,7 +40,7 @@
 				{% else %}
 					<p>No events have been posted.</p>
 				{% endif %}
-			</div>
+			</div><br>
 
 			<div class="col-lg-2">
 				<img src="/static/uni_assignment_calendar/images/img_3899.png" style="width:60px;height:60px;">

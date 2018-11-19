@@ -7,21 +7,12 @@
 
 	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>.
 
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-7>">
-					<p><strong>Course ID:</strong> {{courses.class_id }}</p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--<div class="container">-->
-		<!--<ul>-->
-			<!--<p><strong>Course ID:</strong> {{courses.class_id }}</p>-->
-		    <!--<p><strong>Instructor:</strong> {{ courses.instructor }}</p>-->
-		    <!--<p><strong>Description:</strong> {{ courses.description }}</p>-->
-		<!--</ul>-->
+	<div class="container">
+		<ul>
+			<p><strong>Course ID:</strong> {{courses.class_id }}</p>
+		    <p><strong>Instructor:</strong> {{ courses.instructor }}</p>
+		    <p><strong>Description:</strong> {{ courses.description }}</p>
+		</ul>
 		
 		<form method="POST">
 			{% csrf_token %}

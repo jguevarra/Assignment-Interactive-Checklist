@@ -15,6 +15,11 @@ class Courses(models.Model):
     description = models.TextField(max_length=500)
     class Meta:
         ordering = ["class_title"]
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "class_id":
+            kwargs["queryset"] = Category.objects.filter(name__in=['14993'])
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
     def __str__(self):
         return self.class_title
 

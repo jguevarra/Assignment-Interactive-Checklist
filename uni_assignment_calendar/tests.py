@@ -257,11 +257,11 @@ class ScheduleTests(TestCase):
 	"""
 	c = Client()
 	c.login(user = "a",password ="a")
-	response = self.client.get(reverse('15842'))
+	response = self.client.get(reverse('course/15842'))
 	self.assertContains(response,"Diana Morris")
 
-
- #   def test_if_enrolled_class_added(self):
+"""
+    def test_if_enrolled_class_added(self):
         """
         if the user enrolls in a class, the class is added in their schedule
 	manually made a specific user a enrolled in this class
@@ -281,20 +281,13 @@ class ScheduleTests(TestCase):
 	c.login(user="a", password="a")
 	response = self.client.get(reverse('schedule'))
 	self.assertContains(response, "Test Assignment")
+"""
 
+   def test_if_enrolled_in_courses(self)
         c = Client()
         c.login(user="abc", password="123")
         response = self.client.get(reverse('schedule'))
         self.assertContains(response, "No enrolled courses")
-
-    def test_no_todos(self): # works
-        """
-        if there are no assignments posted for todos, it will say "~no posts have been posted"
-        """
-        c = Client()
-        c.login(user="abc", password="123")
-        response = self.client.get(reverse('schedule'))
-        self.assertContains(response, "No events have been posted")
 
 #    def test_if_class_removed(self):
         """

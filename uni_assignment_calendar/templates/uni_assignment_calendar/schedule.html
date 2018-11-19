@@ -12,14 +12,11 @@
 	<div class="container">
 
 		<form type="get" action="{% url 'ScheduleResults' %}">
-			<input type="search" placeholder="Search by course ID" name="search_id" value='{{ query }}'>
-			<input type="search" placeholder="Search by course Abbreviation" name="search_abb" value='{{ query }}'>
-			<input type="search" placeholder="Search by course Number" name="search_num" value='{{ query }}'>
+			<input type="search" placeholder="Search by course ID" name="search_id" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
+			<input type="search" placeholder="Search by course Abbreviation" name="search_abb" value='{{ query }}' oninput="this.value = this.value.replace(/[^A-Z]||[^a-z]/g, '').replace(/(\..*)\./g, '$1')" />
+			<input type="search" placeholder="Search by course Number" name="search_num" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
 			<button type="submit" class="btn btn-primary">Search</button>
 		</form>
-
-		<br>
-<!-- 		<p>{{ message }}</p> -->
 
 		{% if result %}		
 		<ul>
@@ -28,7 +25,7 @@
 			{% endfor %}
 		</ul>
 		{% else %}
-		<p>No Results Found.</p>
+		<p><br>No Results Found.</p>
 		{% endif %}
 
 		<br>
@@ -62,6 +59,7 @@
 		</div>
 	</div>
 </div>
+
 <script>
 
 //https://www.tutorialspoint.com/ajax/ajax_database.htm
@@ -152,6 +150,23 @@ function newElement() {
     }
   }
 }
+
+// Convert abbreviation search input to all caps so that typing lowercase will still function properly
+  function forceKeyPressUppercase(e)
+  {
+    var charInput = e.keyCode;
+    if((charInput >= 97) && (charInput <= 122)) { // lowercase
+      if(!e.ctrlKey && !e.metaKey && !e.altKEY) { // no modifier key
+        var newChar = charInput - 32;
+        var start = e.target.selectionStart;
+        var end = e.target.selectionEnd;
+        e.target.value = e.target.value.substring(0, start) + String.fromCharCode(newChar) + e.target.value.substring(end);
+        e.target.setSelectionRange(start+1, start+1);
+        e.preventDefault();
+      }
+    }
+  }
+  document.getElementsByName("search_abb")[0].addEventListener("keypress", forceKeyPressUppercase, false);
 </script>
 
 {% endblock %}

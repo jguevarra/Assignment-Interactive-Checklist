@@ -59,7 +59,7 @@
 </div>
 
 <script>
-
+/*
 //https://www.tutorialspoint.com/ajax/ajax_database.htm
 function ajaxFunction() {
 	var ajaxFunction();
@@ -80,13 +80,14 @@ function ajaxFunction() {
 		}
 	}
 }
+
 ajaxRequest.onreadystatechange = function() {
 	if(ajaxRequest.readtState == 4) {
 		var ajaxDisplay = document.getElementById('ajaxDiv');
 		ajaxDisplay.innerHTML = ajaxRequest.responseText;
 	}
 }
-
+*/
 
 
 
@@ -115,6 +116,7 @@ for (i = 0; i < close.length; i++) {
 var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
+		console.log("Click Detected, should check")
 		if (ev.target.tagName === 'LI') {
 			ev.target.classList.toggle('checked');
   }

@@ -9,7 +9,6 @@
 	<h1><center>Universal Assignment Scheduler</center></h1>
 
 	<div class="container">
-
 		<form type="get" action="{% url 'ScheduleResults' %}">
 			<input type="search" placeholder="Search by course ID" name="search_id" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
 			<input type="search" placeholder="Search by course Abbreviation" name="search_abb" value='{{ query }}' oninput="this.value = this.value.replace(/[^A-Z]||[^a-z]/g, '').replace(/(\..*)\./g, '$1')" />

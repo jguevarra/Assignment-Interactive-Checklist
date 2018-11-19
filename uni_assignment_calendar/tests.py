@@ -245,49 +245,46 @@ class ScheduleTests(TestCase):
         """
         if the user is not enrolled in any classes, it will say "~not enrolled"
         """
-	c = Client()
-	c.login(user="abc", password="123")
-	response = self.client.get(reverse('schedule'))
-	self.assertContains(response, "No enrolled courses")
-	
-
-    def test_class_info(self):
-	"""
-	testing to make sure all of the info comes up in the class info page
-	"""
-	c = Client()
-	c.login(user = "a",password ="a")
-	response = self.client.get(reverse('15842'))
-	self.assertContains(response,"Diana Morris")
-
-
- #   def test_if_enrolled_class_added(self):
-        """
-        if the user enrolls in a class, the class is added in their schedule
-	manually made a specific user a enrolled in this class
-        """
-	c = Client()
-	c.login(user="a", password="a")
-	response = self.client.get(reverse('schedule'))
-	self.assertContains(response, "APMA 3140")
-
-
- #   def test_if_enrolled_assignment_shows(self):
-        """
-        an assignment post in that class will be shown in the To Do
-	manually made a specific user enrolled in this class with this assignment
-        """
-	c = Client()
-	c.login(user="a", password="a")
-	response = self.client.get(reverse('schedule'))
-	self.assertContains(response, "Test Assignment")
-
         c = Client()
         c.login(user="abc", password="123")
         response = self.client.get(reverse('schedule'))
         self.assertContains(response, "No enrolled courses")
 
-    def test_no_todos(self): # works
+    # def test_class_info(self):
+    #     """
+    #     testing to make sure all of the info comes up in the class info page
+    #     """
+    #     c = Client()
+    #     c.login(user="a", password="a")
+    #     response = self.client.get(reverse('detail'))
+    #     self.assertContains(response,"Diana Morris")
+    #
+    # def test_if_enrolled_class_added(self):
+    #     """
+    #     if the user enrolls in a class, the class is added in their schedule
+    #     manually made a specific user a enrolled in this class
+    #     """
+    #     c = Client()
+    #     c.login(user="a", password="a")
+    #     response = self.client.get(reverse('schedule'))
+    #     self.assertContains(response, "APMA 3140")
+    #
+    # def test_if_enrolled_assignment_shows(self):
+    #     """
+    #     an assignment post in that class will be shown in the To Do
+    #     manually made a specific user enrolled in this class with this assignment
+    #     """
+    #     c = Client()
+    #     c.login(user="a", password="a")
+    #     response = self.client.get(reverse('schedule'))
+    #     self.assertContains(response, "Test Assignment")
+    #
+    #     # c = Client()
+    #     c.login(user="abc", password="123")
+    #     response = self.client.get(reverse('schedule'))
+    #     self.assertContains(response, "No enrolled courses")
+
+    def test_no_todo(self): # works
         """
         if there are no assignments posted for todos, it will say "~no posts have been posted"
         """
@@ -306,10 +303,10 @@ class ScheduleTests(TestCase):
         no assignments from a removed class should be listed in the list
         """
 
-class SearchTests(TestCase):
-    """
-    include search bar tests here!!
-    """
+# class SearchTests(TestCase):
+#     """
+#     include search bar tests here!!
+#     """
 
 
 

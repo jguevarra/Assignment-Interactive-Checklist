@@ -250,7 +250,6 @@ class ScheduleTests(TestCase):
         response = self.client.get(reverse('schedule'))
         self.assertContains(response, "No enrolled courses")
 
-# <<<<<<< HEAD
 #     def test_class_info(self):
 #         """
 #         testing to make sure all of the info comes up in the class info page

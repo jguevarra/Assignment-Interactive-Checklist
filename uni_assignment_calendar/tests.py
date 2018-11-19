@@ -289,6 +289,34 @@ class ScheduleTests(TestCase):
         response = self.client.get(reverse('schedule'))
         self.assertContains(response, "No enrolled courses")
 
+
+    def test_class_info(self):
+         """
+         testing to make sure all of the info comes up in the class info page
+         """
+         c = Client()
+         c.login(user="a", password="a")
+         response = self.client.get(reverse('course/15842'))
+         self.assertContains(response,"Diana Morris")
+    
+
+  
+    def test_if_enrolled_in_any_classes(self)
+ 	c = Client()
+        c.login(user="abc", password="123")
+        response = self.client.get(reverse('schedule'))
+    	self.assertContains(response, "No enrolled courses")
+
+    def test_no_todo(self): # works
+        """
+        if there are no assignments posted for todos, it will say "~no posts have been posted"
+        """
+        c = Client()
+        c.login(user="abc", password="123")
+        response = self.client.get(reverse('schedule'))
+        self.assertContains(response, "No events have been posted")
+
+
 #    def test_if_class_removed(self):
         """
         if a class is removed, the class is removed from their schedule
@@ -299,10 +327,10 @@ class ScheduleTests(TestCase):
         no assignments from a removed class should be listed in the list
         """
 
-class SearchTests(TestCase):
-    """
-    include search bar tests here!!
-    """
+# class SearchTests(TestCase):
+#     """
+#     include search bar tests here!!
+#     """
 
 
 

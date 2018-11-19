@@ -290,14 +290,6 @@ class ScheduleTests(TestCase):
         self.assertContains(response, "No enrolled courses")
 
 
-  
-    def test_if_enrolled_in_any_classes(self)
- 	c = Client()
-        c.login(user="abc", password="123")
-        response = self.client.get(reverse('schedule'))
-    	self.assertContains(response, "No enrolled courses")
-
-
 #    def test_if_class_removed(self):
         """
         if a class is removed, the class is removed from their schedule

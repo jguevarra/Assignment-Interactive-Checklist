@@ -9,9 +9,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
-def InfoViews(request):
+def AboutView(request):
     context = {}
     template = 'uni_assignment_calendar/about_page.html'
+    return render(request, template, context)
+
+def GoalsView(request):
+    context = {}
+    template = 'uni_assignment_calendar/goals_page.html'
     return render(request, template, context)
 
 # Index (generic views) -- home page

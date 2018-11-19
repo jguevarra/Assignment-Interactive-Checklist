@@ -230,15 +230,18 @@ class LoginLogoutTests(TestCase): # works
 
 class LogoutViewTests(TestCase):
 
-    # def test_logged_in_logout(self):
-    """
-    if the user is logged in and logout is requested, "Logout successfully"
-    """
-
+    def test_logged_in_logout(self):
+        """
+        if the user is logged in and logout is requested, "Logout successfully"
+        """
+        c = Client()
+        c.logout()
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
 
 class ScheduleTests(TestCase):
 
-    def test_no_enrolled_classes(self):
+    def test_no_enrolled_classes(self): # works
         """
         if the user is not enrolled in any classes, it will say "~not enrolled"
         """
@@ -278,6 +281,20 @@ class ScheduleTests(TestCase):
 	c.login(user="a", password="a")
 	response = self.client.get(reverse('schedule'))
 	self.assertContains(response, "Test Assignment")
+
+        c = Client()
+        c.login(user="abc", password="123")
+        response = self.client.get(reverse('schedule'))
+        self.assertContains(response, "No enrolled courses")
+
+    def test_no_todos(self): # works
+        """
+        if there are no assignments posted for todos, it will say "~no posts have been posted"
+        """
+        c = Client()
+        c.login(user="abc", password="123")
+        response = self.client.get(reverse('schedule'))
+        self.assertContains(response, "No events have been posted")
 
 #    def test_if_class_removed(self):
         """

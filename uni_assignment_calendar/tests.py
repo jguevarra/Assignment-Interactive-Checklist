@@ -150,11 +150,12 @@ class EventsDetailViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-# # testing database
+# testing database
 class DatabaseTests(TestCase):
-#     """
-#     insert tests here!
-#     """
+    """
+    database testing here
+    """
+
 
 
 # login/signup/logout helper functions
@@ -264,7 +265,7 @@ class ScheduleTests(TestCase):
 
     def test_if_assignment_from_removed_class_is_removed(self):
         """
-        no assignments from a removed class should be listed in the todo list
+        no assignments from a removed class should be listed in the list
         """
 
 class SearchTests(TestCase):

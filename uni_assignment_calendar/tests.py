@@ -25,9 +25,6 @@ def create_event_due_date(events_name, due_date):
     return Events.objects.create(events_name=events_name, due_date=new_due_date)
 
 
-
-
-
 # Testing Model View -- these tests are okay!
 class AssignmentnModelTests(TestCase):
 
@@ -154,7 +151,7 @@ class EventsDetailViewTests(TestCase):
 
 
 # # testing database
-# class DatabaseTests(TestCase):
+class DatabaseTests(TestCase):
 #     """
 #     insert tests here!
 #     """
@@ -237,6 +234,43 @@ class LogoutViewTests(TestCase):
     if the user is logged in and logout is requested, "Logout successfully"
     """
 
+
+class ScheduleTests(TestCase):
+
+    def test_no_enrolled_classes(self):
+        """
+        if the user is not enrolled in any classes, it will say "~not enrolled"
+        """
+
+    def test_no_todos(self):
+        """
+        if there is no assignments posted for todos, it will say "~no posts have been posted"
+        """
+
+    def test_if_enrolled_class_added(self):
+        """
+        if the user enrolls in a class, the class is added in their schedule
+        """
+
+    def test_if_enrolled_assignment_shows(self):
+        """
+        an assignment post in that class will be shown in the To Do
+        """
+
+    def test_if_class_removed(self):
+        """
+        if a class is removed, the class is removed from their schedule
+        """
+
+    def test_if_assignment_from_removed_class_is_removed(self):
+        """
+        no assignments from a removed class should be listed in the todo list
+        """
+
+class SearchTests(TestCase):
+    """
+    include search bar tests here!!
+    """
 
 
 

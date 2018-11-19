@@ -242,10 +242,20 @@ class ScheduleTests(TestCase):
         """
         if the user is not enrolled in any classes, it will say "~not enrolled"
         """
+	c.Client()
+	c.login(user="abc", password="123")
+	response = self.client.get(reverse('schedule'))
+	self.assertContains(response, "No enrolled courses")
+	
+	
 
     def test_no_todos(self):
         """
         if there is no assignments posted for todos, it will say "~no posts have been posted"
+	c.Client()
+	c.login(user="abc", password="123")
+	response = self.client.get(reverse('schedule'))
+	self.assertContains(response, "No events have been posted")
         """
 
     def test_if_enrolled_class_added(self):

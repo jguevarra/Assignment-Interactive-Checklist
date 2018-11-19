@@ -20,8 +20,8 @@ class Courses(models.Model):
         if db_field.name == "class_id":
             kwargs["queryset"] = Category.objects.filter(name__in=['14993'])
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
-    def __str__(self):
-        return self.class_title
+ #   def __str__(self):
+ #       return self.class_title
 
 
 class Events(models.Model):

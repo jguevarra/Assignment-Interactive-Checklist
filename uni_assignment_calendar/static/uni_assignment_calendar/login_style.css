@@ -13,7 +13,7 @@
        }
 
 
-
+/* for login_page.html and signup_page.html */
 	.form-control {
         min-height: 41px;
 		background: #fff;
@@ -83,7 +83,7 @@
 
 
 
-
+/* for base.html */
 .sidenav {
     height: 100%;
     width: 0;
@@ -116,6 +116,10 @@
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+}
+
+div.scroll_panel {
+    overflow: auto;
 }
 
 #main {

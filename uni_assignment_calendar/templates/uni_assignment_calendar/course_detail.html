@@ -5,31 +5,38 @@
 
 <div class="main">
 
-	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>.
+	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>
 
 	<section>
     	<div class="container">
-        	<div class="col-lg-45">
-				<p><strong>Course ID:</strong> {{courses.class_id }}</p>
-		    	<p><strong>Instructor:</strong> {{ courses.instructor }}</p>
-		    	<p><strong>Description:</strong> {{ courses.description }}</p>
+			<div class="row">
+				<div class="col-lg-2">
+					<!--nothing, just a spacer-->
+				</div>
+				
+				<div class="col-lg-5">
+					<p><strong>Course ID:</strong> {{courses.class_id }}</p>
+		    		<p><strong>Instructor:</strong> {{ courses.instructor }}</p>
+		    		<p><strong>Description:</strong> {{ courses.description }}</p>
 
-				<form method="POST">
-					{% csrf_token %}
-					<input type="submit" class="btn btn-primary" value="Add Course" name="add">
-				</form>
+					<form method="POST">
+						{% csrf_token %}
+						<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+					</form>
 
-				<br>
+					<br>
 
-				{% if enrolled %}
-				<form method="POST">
-					{% csrf_token %}
-					<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
-				</form>
-				{% endif %}
+					{% if enrolled %}
+					<form method="POST">
+						{% csrf_token %}
+						<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
+					</form>
+					{% endif %}
 
-				<p>{{ status }}</p>
-        	</div>
+					<p>{{ status }}</p>
+        		</div>
+			</div>
+
     	</div>
 	</section>
 

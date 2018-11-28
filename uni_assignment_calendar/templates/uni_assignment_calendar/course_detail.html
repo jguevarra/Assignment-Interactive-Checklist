@@ -10,14 +10,15 @@
 	<section>
     	<div class="container">
 			<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<!--nothing, just a spacer-->
 				</div>
-				
+
 				<div class="col-lg-5">
 					<p><strong>Course ID:</strong> {{courses.class_id }}</p>
 		    		<p><strong>Instructor:</strong> {{ courses.instructor }}</p>
 		    		<p><strong>Description:</strong> {{ courses.description }}</p>
+					<p>hi henlo testing</p>
 
 					<form method="POST">
 						{% csrf_token %}

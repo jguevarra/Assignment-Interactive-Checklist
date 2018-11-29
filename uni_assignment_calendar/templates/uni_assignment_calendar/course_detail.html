@@ -32,7 +32,7 @@
 			<br>
 
 			<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<div class="button">
 						{% if enrolled %}
 							<form method="POST">
@@ -50,11 +50,11 @@
 							</form>
 						{% endif %}
 					</div>
-				</div>
-				<div class="col-lg-2">
-					<form action="/schedule/">
-    					<input type="submit" class="btn btn-primary" value="View my Schedule" />
-					</form>
+					<div class="button">
+						<form action="/schedule/">
+    						<input type="submit" class="btn btn-primary" value="View my Schedule" />
+						</form>
+					</div>
 				</div>
 				<div class="col-lg-5">
 					<p><center>{{ status }}</center></p>

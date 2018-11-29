@@ -135,7 +135,7 @@ div.scroll_panel {
 /* Table for course details in the My Schedule page */
 table {
     border-collapse: collapse;
-    width: 60%;
+    width: 70%;
     margin: 1em auto;
 }
 
@@ -147,9 +147,4 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
-}
-
-/* hide Add Course button */
-#b1 {
-    display: none;
 }

@@ -29,52 +29,24 @@
 			<br>
 
 			<div class="row">
-				<form method="POST">
-					{% csrf_token %}
-					<input type="submit" class="btn btn-primary" value="Add Course" name="add">
-				</form>
+				<div class="col-lg-4">
+					{% if enrolled %}
+						<form method="POST">
+							{% csrf_token %}
+							<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
+						</form>
+					{% else %}
+						<form method="POST">
+							{% csrf_token %}
+							<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+						</form>
+					{% endif %}
 
-				<br>
-
-				{% if enrolled %}
-					<form method="POST">
-						{% csrf_token %}
-						<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
-						<input type="submit" class="btn btn-primary" id="b1" value="Add Course" name="add">
-					</form>
-				{% endif %}
-
-				<p>{{ status }}</p>
+					<p>{{ status }}</p>
+				</div>
 			</div>
 		</div>
 	</section>
-
-
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-15">
-				<p><strong>Course ID:</strong> {{courses.class_id }}</p>
-		    	<p><strong>Instructor:</strong> {{ courses.instructor }}</p>
-		    	<p><strong>Description:</strong> {{ courses.description }}</p>
-
-				<form method="POST">
-					{% csrf_token %}
-					<input type="submit" class="btn btn-primary" value="Add Course" name="add">
-				</form>
-
-				<br>
-
-				{% if enrolled %}
-					<form method="POST">
-						{% csrf_token %}
-						<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
-					</form>
-				{% endif %}
-
-				<p>{{ status }}</p>
-			</div>
-		</div>
-	</div>
 
 </div>
 

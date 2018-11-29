@@ -148,3 +148,8 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+/* hide Add Course button */
+#b1 {
+    display: none;
+}

@@ -25,6 +25,9 @@
   					</tr>
 				</table>
 			</div>
+
+			<br>
+
 			<div class="row">
 				<form method="POST">
 					{% csrf_token %}
@@ -37,6 +40,7 @@
 					<form method="POST">
 						{% csrf_token %}
 						<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
+						<input type="submit" class="btn btn-primary" id="b1" value="Add Course" name="add">
 					</form>
 				{% endif %}
 

@@ -7,52 +7,42 @@
 
 	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>
 
+	<br>
+
 	<p><center>{{ status }}</center></p>
 
-	<section>
-		<div class="container">
-			<div class="row">
-				<table>
-  					<tr>
-						<td><h4><b>Course ID</b></h4></td>
-    					<td>{{ courses.class_id }}</td>
-					</tr>
-  					<tr>
-						<td><h4><b>Instructor</b></h4></td>
-    					<td>{{ courses.instructor }}</td>
-  					</tr>
-  					<tr>
-						<td><h4><b>Description</b></h4></td>
-    					<td>{{ courses.description }}</td>
-  					</tr>
-				</table>
-			</div>
+	<table>
+		<tr>
+			<td><h4><b>Course ID</b></h4></td>
+			<td>{{ courses.class_id }}</td>
+		</tr>
+		<tr>
+			<td><h4><b>Instructor</b></h4></td>
+			<td>{{ courses.instructor }}</td>
+		</tr>
+		<tr>
+			<td><h4><b>Description</b></h4></td>
+			<td>{{ courses.description }}</td>
+		</tr>
+	</table>
 
-			<br>
+	<br>
 
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="button">
-						{% if enrolled %}
-							<form method="POST">
-								{% csrf_token %}
-								<center>
-									<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
-								</center>
-							</form>
-						{% else %}
-							<form method="POST">
-								{% csrf_token %}
-								<center>
-									<input type="submit" class="btn btn-primary" value="Add Course" name="add">
-								</center>
-							</form>
-						{% endif %}
-					</div>
-				</div>
+	{% if enrolled %}
+		<form method="POST">
+			{% csrf_token %}
+			<div class="button">
+				<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
 			</div>
-		</div>
-	</section>
+		</form>
+	{% else %}
+		<form method="POST">
+			{% csrf_token %}
+			<div class="button">
+				<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+			</div>
+		</form>
+	{% endif %}
 
 </div>
 

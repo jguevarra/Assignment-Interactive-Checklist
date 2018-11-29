@@ -8,20 +8,41 @@
 	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>
 
 	<section>
-		<table>
-  			<tr>
-				<td><h4><b>Course ID</b></h4></td>
-    			<td>{{ courses.class_id }}</td>
-			</tr>
-  			<tr>
-				<td><h4><b>Instructor</b></h4></td>
-    			<td>{{ courses.instructor }}</td>
-  			</tr>
-  			<tr>
-				<td><h4><b>Description</b></h4></td>
-    			<td>{{ courses.description }}</td>
-  			</tr>
-		</table>
+		<div class="container">
+			<div class="row">
+				<table>
+  					<tr>
+						<td><h4><b>Course ID</b></h4></td>
+    					<td>{{ courses.class_id }}</td>
+					</tr>
+  					<tr>
+						<td><h4><b>Instructor</b></h4></td>
+    					<td>{{ courses.instructor }}</td>
+  					</tr>
+  					<tr>
+						<td><h4><b>Description</b></h4></td>
+    					<td>{{ courses.description }}</td>
+  					</tr>
+				</table>
+			</div>
+			<div class="row">
+				<form method="POST">
+					{% csrf_token %}
+					<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+				</form>
+
+				<br>
+
+				{% if enrolled %}
+					<form method="POST">
+						{% csrf_token %}
+						<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
+					</form>
+				{% endif %}
+
+				<p>{{ status }}</p>
+			</div>
+		</div>
 	</section>
 
 

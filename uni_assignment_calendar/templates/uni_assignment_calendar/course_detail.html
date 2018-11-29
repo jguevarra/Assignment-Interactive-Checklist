@@ -6,7 +6,7 @@
 <div class="main">
 
 	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>
-	<h2><center>Class Information</center></h2>
+	<h2><center>Course Information</center></h2>
 
 	<br>
 
@@ -32,7 +32,7 @@
 			<br>
 
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-2">
 					<div class="button">
 						{% if enrolled %}
 							<form method="POST">
@@ -51,8 +51,10 @@
 						{% endif %}
 					</div>
 				</div>
-				<div class="col-lg-5">
-						<p><center>{{ status }}</center></p>
+				<div class="col-lg-2">
+					<form action="/schedule/">
+    					<input type="submit" value="View my Schedule" />
+					</form>
 				</div>
 			</div>
 		</div>

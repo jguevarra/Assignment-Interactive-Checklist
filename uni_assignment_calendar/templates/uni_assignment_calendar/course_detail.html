@@ -32,29 +32,27 @@
 			<br>
 
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="button">
-						{% if enrolled %}
-							<form method="POST">
-								{% csrf_token %}
-								<center>
-									<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
-								</center>
-							</form>
-						{% else %}
-							<form method="POST">
-								{% csrf_token %}
-								<center>
-									<input type="submit" class="btn btn-primary" value="Add Course" name="add">
-								</center>
-							</form>
-						{% endif %}
-					</div>
-					<div class="button">
+				<div class="col-lg-3">
+					{% if enrolled %}
+						<form method="POST">
+							{% csrf_token %}
+							<center>
+								<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
+							</center>
+						</form>
+					{% else %}
+						<form method="POST">
+							{% csrf_token %}
+							<center>
+								<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+							</center>
+						</form>
+					{% endif %}
+				</div>
+				<div class="col-lg-3">
 						<form action="/schedule/">
     						<input type="submit" class="btn btn-primary" value="View my Schedule" />
 						</form>
-					</div>
 				</div>
 				<div class="col-lg-5">
 					<p><center>{{ status }}</center></p>

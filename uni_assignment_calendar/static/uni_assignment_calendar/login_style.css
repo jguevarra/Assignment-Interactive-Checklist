@@ -135,7 +135,7 @@ div.scroll_panel {
 /* Table for course details in the My Schedule page */
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 60%;
 }
 
 td, th {

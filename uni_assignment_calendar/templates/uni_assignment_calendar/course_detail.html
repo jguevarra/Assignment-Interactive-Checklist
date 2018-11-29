@@ -7,6 +7,8 @@
 
 	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>
 
+	<p>{{ status }}</p>
+
 	<section>
 		<div class="container">
 			<div class="row">
@@ -30,19 +32,19 @@
 
 			<div class="row">
 				<div class="col-lg-4">
-					{% if enrolled %}
-						<form method="POST">
-							{% csrf_token %}
-							<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
-						</form>
-					{% else %}
-						<form method="POST">
-							{% csrf_token %}
-							<input type="submit" class="btn btn-primary" value="Add Course" name="add">
-						</form>
-					{% endif %}
-
-					<p>{{ status }}</p>
+					<div class="button">
+						{% if enrolled %}
+							<form method="POST">
+								{% csrf_token %}
+								<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
+							</form>
+						{% else %}
+							<form method="POST">
+								{% csrf_token %}
+								<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+							</form>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>

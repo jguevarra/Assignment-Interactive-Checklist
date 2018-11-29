@@ -148,3 +148,7 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+.button {
+    margin: 1em auto;
+}

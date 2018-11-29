@@ -5,17 +5,19 @@
 
 <div class="main">
 
-	<h1><center>{{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</center></h1>.
+	<h1><center>{{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</center></h1>
 	<h2><center>Assignment Details</center></h2>
 
 	<br>
-
-	<p><strong>Course:</strong> {{ events.course.class_abbrev }}  {{ events.course.class_num }} - {{ events.course.class_title }}</p>
 
 	<section>
 		<div class="container">
 			<div class="row">
 				<table>
+					<tr>
+						<td><h4><b>Course</b></h4></td>
+    					<td>{{ events.course.class_abbrev }}  {{ events.course.class_num }} - {{ events.course.class_title }}</td>
+					</tr>
   					<tr>
 						<td><h4><b>Due Date and Time</b></h4></td>
     					<td>{{ events.due_date }} by {{ events.due_time }}</td>

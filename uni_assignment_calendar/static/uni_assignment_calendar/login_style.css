@@ -136,6 +136,7 @@ div.scroll_panel {
 table {
     border-collapse: collapse;
     width: 60%;
+    margin: 1em auto;
 }
 
 td, th {

@@ -7,68 +7,21 @@
 
 	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>
 
-	<table>
-  		<tr>
-			<td><h2><<b>Course ID</b></h2></td>
-    		<td>123456</td>
-		</tr>
-  		<tr>
-    		<td><b>Intructor</b></td>
-    		<td>Harry Powell</td>
-  		</tr>
-  		<tr>
-    		<td><b>Description</b></td>
-    		<td>Develops tools for analyzing signals and systems operating in continuous-time, with applications to
-				control, communications, and signal processing. Primary concepts are representation of signals, linear
-				time-invariant systems, Fourier analysis of signals, frequency response, and frequency-domain
-				input/output analysis, the Laplace transform, and linear feedback principles. Practical examples are
-				employed throughout, and regular usage of computer tools (Matlab, CC) is incorporated. Students cannot
-				receive credit for both this course and BIOM 3310. Prerequisite: ECE 2660, APMA 2130</td>
-  		</tr>
-
-	</table>
-
-
 	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<h4 align="right">Course ID</h4>
-				</div>
-				<div class="col-lg-1">
-					<!--just an empty space-->
-				</div>
-				<div class="col-lg-4">
-					<p>{{ courses.class_id }}</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<h4 align="right">Instructor</h4>
-				</div>
-				<div class="col-lg-4">
-					<p>{{ courses.instructor }}</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<h4 align="right">Description</h4>
-				</div>
-				<div class="col-lg-8">
-					<p>{{ courses.description }}</p>
-				</div>
-			</div>
-		</div>
+		<table>
+  			<tr>
+				<td><h4><b>Course ID</b></h4></td>
+    			<td>{{ courses.class_id }}</td>
+			</tr>
+  			<tr>
+				<td><h4><b>Instructor</b></h4></td>
+    			<td>{{ courses.instructor }}</td>
+  			</tr>
+  			<tr>
+				<td><h4><b>Description</b></h4></td>
+    			<td>{{ courses.description }}</td>
+  			</tr>
+		</table>
 	</section>
 
 

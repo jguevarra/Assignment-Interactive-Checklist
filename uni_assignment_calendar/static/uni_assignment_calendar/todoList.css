@@ -112,3 +112,8 @@ input {
 .addBtn:hover {
     background-color: #bbb;
 }
+
+.searchCourse{
+    border-width:5px;  
+    border-style:groove;
+}

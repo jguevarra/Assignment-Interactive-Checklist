@@ -10,9 +10,9 @@
 
 	<div class="container">
 		<form type="get" action="{% url 'ScheduleResults' %}">
-			<input type="search" placeholder="Search Course ID" name="search_id" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
-			<input type="search" placeholder="Search Course Dept. (MATH, PHYS, etc.)" name="search_abb" value='{{ query }}' oninput="this.value = this.value.replace(/[^A-Z]||[^a-z]/g, '')" />
-			<input type="search" placeholder="Search Course # (3240, 2150, etc.)" name="search_num" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
+			<input type="search" class="searchCourse" placeholder="Search Course ID" name="search_id" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
+			<input type="search" class="searchCourse" placeholder="Search Course Dept. (MATH, PHYS, etc.)" name="search_abb" value='{{ query }}' oninput="this.value = this.value.replace(/[^A-Z]||[^a-z]/g, '')" />
+			<input type="search" class="searchCourse" placeholder="Search Course # (3240, 2150, etc.)" name="search_num" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
 			<button type="submit" class="btn btn-primary">Search</button>
 		</form>
 

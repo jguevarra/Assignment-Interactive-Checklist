@@ -115,6 +115,6 @@ input {
 
 .searchCourse{
     border-width:5px;
-    border-spacing: 5px;
-    border-style:solid;
+    margin: 5px;
+    border-style:groove;
 }

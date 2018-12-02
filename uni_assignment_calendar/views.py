@@ -136,7 +136,7 @@ def create_assignment(request):
             form.save(commit=True)
             return HttpResponseRedirect("/home")
         else:
-            return HttpResponse("Form Not Valid")
+            return HttpResponseRedirect("/create")
 
     return render(request, 'uni_assignment_calendar/create.html', {'form':form})
 

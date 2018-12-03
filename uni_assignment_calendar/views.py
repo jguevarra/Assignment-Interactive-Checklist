@@ -131,7 +131,7 @@ def hideAssgn(request):
         mystring = str(url)
         temp = ''
         i = -2
-        while != '/':
+        while mystring [i] != '/':
             temp[-1]=mystring[i]
             i -= 1       
         message = mystring

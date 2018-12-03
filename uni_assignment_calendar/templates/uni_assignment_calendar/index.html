@@ -2,9 +2,6 @@
 
 {% block content %}
 
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'uni_assignment_calendar/todoList.css' %}">
-
 <div class="main">
 
 	<h1><center>Universal Assignment Calendar</center></h1>
@@ -39,38 +36,21 @@
 
 			<!--Displays list of Recent Postings-->
 			<div class="col-lg-5">
-				<!--<h3>Recent Postings</h3>-->
+				<h3>Recent Postings</h3>
 
-					<!--{% if latest_events_list %}-->
-					<!--<ul>-->
-						<!--{% for events in latest_events_list %}-->
-							<!--<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} &#45;&#45;-->
-								<!--{{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name-->
-								<!--}}</a></li>-->
-						<!--{% endfor %}-->
-					<!--</ul>-->
-					<!--{% else %}-->
-						<!--<p>No events have been posted.</p>-->
-					<!--{% endif %}-->
-
-				<div>
-					<h3><center>To-Do List</center></h3>
-					<p><center>To see assignment <b>details</b>, click on the assignment link.</center></p>
-					<p><center>To <b>check off</b> an assignment, click on the box area of the assignment.</center></p>
-					<p><center>To <b>delete</b> an assignment, click on the 'x'.</center></p>
-					{% if events_list %}
+					{% if latest_events_list %}
 					<ul>
-						{% for events in events_list %}
-							<li class = assignment><a href="{% url 'detail' events.id %}">{{ events.due_date }}
-								{{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }}
-								: {{ events.events_name }}</a></li>
+						{% for events in latest_events_list %}
+							<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} --
+								{{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name
+								}}</a></li>
 						{% endfor %}
 					</ul>
 					{% else %}
-						<br>
 						<p>No events have been posted.</p>
 					{% endif %}
-				</div>
+					<!--<li>A test post for now</li>-->
+
 			</div><br>
 
 			<!--"Recent Postings" icon-->
@@ -87,176 +67,8 @@
 	</div>
 </div>
 
-<script>
 
 
-	// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByClassName("assignment");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
-
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
-
-// Add a "checked" symbol when clicking on a list item
-var list = document.getElementsByClassName("assignment");
-for (var i = 0; i < list.length;i++){
-	list[i].addEventListener('click', function(ev) {
-		console.log("Click Detected, should check")
-		if (ev.target.tagName === 'LI') {
-			ev.target.classList.toggle('checked');
-  }
-}, false);
-}
-
-
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
-
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-}
-
-// Convert abbreviation search input to all caps so that typing lowercase will still function properly
-  function forceKeyPressUppercase(e)
-  {
-    var charInput = e.keyCode;
-    if((charInput >= 97) && (charInput <= 122)) { // lowercase
-      if(!e.ctrlKey && !e.metaKey && !e.altKEY) { // no modifier key
-        var newChar = charInput - 32;
-        var start = e.target.selectionStart;
-        var end = e.target.selectionEnd;
-        e.target.value = e.target.value.substring(0, start) + String.fromCharCode(newChar) + e.target.value.substring(end);
-        e.target.setSelectionRange(start+1, start+1);
-        e.preventDefault();
-      }
-    }
-  }
-  document.getElementsByName("search_abb")[0].addEventListener("keypress", forceKeyPressUppercase, false);
-
-/*
-//https://www.tutorialspoint.com/ajax/ajax_database.htm
-function ajaxFunction() {
-	var ajaxFunction();
-	//this variable needs to be here for AJAX to work
-
-	try {
-	ajaxRequest = new XMLHttpRequest();
-	} catch (e) {
-
-	try {
-		ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch (e) {
-		try {
-			ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (e) {
-		alert("Your browser broke!");
-		return false;
-		}
-	}
-}
-
-ajaxRequest.onreadystatechange = function() {
-	if(ajaxRequest.readtState == 4) {
-		var ajaxDisplay = document.getElementById('ajaxDiv');
-		ajaxDisplay.innerHTML = ajaxRequest.responseText;
-	}
-}
-*/
-
-/*
-//https://www.tutorialspoint.com/ajax/ajax_database.htm
-function ajaxFunction() {
-	var ajaxFunction();
-	//this variable needs to be here for AJAX to work
-
-	try {
-	ajaxRequest = new XMLHttpRequest();
-	} catch (e) {
-
-	try {
-		ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch (e) {
-		try {
-			ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (e) {
-		alert("Your browser broke!");
-		return false;
-		}
-	}
-}
-
-ajaxRequest.onreadystatechange = function() {
-	if(ajaxRequest.readtState == 4) {
-		var ajaxDisplay = document.getElementById('ajaxDiv');
-		ajaxDisplay.innerHTML = ajaxRequest.responseText;
-	}
-}
-*/
-
-/*
-//https://www.tutorialspoint.com/ajax/ajax_database.htm
-function ajaxFunction() {
-	var ajaxFunction();
-	//this variable needs to be here for AJAX to work
-
-	try {
-	ajaxRequest = new XMLHttpRequest();
-	} catch (e) {
-
-	try {
-		ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch (e) {
-		try {
-			ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (e) {
-		alert("Your browser broke!");
-		return false;
-		}
-	}
-}
-
-ajaxRequest.onreadystatechange = function() {
-	if(ajaxRequest.readtState == 4) {
-		var ajaxDisplay = document.getElementById('ajaxDiv');
-		ajaxDisplay.innerHTML = ajaxRequest.responseText;
-	}
-}
-*/
-</script>
 
 
 {% endblock %}

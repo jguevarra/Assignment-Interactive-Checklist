@@ -17,9 +17,12 @@
 		<br>
 
 		<form type="get" action="{% url 'ScheduleResults' %}">
-			<input type="search" class="searchCourse" placeholder="Search Course ID (10822, etc.)" name="search_id" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
-			<input type="search" class="searchCourse" placeholder="Search Course Dept. (MATH, PHYS, etc.)" name="search_abb" value='{{ query }}' oninput="this.value = this.value.replace(/[^A-Z]||[^a-z]/g, '')" />
-			<input type="search" class="searchCourse" placeholder="Search Course # (3240, 2150, etc.)" name="search_num" value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
+			<input type="search" class="searchCourse" placeholder="Search Course ID (10822, etc.)" name="search_id"
+				   value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
+			<input type="search" class="searchCourse" placeholder="Search Course Dept. (MATH, PHYS, etc.)" name="search_abb"
+				   value='{{ query }}' oninput="this.value = this.value.replace(/[^A-Z]||[^a-z]/g, '')" />
+			<input type="search" class="searchCourse" placeholder="Search Course # (3240, 2150, etc.)" name="search_num"
+				   value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
 			<button type="submit" class="btn btn-primary">Search</button>
 		</form>
 
@@ -61,7 +64,11 @@
 			{% if events_list %}
 			<ul>
 				{% for events in events_list %}
-					<li class = assignment><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</a></li>
+					<li class = assignment><a href="{% url 'detail' events.id %}">{{ events.due_date }}
+						{{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} :
+						{{ events.events_name }}</a></li>
+					<div id="myDIV">Verified</div>
+					<i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
 				{% endfor %}
 			</ul>
 			{% else %}
@@ -72,7 +79,15 @@
 </div>
 
 <script>
-
+function myFunction(x) {
+    x.classList.toggle("fa-thumbs-down");
+    var x = document.getElementById("myDIV");
+    if (x.innerHTML === "Hello") {
+        x.innerHTML = "Swapped text!";
+    } else {
+        x.innerHTML = "Hello";
+    }
+}
 
 	// Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByClassName("assignment");

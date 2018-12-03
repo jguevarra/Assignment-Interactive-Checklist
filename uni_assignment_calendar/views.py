@@ -131,10 +131,11 @@ def hideAssgn(request):
         mystring = str(url)
         temp = ''
         i = -2
-        while mystring [i] != '/':
-            temp[-1]=mystring[i]
-            i -= 1       
-        message = mystring
+        while mystring[i] != '/':
+            temp += mystring[i]
+            i -= 1     
+          
+        message = temp[::-1]
     else:
         message = 'not ajax'
     return HttpResponse(message)

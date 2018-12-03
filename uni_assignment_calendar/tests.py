@@ -24,6 +24,7 @@ def create_event_due_date(events_name, due_date):
     new_due_date = now() + timedelta(days=due_date)
     return Events.objects.create(events_name=events_name, due_date=new_due_date)
 
+# ------------------------------------------------------------------------------------------
 
 # Testing Model View -- these tests are okay!
 class AssignmentnModelTests(TestCase):
@@ -55,6 +56,7 @@ class AssignmentnModelTests(TestCase):
         recent_question = Events(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
 
+# ------------------------------------------------------------------------------------------
 
 # Testing Index View
 class AssignmentIndexViewTests(TestCase):
@@ -66,23 +68,6 @@ class AssignmentIndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No events have been posted.")
         self.assertQuerysetEqual(response.context['latest_events_list'], [])
-
-    # def test_not_recently_posted_events(self):
-        """
-        the posts outside of the "Recently Posted" list should disappear
-        """
-
-    # def test_future_pub_date_events(self):
-        """
-        post with a pub_date in the future aren't displayed on
-        the index page.
-        ERROR: object is not being deleted
-        """
-    #     create_events(events_name="Future Event.", pub_date=30)
-    #     response = self.client.get(reverse('calendar:index'))
-    #     # self.assertContains(response, "No events are available.")
-    #     # self.assertQuerysetEqual(response.context['latest_events_list'], ['<Events: Future Event.>'])
-    #     self.assertQuerysetEqual(response.context['latest_events_list'], [])
 
     def test_past_pub_date_events(self): # works
         """
@@ -96,14 +81,6 @@ class AssignmentIndexViewTests(TestCase):
             ['<Events: Past Event.>']
         )
 
-    #def test_past_due_date_events(self):
-        """
-        post with a due_date in the past are not displayed on the
-        index page.
-        Similar to test_future_assignments(self) test
-        ERROR: object is not being deleted
-        """
-
     def test_future_due_date_events(self): # works
         """
         post with a valid due date includes due date when posted on the index page
@@ -115,9 +92,15 @@ class AssignmentIndexViewTests(TestCase):
             ['<Events: Future Due Date Event.>']
         )
 
+    # def test_button_redirects_to_create_page(self):
+        """
+        tests if the "Post an Assignment" button redirects to the create page
+        """
 
-# # testing detail view
-class EventsDetailViewTests(TestCase):
+# ------------------------------------------------------------------------------------------
+
+# Testing detail view
+class AssignmentDetailViewTests(TestCase):
     # def test_future_events(self):
     #     """
     #     The detail view of an event with a pub_date in the future
@@ -249,13 +232,6 @@ class ScheduleTests(TestCase):
         c.login(user="abc", password="123")
         response = self.client.get(reverse('schedule'))
         self.assertContains(response, "No enrolled courses")
-	
-
-      def test_if_enrolled_in_courses(self)
-        c = Client()
-        c.login(user="abc", password="123")
-        response = self.client.get(reverse('schedule'))
-        self.assertContains(response, "No enrolled courses")
 
 #     def test_class_info(self):
 #         """
@@ -311,7 +287,7 @@ class ScheduleTests(TestCase):
         if a class is removed, the class is removed from their schedule
         """
 
- #   def test_if_assignment_from_removed_class_is_removed(self):
+#   def test_if_assignment_from_removed_class_is_removed(self):
         """
         no assignments from a removed class should be listed in the list
         """

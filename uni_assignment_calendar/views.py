@@ -127,8 +127,8 @@ def schedule(request):
 #handle ajax request to hide deleted assignments for active users
 def hideAssgn(request):
     if request.is_ajax():
-        url = request.GET.get(data)
-        message = str(data)
+        url = request.GET.get('data')
+        message = str(url)
     else:
         message = 'not ajax'
     return HttpResponse(message)

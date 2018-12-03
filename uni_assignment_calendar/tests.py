@@ -251,39 +251,7 @@ class ScheduleTests(TestCase):
 	self.assertContains(response, "No enrolled courses")
 	
 
-    #def test_class_info(self):
-	"""
-	testing to make sure all of the info comes up in the class info page
-	"""
-	c = Client()
-	c.login(user = "a",password ="a")
-	response = self.client.get(reverse('course/15842'))
-	self.assertContains(response,"Diana Morris")
-
-	"""
-    #def test_if_enrolled_class_added(self):
-        """
-        if the user enrolls in a class, the class is added in their schedule
-	manually made a specific user a enrolled in this class
-        """
-	c = Client()
-	c.login(user="a", password="a")
-	response = self.client.get(reverse('schedule'))
-	self.assertContains(response, "APMA 3140")
-
-
-    #def test_if_enrolled_assignment_shows(self):
-        """
-        an assignment post in that class will be shown in the To Do
-	manually made a specific user enrolled in this class with this assignment
-        """
-	c = Client()
-	c.login(user="a", password="a")
-	response = self.client.get(reverse('schedule'))
-	self.assertContains(response, "Test Assignment")
-	"""
-
-   def test_if_enrolled_in_courses(self)
+      def test_if_enrolled_in_courses(self)
         c = Client()
         c.login(user="abc", password="123")
         response = self.client.get(reverse('schedule'))

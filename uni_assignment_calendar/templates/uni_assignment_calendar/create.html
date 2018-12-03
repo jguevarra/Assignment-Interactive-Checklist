@@ -48,10 +48,14 @@
                     <br>
 
                     <div class="row">
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
 					        <!--just an empty column-->
 				        </div>
-                        <div class="col-lg-3">
+                        <!--<div class="col-lg-2">-->
+                            <!---->
+                        <!--</div>-->
+                        <div class="col-lg-2">
+                            <input type="submit" class="btn btn-primary" onclick="goBack()" value="Back">
                             {% csrf_token %}
                             <input type="submit" class="btn btn-primary" value="Submit">
                         </div>
@@ -62,6 +66,12 @@
     </div>>
 
     <br>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 {% endblock %}
 

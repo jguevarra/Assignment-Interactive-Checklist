@@ -115,7 +115,7 @@ for (i = 0; i < close.length; i++) {
 	$.ajax({
 		type: 'GET',
 		url: '/schedule/hideAssgn/',
-		data: { exclude },
+		data: { 'data' : exclude },
 		dataType:"json",
 		success: function(data) {
         	alert(data);

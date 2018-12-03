@@ -113,7 +113,7 @@ for (i = 0; i < close.length; i++) {
 	console.log(div.firstChild.text)
 	
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/schedule/hideAssgn/',
 		data: { exclude },
 		dataType:"json",
@@ -181,8 +181,6 @@ function newElement() {
     }
   }
   document.getElementsByName("search_abb")[0].addEventListener("keypress", forceKeyPressUppercase, false);
-
-
 
 
 

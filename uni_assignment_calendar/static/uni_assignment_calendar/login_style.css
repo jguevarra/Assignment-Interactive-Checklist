@@ -152,3 +152,11 @@ tr:nth-child(even) {
 .button {
     margin: 1em auto;
 }
+
+
+/* for the search bars */
+.newAssignmentInput{
+    border-width:5px;
+    margin: 5px;
+    border-style:groove;
+}

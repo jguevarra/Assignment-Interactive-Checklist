@@ -33,13 +33,13 @@ class IndexView(generic.ListView):
 
 
 # Detail (generic view)
-# class DetailView(generic.DetailView):
-#     model = Events
-#     template_name = 'uni_assignment_calendar/detail.html'
-def assignment_detail(request, pk):
-    events = get_object_or_404(Events, pk=pk)
-    courses = events.course
-    return render(request, 'uni_assignment_calendar/detail.html', {'events':events, 'courses':courses})
+class DetailView(generic.DetailView):
+    model = Events
+    template_name = 'uni_assignment_calendar/detail.html'
+# def events_detail(request, pk):
+#     events = get_object_or_404(Events, pk=pk)
+#     courses = events.course
+#     return render(request, 'uni_assignment_calendar/detail.html', {'events':events, 'courses':courses})
 
 
 

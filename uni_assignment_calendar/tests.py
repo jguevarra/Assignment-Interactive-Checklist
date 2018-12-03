@@ -92,10 +92,26 @@ class AssignmentIndexViewTests(TestCase):
             ['<Events: Future Due Date Event.>']
         )
 
-    # def test_button_redirects_to_create_page(self):
+    def test_redirects_to_create_page_if_logged_in(self):
         """
         tests if the "Post an Assignment" button redirects to the create page
         """
+	c = Client()
+	c.login(user="a",password="a")
+	response = self.client.get(reverse('create'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_does_not_redirect_to_create_page_if_not_logged_in(self):
+        """
+        tests if the "Post an Assignment" button redirects to the create page
+        """
+	c = Client()
+	c.login(user="a",password="a")
+	c.logout()
+	response = self.client.get(reverse('create'))
+        self.assertEqual(response.status_code="200", False)
+	
+	
 
 # ------------------------------------------------------------------------------------------
 

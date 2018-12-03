@@ -9,7 +9,7 @@ from django.utils.timezone import now
 from django.test import Client
 
 
-# helper functions -- needa edit
+# helper functions -- need to edit
 def create_event_pub_date(events_name, pub_date):
     """
     Creates a post with a custom published/posted date using pub_date
@@ -257,6 +257,54 @@ class ScheduleTests(TestCase):
         response = self.client.get(reverse('schedule'))
         self.assertContains(response, "No enrolled courses")
 
+#     def test_class_info(self):
+#         """
+#         testing to make sure all of the info comes up in the class info page
+#         """
+#         c = Client()
+#         c.login(user = "a",password ="a")
+#         response = self.client.get(reverse('course/15842'))
+#         sself.assertContains(response,"Diana Morris")
+
+#     def test_if_enrolled_class_added(self):
+#     #def test_class_info(self):
+# 	"""
+# 	testing to make sure all of the info comes up in the class info page
+# 	"""
+# 	c = Client()
+# 	c.login(user = "a",password ="a")
+# 	response = self.client.get(reverse('course/15842'))
+# 	self.assertContains(response,"Diana Morris")
+#
+# 	"""
+#     #def test_if_enrolled_class_added(self):
+#         """
+#         if the user enrolls in a class, the class is added in their schedule
+#         manually made a specific user a enrolled in this class
+#         """
+#         c = Client()
+#         c.login(user="a", password="a")
+#         response = self.client.get(reverse('schedule'))
+#         self.assertContains(response, "APMA 3140")
+
+
+#     #def test_if_enrolled_assignment_shows(self):
+#         """
+#         an assignment post in that class will be shown in the To Do
+#         manually made a specific user enrolled in this class with this assignment
+#         """
+#         c = Client()
+#         c.login(user="a", password="a")
+#         response = self.client.get(reverse('schedule'))
+#         self.assertContains(response, "Test Assignment")
+# 	"""
+
+    def test_if_enrolled_in_courses(self):
+        c = Client()
+        c.login(user="abc", password="123")
+        response = self.client.get(reverse('schedule'))
+        self.assertContains(response, "No enrolled courses")
+
 
 #    def test_if_class_removed(self):
         """
@@ -281,7 +329,11 @@ class ScheduleTests(TestCase):
 #Date: 11/12/2018
 #Code Version:
 #Availability: https://stackoverflow.com/questions/14951356/django-testing-if-the-page-has-redirected-to-the-desired-url
-
+#Title: Testing Tools
+#Author:
+#Date: 11/12/2018
+#Code Version:
+#Availability: https://docs.djangoproject.com/en/2.1/topics/testing/tools/
 #Title: Testing Tools
 #Author:
 #Date: 11/12/2018

@@ -8,10 +8,27 @@
         <p><center>Due Date format: mm/dd/yyyy</center></p>
         <p><center>Due Time format: hr:min</center></p>
         <form method="POST">
-            {{ form.as_p }}
+            <p><label for="id_course">Course:</label>
+            <select name="course" selected>---------</option>
+                {% for course in courses %}
+                <option value="{{ course.class_id }}">{{ course.class_abbrev }} {{ course.class_num }} - {{ course.class_title }}</option>
+                {% endfor %}
+            </select></p>
+            <p><label for="id_events_name">Events name:</label>
+                <input id="id_events_name" type="text" name="events_name" maxlength="100" required></p>
+            <p><label for="id_due_date">Due date:</label>
+                <input id="id_due_date" type="text" name="due_date" required></p>
+            <p><label for="id_due_time">Due time:</label>
+                <input id="id_due_time" type="text" name="due_time" required></p>
+            <p><label for="id_description">Description:</label>
+                <input id="id_description" type="text" name="sdescription" maxlength="100" required></p>
             {% csrf_token %}
             <input type="submit" class="btn btn-primary" value="Submit">
         </form>
+
+<!--         {% for course in courses %}
+            <p>{{course.class_title}}</p>
+        {% endfor %} -->
     </div>
 
     <br>

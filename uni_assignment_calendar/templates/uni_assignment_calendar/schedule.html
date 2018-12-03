@@ -106,8 +106,9 @@ var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
+	var data = this
     div.style.display = "none";
-	console.log(div);
+	console.log(div.getElementsByTagName("a"));
 	/*
 	$.ajax({
 		type: 'POST',
@@ -124,7 +125,6 @@ for (i = 0; i < close.length; i++) {
 var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
-		console.log("Click Detected, should check")
 		if (ev.target.tagName === 'LI') {
 			ev.target.classList.toggle('checked');
   }

@@ -341,6 +341,17 @@ class LoggedOutView(TestCase):
 	self.assertContains(response,"About Us")
 
 
+    def test_sign_up(self):
+	"""
+	tests sign up page
+	"""
+	c = Client()
+	c = logout()
+	response = self.client.get(reverse("signup")
+	self.assertContains(response,"Sign Up")
+
+
+
 
 #REFERENCES
 #Title: Django : Testing if the page has redirected to the desired url

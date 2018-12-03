@@ -148,7 +148,6 @@ class AssignmentDetailViewTests(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-# ------------------------------------------------------------------------------------------
 
 # testing database
 class DatabaseTests(TestCase):
@@ -292,6 +291,16 @@ class ScheduleTests(TestCase):
 #         self.assertContains(response, "Test Assignment")
 # 	"""
 
+    #def test_assignment(self):
+	"""
+	creating a test assignment and checking the to do list
+	"""
+	#c = Client()
+	#c.login(user="a", password="a")
+	#c.enroll(search_abb="CS", search_num="3240")
+	#c.create(Course= "CS 3240",events_name="", due_date="", due_time="",description="")
+		
+
     def test_if_enrolled_in_courses(self):
         c = Client()
         c.login(user="abc", password="123")
@@ -313,6 +322,25 @@ class ScheduleTests(TestCase):
 #     """
 #     include search bar tests here!!
 #     """
+
+class LoggedOutView(TestCase):
+    def test_goals(self):
+	"""
+	tests goals page
+	"""
+	c = Client()
+	c = logout()
+	response = self.client.get(reverse('goals'))
+	self.assertContains(response, "Goals")
+
+    def test_about_us(self):
+	"""
+	tests about us page
+	"""
+	c = Client()
+	c = logout()
+	response = self.client.get(reverse("AboutUs")
+	self.assertContains(response,"About Us")
 
 
 

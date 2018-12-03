@@ -16,12 +16,8 @@ urlpatterns = [
     path('accounts/login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('schedule/', views.schedule, name='schedule'),
-<<<<<<< Updated upstream
-    path('schedule/ScheduleResults/',views.ScheduleResults,name='ScheduleResults')
-=======
     path('schedule/ScheduleResults/',views.ScheduleResults,name='ScheduleResults'),
     path('AboutUs/', views.AboutView, name='AboutUs'),
     path('goals/', views.GoalsView, name='goals'),
     path('schedule/hideAssgn/',views.hideAssgn,name='hideAssgn')
->>>>>>> Stashed changes
 ]

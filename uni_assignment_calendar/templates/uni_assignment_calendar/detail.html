@@ -5,15 +5,49 @@
 
 <div class="main">
 
-	<h1><center>{{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</center></h1>.
+	<h1><center>{{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name }}</center></h1>
+	<h2><center>Assignment Details</center></h2>
 
-	<ul>
-		<p><strong>Course:</strong> {{ events.course.class_abbrev }}  {{ events.course.class_num }} - {{ events.course.class_title }}</p>
-	    <p><strong>Due Date and Time:</strong> {{ events.due_date }}</p>
-	    <p><strong>Published Date:</strong> {{ events.pub_date }}</p>
-	    <p><strong>Description:</strong> {{ events.description }}</p>
-	</ul>
+	<br>
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<table>
+					<tr>
+						<td><h4><b>Course</b></h4></td>
+    					<td>{{ events.course.class_abbrev }}  {{ events.course.class_num }} - {{ events.course.class_title }}</td>
+					</tr>
+  					<tr>
+						<td><h4><b>Due Date and Time</b></h4></td>
+    					<td>{{ events.due_date }} by {{ events.due_time }}</td>
+					</tr>
+  					<tr>
+						<td><h4><b>Description</b></h4></td>
+    					<td>{{ events.description }}</td>
+  					</tr>
+				</table>
+			</div>
+
+			<br>
+
+			<div class="row">
+				<div class="col-lg-9">
+					<!--just an empty column-->
+				</div>
+				<div class="col-lg-3">
+					<input type="submit" class="btn btn-primary" onclick="goBack()" value="Back" />
+				</div>
+			</div>
+		</div>
+	</section>
 
 </div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 {% endblock %}

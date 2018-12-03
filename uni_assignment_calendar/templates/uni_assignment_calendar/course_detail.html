@@ -5,31 +5,61 @@
 
 <div class="main">
 
-	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>.
-	
-	<div class="container">
-		<ul>
-			<p><strong>Course ID:</strong> {{courses.class_id }}</p>
-		    <p><strong>Instructor:</strong> {{ courses.instructor }}</p>
-		    <p><strong>Description:</strong> {{ courses.description }}</p>
-		</ul>
-		
-		<form method="POST">
-			{% csrf_token %}
-			<input type="submit" class="btn btn-primary" value="Add Course" name="add">
-		</form>
+	<h1><center>{{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}</center></h1>
+	<h2><center>Course Information</center></h2>
 
-		<br>
+	<br>
 
-		{% if enrolled %}
-		<form method="POST">
-			{% csrf_token %}
-			<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
-		</form>
-		{% endif %}
+	<section>
+		<div class="container">
+			<div class="row">
+				<table>
+  					<tr>
+						<td><h4><b>Course ID</b></h4></td>
+    					<td>{{ courses.class_id }}</td>
+					</tr>
+  					<tr>
+						<td><h4><b>Instructor</b></h4></td>
+    					<td>{{ courses.instructor }}</td>
+  					</tr>
+  					<tr>
+						<td><h4><b>Description</b></h4></td>
+    					<td>{{ courses.description }}</td>
+  					</tr>
+				</table>
+			</div>
 
-		<p>{{ status }}</p>
-	</div>
+			<br>
+
+			<div class="row">
+				<div class="col-lg-3">
+					{% if enrolled %}
+						<form method="POST">
+							{% csrf_token %}
+							<center>
+								<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
+							</center>
+						</form>
+					{% else %}
+						<form method="POST">
+							{% csrf_token %}
+							<center>
+								<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+							</center>
+						</form>
+					{% endif %}
+				</div>
+				<div class="col-lg-3">
+						<form action="/schedule/">
+    						<input type="submit" class="btn btn-primary" value="View my Schedule" />
+						</form>
+				</div>
+				<div class="col-lg-5">
+					<p><center>{{ status }}</center></p>
+				</div>
+			</div>
+		</div>
+	</section>
 
 </div>
 

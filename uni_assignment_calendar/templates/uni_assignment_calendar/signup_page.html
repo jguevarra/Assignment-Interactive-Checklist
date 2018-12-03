@@ -2,52 +2,66 @@
 
 {% block content %}
 
-<div class="container">
-    {% if messages %}
-        <ul class="messages">
-        {% for message in messages %}
-            <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}<br>
-</div>
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <div class="row">
+            <!--Text-->
+          <div class="col-lg-6">
+            <h1 class="mt-5">Monkey's With Typewriters: Universal Assignment Calendar</h1>
+            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt voluptates rerum eveniet sapiente-->
+                <!--repellat esse, doloremque quod recusandae deleniti nostrum assumenda vel beatae sed aut modi nesciunt-->
+                <!--porro quisquam voluptatem.</p>-->
+              <center><img src="/static/uni_assignment_calendar/images/gorilla-logo-png-3.png" style="width:128px;height:128px;"></center>
 
-<div class="login-form">
-    <div class="form">
-        <div>
-            {% if registered %}
-			    <h3>Thank you for registering!</h3>
-                <meta http-equiv="refresh" content="3;url=/home" />
-                <h3>Redirecting in 3 seconds...</h3>
-            {% else %}
-                <form class="signup-form" action="" method="post">
-                {% csrf_token %}
-                <h2 class="text-center">Sign Up</h2>
+              <div class="container">
+                {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+                        <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}<br>
+              </div>
+          </div>
 
-                <div class="form-group">
-        	        <input type="text" class="form-control" name="username" placeholder="Username" required="required">
-                </div>
+            <!--login form-->
+            <div class="col-lg-6">
+                <div class="form"><div>
+                {% if registered %}
+			        <h3>Thank you for registering!</h3>
+                    <meta http-equiv="refresh" content="1;url=/home" />
+                    <!--<h3>Redirecting in 3 seconds...</h3>-->
+                {% else %}
+                    <form class="signup-form" action="" method="post">
+                        {% csrf_token %}
+                        <h2 class="text-center">Sign Up</h2>
 
-		        <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-                </div>
+                        <div class="form-group">
+        	                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                        </div>
 
-                <div class="form-group">
-                    <input type="password" class="form-control" name="password2" placeholder="Comfirm Password" required="required">
-                </div>
+		                <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                        </div>
 
-                    <div class="form-group">
-                    <form method="get" action="/home">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
-                    </form>
-                    </div>
-			    </form>
-                <p class="text-center small">Have an account already? <a href="/">Login here!</a></p>
-		    {% endif %}
-        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password2" placeholder="Comfirm Password" required="required">
+                        </div>
 
+                        <div class="form-group">
+                            <form method="get" action="/home">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                            </form>
+                        </div>
+			        </form>
+                    <p class="text-center small">Have an account already? <a href="/">Login here!</a></p>
+		        {% endif %}
+            </div>
     </div>
+        </div>
+    </div>
+</section>
 
-</div>
 
 {% endblock %}

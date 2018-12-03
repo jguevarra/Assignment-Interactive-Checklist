@@ -5,16 +5,73 @@
     <div class="main">
         <h1><center>Universal Assignment Calendar</center></h1>
         <h2><center>New Post</center></h2>
-        <p><center>Due Date format: mm/dd/yyyy</center></p>
-        <p><center>Due Time format: hr:min</center></p>
         <form method="POST">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <input type="submit" class="btn btn-primary" value="Submit">
+
+            <section>
+                <div class="container">
+                    <div class="row">
+				        <table>
+  					        <tr>
+						        <td><h4><b><label for="id_course">Course:</label></b></h4></td>
+    					        <td><select name="course" selected>---------</option>
+                                    {% for course in courses %}
+                                        <option value="{{ course.class_id }}">{{ course.class_abbrev }}
+                                            {{ course.class_num }} - {{ course.class_title }}</option>
+                                    {% endfor %}
+                                </select></td>
+					        </tr>
+
+  					        <tr>
+						        <td><h4><b><label for="id_events_name">Events name:</label></b></h4></td>
+    					        <td><input id="id_events_name" type="text" name="events_name" required></td>
+  					        </tr>
+
+  					        <tr>
+						        <td><h4><b><label for="id_due_date">Due date:</label></b></h4></td>
+    					        <td><input id="id_due_date" placeholder="mm/dd/yyyy" type="text" name="due_date"
+                                           required></td>
+  					        </tr>
+
+  					        <tr>
+						        <td><h4><b><label for="id_due_time">Due time:</label></b></h4></td>
+    					        <td><input type="time" id="id_due_time" placeholder="hr:min" type="text" name="due_time"
+                                           required></td>
+  					        </tr>
+
+  					        <tr>
+						        <td><h4><b><label for="id_description">Description:</label></b></h4></td>
+    					        <td><input id="id_description" type="text" name="description" required></td>
+  					        </tr>
+				        </table>
+			        </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-lg-8">
+					        <!--just an empty column-->
+				        </div>
+                        <!--<div class="col-lg-2">-->
+                            <!---->
+                        <!--</div>-->
+                        <div class="col-lg-2">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                            <input type="submit" class="btn btn-primary" onclick="goBack()" value="Back">
+                        </div>
+                    </div>
+                </div>
+            </section>
         </form>
     </div>
 
     <br>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 {% endblock %}
 

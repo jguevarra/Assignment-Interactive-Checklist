@@ -1,0 +1,131 @@
+{% extends 'base_login.html' %}
+
+{% block content %}
+
+<!--&lt;!&ndash; Modal Section &ndash;&gt;-->
+
+<!--<button class="trigger" id="button">Click here to trigger the modal!</button>-->
+<!--<div class="modal">-->
+    <!--<div class="modal-content">-->
+        <!--<span class="close-button">×</span>-->
+        <!--<h1>Hello, I am a modal!</h1>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="bg-modal">-->
+	<!--<div class="modal-contents">-->
+
+		<!--<div class="close">+</div>-->
+        <!--<p>testing</p>-->
+
+	<!--</div>-->
+<!--</div>-->
+
+<section>
+    <div class="container">
+        <div class="col-lg-45">
+            <h1 class="mt-5">About Us</h1>
+            <h2 class="mt-5">Team: Monkeys With Typewriters</h2>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h3 class="mt-5">Scrum Master</h3>
+          </div>
+            <div class="col-lg-4">
+                <h4 class="mt-5">Daniel Hanson</h4>
+                <p>Third Year, Computer Engineering Major</p>
+                <li><i><b>email:</b> dwh7fx@virginia.edu</i></li><br>
+            </div>
+            <div class="col-lg-3">
+                <img src="/static/uni_assignment_calendar/images/gorilla-logo-png-3.png" style="width:128px;height:128px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h3 class="mt-5">Requirements Managers</h3>
+          </div>
+            <div class="col-lg-4">
+                <h4 class="mt-5">Nick MacDisi</h4>
+                <p>Third Year, Computer Science Major</p>
+                <li><i><b>email:</b> nm9jp@virginia.edu</i></li><br>
+                <h4 class="mt-5">Eddie Ryan</h4>
+                <p>Fourth Year, Computer Engineering Major</p>
+                <li><i><b>email:</b> ejr8wh@virginia.edu</i></li><br>
+            </div>
+            <div class="col-lg-3">
+                <img src="/static/uni_assignment_calendar/images/194065.png" style="width:128px;height:128px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h3 class="mt-5">Testing Managers</h3>
+          </div>
+            <div class="col-lg-4">
+                <h4 class="mt-5">Jazlene Rae Guevarra</h4>
+                <p>Third Year, Computer Engineering Major</p>
+                <li><i><b>email:</b> jfg3xs@virginia.edu</i></li><br>
+                <h4 class="mt-5">Kiri Nicholson</h4>
+                <p>Third Year, Computer Engineering Major, TLP Minor</p>
+                <li><i><b>email:</b> kan7au@virginia.edu</i></li><br>
+            </div>
+            <div class="col-lg-3">
+                <img src="/static/uni_assignment_calendar/images/monkey-70-512.png" style="width:128px;height:128px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h3 class="mt-5">Software Architect</h3>
+          </div>
+            <div class="col-lg-4">
+                <h4 class="mt-5">Christine Cheng</h4>
+                <p>Third Year, Computer Science Major</p>
+                <li><i><b>email:</b> xc3fe@virginia.edu</i></li><br>
+            </div>
+            <div class="col-lg-3">
+                <img src="/static/uni_assignment_calendar/images/Monkey-512.png" style="width:128px;height:128px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('button').addEventListener("click", function() {
+	document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+	document.querySelector('.bg-modal').style.display = "none";
+});
+</script>
+
+{% endblock %}

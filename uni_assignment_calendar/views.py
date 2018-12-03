@@ -1,16 +1,23 @@
 from .models import Events, Courses, Enrollment
-from django.template import loader, RequestContext
-from calendar import monthrange
-from datetime import datetime, date
-from django.shortcuts import render_to_response, render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from .forms import IndexForm, UserForm
 from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+
+def AboutView(request):
+    context = {}
+    template = 'uni_assignment_calendar/about_page.html'
+    return render(request, template, context)
+
+def GoalsView(request):
+    context = {}
+    template = 'uni_assignment_calendar/goals_page.html'
+    return render(request, template, context)
 
 # Index (generic views) -- home page
 class IndexView(generic.ListView):
@@ -128,17 +135,29 @@ def hideAssgn(request):
 # Form for creating an assignment
 def create_assignment(request):
     form = IndexForm()
+    courses = set()
+    enrollments = Enrollment.objects.filter(username=request.user.username)
+    for c in enrollments:
+        course = Courses.objects.get(class_id=c.class_id)
+        courses.add(course)
 
     if request.method == "POST":
         form = IndexForm(request.POST)
 
         if form.is_valid():          
-            form.save(commit=True)
+            obj = Events()
+            obj.course = form.cleaned_data['course']
+            obj.events_name = form.cleaned_data['events_name']
+            obj.due_date = form.cleaned_data['due_date']
+            obj.due_time = form.cleaned_data['due_time']
+            obj.description = form.cleaned_data['description']
+            obj.save()
+
             return HttpResponseRedirect("/home")
         else:
-            return HttpResponse("Form Not Valid")
+            return HttpResponseRedirect("/create")
 
-    return render(request, 'uni_assignment_calendar/create.html', {'form':form})
+    return render(request, 'uni_assignment_calendar/create.html', {'form':form,'courses':courses})
 
 
 # Signup

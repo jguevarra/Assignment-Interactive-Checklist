@@ -9,7 +9,7 @@ from django.utils.timezone import now
 from django.test import Client
 
 
-# helper functions -- needa edit
+# helper functions -- need to edit
 def create_event_pub_date(events_name, pub_date):
     """
     Creates a post with a custom published/posted date using pub_date
@@ -24,9 +24,7 @@ def create_event_due_date(events_name, due_date):
     new_due_date = now() + timedelta(days=due_date)
     return Events.objects.create(events_name=events_name, due_date=new_due_date)
 
-
-
-
+# ------------------------------------------------------------------------------------------
 
 # Testing Model View -- these tests are okay!
 class AssignmentnModelTests(TestCase):
@@ -58,6 +56,7 @@ class AssignmentnModelTests(TestCase):
         recent_question = Events(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
 
+# ------------------------------------------------------------------------------------------
 
 # Testing Index View
 class AssignmentIndexViewTests(TestCase):
@@ -69,23 +68,6 @@ class AssignmentIndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No events have been posted.")
         self.assertQuerysetEqual(response.context['latest_events_list'], [])
-
-    # def test_not_recently_posted_events(self):
-        """
-        the posts outside of the "Recently Posted" list should disappear
-        """
-
-    # def test_future_pub_date_events(self):
-        """
-        post with a pub_date in the future aren't displayed on
-        the index page.
-        ERROR: object is not being deleted
-        """
-    #     create_events(events_name="Future Event.", pub_date=30)
-    #     response = self.client.get(reverse('calendar:index'))
-    #     # self.assertContains(response, "No events are available.")
-    #     # self.assertQuerysetEqual(response.context['latest_events_list'], ['<Events: Future Event.>'])
-    #     self.assertQuerysetEqual(response.context['latest_events_list'], [])
 
     def test_past_pub_date_events(self): # works
         """
@@ -99,14 +81,6 @@ class AssignmentIndexViewTests(TestCase):
             ['<Events: Past Event.>']
         )
 
-    #def test_past_due_date_events(self):
-        """
-        post with a due_date in the past are not displayed on the
-        index page.
-        Similar to test_future_assignments(self) test
-        ERROR: object is not being deleted
-        """
-
     def test_future_due_date_events(self): # works
         """
         post with a valid due date includes due date when posted on the index page
@@ -118,9 +92,31 @@ class AssignmentIndexViewTests(TestCase):
             ['<Events: Future Due Date Event.>']
         )
 
+    def test_redirects_to_create_page_if_logged_in(self):
+        """
+        tests if the "Post an Assignment" button redirects to the create page
+        """
+	c = Client()
+	c.login(user="a",password="a")
+	response = self.client.get(reverse('create'))
+        self.assertEqual(response.status_code, 200)
 
-# # testing detail view
-class EventsDetailViewTests(TestCase):
+    def test_does_not_redirect_to_create_page_if_not_logged_in(self):
+        """
+        tests if the "Post an Assignment" button redirects to the create page
+        """
+	c = Client()
+	c.login(user="a",password="a")
+	c.logout()
+	response = self.client.get(reverse('create'))
+        self.assertEqual(response.status_code="200", False)
+	
+	
+
+# ------------------------------------------------------------------------------------------
+
+# Testing detail view
+class AssignmentDetailViewTests(TestCase):
     # def test_future_events(self):
     #     """
     #     The detail view of an event with a pub_date in the future
@@ -152,25 +148,48 @@ class EventsDetailViewTests(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-#
-# # testing database
-# class DatabaseTests(TestCase):
-#     """
-#     insert tests here!
-#     """
+# ------------------------------------------------------------------------------------------
+
+# testing database
+class DatabaseTests(TestCase):
+    """
+    database testing here
+    """
+
 
 
 # login/signup/logout helper functions
-
 class LoginLogoutTests(TestCase): # works
-    def test_if_invalid_form_do_not_go_to_homepage(self):
+
+    def test_no_inputs(self):
         """
-        Test to see if it is an invalid form it does not go to the homepage
+        If login form is invalid with no username or password, url should
+        remain on login page
         """
         c = Client()
         c.login(user="", password="")
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code,200)
+
+    def test_no_password_input(self):
+        """
+        If login form is invalid with no password, url should remain on
+        login page
+        """
+        c = Client()
+        c.login(user="user", password="")
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_no_username_input(self):
+        """
+        If login form is invalid with no username, url should remain on
+        login page
+        """
+        c = Client()
+        c.login(user="", password="passwd")
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
 
     def test_if_successfully_logged_in(self): # works
         """
@@ -181,27 +200,10 @@ class LoginLogoutTests(TestCase): # works
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
 
-    def test_if_invalid_remain_at_login(self):
-        """
-        if it's invalid, remain at the login screen
-        """
-        # c = Client()
-        # response = c.post('/login/', {'username': '', 'password': ''})
-        # url = response.url
-        # self.assertEqual(url, 'https://uni-assignment-calendar.herokuapp.com/login/')
-        c = Client()
-        c.login(user="user", password="")
-        response = self.client.get(reverse('login'))
-        self.assertEqual(response.status_code, 200)
-
     def test_if_invalid_sign_up_form_do_not_go_to_homepage(self):
         """
         Test to see if the sign up form is invalid and if it is do not go to homepage
         """
-        # c = Client()
-        # response = c.post('/signup_page/', {'username': '', 'password': ''})
-        # url = response.url
-        # self.assertIs(url == 'https://uni-assignment-calendar.herokuapp.com/home/', False)
         c = Client()
         c.login(user="", password="")
         response = self.client.get(reverse('login'))
@@ -226,14 +228,92 @@ class LoginLogoutTests(TestCase): # works
         self.assertEqual(response.status_code,200)
 
 
-# class LogoutViewTests(TestCase):
+class LogoutViewTests(TestCase):
+
+    def test_logged_in_logout(self):
+        """
+        if the user is logged in and logout is requested, "Logout successfully"
+        """
+        c = Client()
+        c.logout()
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+
+class ScheduleTests(TestCase):
+
+    def test_no_enrolled_classes(self): # works
+        """
+        if the user is not enrolled in any classes, it will say "~not enrolled"
+        """
+        c = Client()
+        c.login(user="abc", password="123")
+        response = self.client.get(reverse('schedule'))
+        self.assertContains(response, "No enrolled courses")
+
+#     def test_class_info(self):
+#         """
+#         testing to make sure all of the info comes up in the class info page
+#         """
+#         c = Client()
+#         c.login(user = "a",password ="a")
+#         response = self.client.get(reverse('course/15842'))
+#         sself.assertContains(response,"Diana Morris")
+
+#     def test_if_enrolled_class_added(self):
+#     #def test_class_info(self):
+# 	"""
+# 	testing to make sure all of the info comes up in the class info page
+# 	"""
+# 	c = Client()
+# 	c.login(user = "a",password ="a")
+# 	response = self.client.get(reverse('course/15842'))
+# 	self.assertContains(response,"Diana Morris")
 #
-#     # user helper functions to login into page
-#
-#     # def test_logged_in_logout(self):
+# 	"""
+#     #def test_if_enrolled_class_added(self):
+#         """
+#         if the user enrolls in a class, the class is added in their schedule
+#         manually made a specific user a enrolled in this class
+#         """
+#         c = Client()
+#         c.login(user="a", password="a")
+#         response = self.client.get(reverse('schedule'))
+#         self.assertContains(response, "APMA 3140")
+
+
+#     #def test_if_enrolled_assignment_shows(self):
+#         """
+#         an assignment post in that class will be shown in the To Do
+#         manually made a specific user enrolled in this class with this assignment
+#         """
+#         c = Client()
+#         c.login(user="a", password="a")
+#         response = self.client.get(reverse('schedule'))
+#         self.assertContains(response, "Test Assignment")
+# 	"""
+
+    def test_if_enrolled_in_courses(self):
+        c = Client()
+        c.login(user="abc", password="123")
+        response = self.client.get(reverse('schedule'))
+        self.assertContains(response, "No enrolled courses")
+
+
+#    def test_if_class_removed(self):
+        """
+        if a class is removed, the class is removed from their schedule
+        """
+
+#   def test_if_assignment_from_removed_class_is_removed(self):
+        """
+        no assignments from a removed class should be listed in the list
+        """
+
+# class SearchTests(TestCase):
 #     """
-#     if the user is logged in and logout is requested, "Logout successfully"
+#     include search bar tests here!!
 #     """
+
 
 
 #REFERENCES
@@ -242,7 +322,11 @@ class LoginLogoutTests(TestCase): # works
 #Date: 11/12/2018
 #Code Version:
 #Availability: https://stackoverflow.com/questions/14951356/django-testing-if-the-page-has-redirected-to-the-desired-url
-
+#Title: Testing Tools
+#Author:
+#Date: 11/12/2018
+#Code Version:
+#Availability: https://docs.djangoproject.com/en/2.1/topics/testing/tools/
 #Title: Testing Tools
 #Author:
 #Date: 11/12/2018

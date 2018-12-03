@@ -327,7 +327,7 @@ class LoggedOutView(TestCase):
 	tests goals page
 	"""
 	c = Client()
-	c = logout()
+	#c = logout()
 	response = self.client.get(reverse('goals'))
 	self.assertContains(response, "Goals")
 
@@ -336,7 +336,7 @@ class LoggedOutView(TestCase):
 	tests about us page
 	"""
 	c = Client()
-	c = logout()
+	#c = logout()
 	response = self.client.get(reverse("AboutUs")
 	self.assertContains(response,"About Us")
 
@@ -346,7 +346,7 @@ class LoggedOutView(TestCase):
 	tests sign up page
 	"""
 	c = Client()
-	c = logout()
+	#c = logout()
 	response = self.client.get(reverse("signup")
 	self.assertContains(response,"Sign Up")
 

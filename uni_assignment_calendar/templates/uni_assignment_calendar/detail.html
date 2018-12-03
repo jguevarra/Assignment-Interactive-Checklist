@@ -32,12 +32,12 @@
 			<br>
 
 			<div class="row">
-				<div class="col-lg-9">
+				<div class="col-lg-6">
 					<!--just an empty column-->
 				</div>
 				<div class="col-lg-3">
 					<form action="/schedule/">
-						<input type="submit" class="btn btn-primary" value="Back" />
+						<input type="submit" class="btn btn-primary" onclick="goBack()" value="Back" />
 					</form>
 				</div>
 			</div>
@@ -45,5 +45,11 @@
 	</section>
 
 </div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 {% endblock %}

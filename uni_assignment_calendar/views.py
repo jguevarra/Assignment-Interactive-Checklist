@@ -117,6 +117,13 @@ def schedule(request):
     
     return render(request,'uni_assignment_calendar/schedule.html',context)
 
+#handle ajax request to hide deleted assignments for active users
+def hideAssgn(request):
+    if request.is_ajax():
+        message = 'is ajax'
+    else:
+        message = 'not ajax'
+    return HttpResponse(message)
 
 # Form for creating an assignment
 def create_assignment(request):

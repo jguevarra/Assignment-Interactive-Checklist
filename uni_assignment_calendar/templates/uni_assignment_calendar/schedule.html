@@ -82,6 +82,25 @@ for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
+<<<<<<< Updated upstream
+=======
+	var exclude = div.firstChild.href
+	console.log(div.firstChild.href)
+	console.log(div.firstChild.text)
+	
+	$.ajax({
+		type: 'POST',
+		url: '/hideAssgn/',
+		data: { exclude },
+		dataType:"json",
+		success: function(data) {
+        	alert(data);
+    	},
+    	failure: function(data) { 
+        	alert('Got an error dude');
+    }
+	})
+>>>>>>> Stashed changes
   }
 }
 

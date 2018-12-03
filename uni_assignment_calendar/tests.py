@@ -245,10 +245,10 @@ class ScheduleTests(TestCase):
         """
         if the user is not enrolled in any classes, it will say "~not enrolled"
         """
-	c = Client()
-	c.login(user="abc", password="123")
-	response = self.client.get(reverse('schedule'))
-	self.assertContains(response, "No enrolled courses")
+        c = Client()
+        c.login(user="abc", password="123")
+        response = self.client.get(reverse('schedule'))
+        self.assertContains(response, "No enrolled courses")
 	
 
       def test_if_enrolled_in_courses(self)

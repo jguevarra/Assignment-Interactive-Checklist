@@ -57,7 +57,6 @@ class AssignmentnModelTests(TestCase):
         self.assertIs(recent_question.was_published_recently(), True)
 
 # ------------------------------------------------------------------------------------------
-
 # Testing Index View
 class AssignmentIndexViewTests(TestCase):
     def test_no_assignments(self): # works
@@ -96,25 +95,22 @@ class AssignmentIndexViewTests(TestCase):
         """
         tests if the "Post an Assignment" button redirects to the create page
         """
-	c = Client()
-	c.login(user="a",password="a")
-	response = self.client.get(reverse('create'))
+        c = Client()
+        c.login(user="a",password="a")
+        response = self.client.get(reverse('create'))
         self.assertEqual(response.status_code, 200)
 
     def test_does_not_redirect_to_create_page_if_not_logged_in(self):
         """
         tests if the "Post an Assignment" button redirects to the create page
         """
-	c = Client()
-	c.login(user="a",password="a")
-	c.logout()
-	response = self.client.get(reverse('create'))
-        self.assertEqual(response.status_code="200", False)
-	
-	
+        c = Client()
+        c.login(user="a",password="a")
+        c.logout()
+        response = self.client.get(reverse('create'))
+        self.assertEqual(response.status_code == "200", False)
 
 # ------------------------------------------------------------------------------------------
-
 # Testing detail view
 class AssignmentDetailViewTests(TestCase):
     # def test_future_events(self):
@@ -149,15 +145,6 @@ class AssignmentDetailViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
 # ------------------------------------------------------------------------------------------
-
-# testing database
-class DatabaseTests(TestCase):
-    """
-    database testing here
-    """
-
-
-
 # login/signup/logout helper functions
 class LoginLogoutTests(TestCase): # works
 

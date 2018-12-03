@@ -128,7 +128,13 @@ def schedule(request):
 def hideAssgn(request):
     if request.is_ajax():
         url = request.GET.get('data')
-        message = str(url)
+        mystring = str(url)
+        temp = ''
+        i = -2
+        while != '/':
+            temp[-1]=mystring[i]
+            i -= 1       
+        message = mystring
     else:
         message = 'not ajax'
     return HttpResponse(message)

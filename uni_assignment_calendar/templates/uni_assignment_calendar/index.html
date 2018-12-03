@@ -38,13 +38,13 @@
 			<div class="col-lg-5">
 				<h3>Recent Postings</h3>
 
-				<div class="scroll_panel">
-
 					{% if latest_events_list %}
-						{% for course in courses %}
-							<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} --
-								{{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name
-								}}</a></li>
+						{% for events in latest_events_list %}
+							{% for course in courses %}
+								<li><a href="{% url 'detail' events.id %}">{{ events.due_date }} {{ events.due_time }} --
+									{{ events.course.class_abbrev }} {{ events.course.class_num }} : {{ events.events_name
+									}}</a></li>
+							{% endfor %}
 						{% endfor %}
 					{% else %}
 						<p>No events have been posted.</p>
@@ -63,7 +63,6 @@
 						<!--<p>No events have been posted.</p>-->
 					<!--{% endif %}-->
 					<!--<li>A test post for now</li>-->
-				</div>
 
 			</div><br>
 

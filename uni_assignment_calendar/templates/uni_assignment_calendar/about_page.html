@@ -2,6 +2,26 @@
 
 {% block content %}
 
+<!--&lt;!&ndash; Modal Section &ndash;&gt;-->
+
+<!--<button class="trigger" id="button">Click here to trigger the modal!</button>-->
+<!--<div class="modal">-->
+    <!--<div class="modal-content">-->
+        <!--<span class="close-button">×</span>-->
+        <!--<h1>Hello, I am a modal!</h1>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="bg-modal">-->
+	<!--<div class="modal-contents">-->
+
+		<!--<div class="close">+</div>-->
+        <!--<p>testing</p>-->
+
+	<!--</div>-->
+<!--</div>-->
+
 <section>
     <div class="container">
         <div class="col-lg-45">
@@ -97,5 +117,15 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.getElementById('button').addEventListener("click", function() {
+	document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+	document.querySelector('.bg-modal').style.display = "none";
+});
+</script>
 
 {% endblock %}

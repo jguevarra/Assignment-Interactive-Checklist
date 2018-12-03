@@ -51,7 +51,7 @@
 			</ul>
 			{% else %}
 			<p>No enrolled courses.</p>
-			{% endif %}
+			{% endif %} 
 		</div>
 
 		<br>
@@ -67,7 +67,7 @@
 				{% for events in events_list %}
 					<li class = assignment><a href="{% url 'detail' events.id %}">{{ events.due_date }}
 						{{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} :
-						<!--{{ events.events_name }}</a><div class="myDIV">Verified</div><i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>-->
+						{{ events.events_name }}</a>
 					</li>
 				{% endfor %}
 			</ul>
@@ -77,7 +77,7 @@
 		</div>
 	</div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 /*
 function myFunction(x) {
@@ -89,7 +89,6 @@ function myFunction(x) {
 		x.style.display = "none"
 }
 */
-
 	// Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByClassName("assignment");
 var i;
@@ -107,7 +106,18 @@ var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
+	var data = this
     div.style.display = "none";
+	console.log(div.firstChild.href)
+	/*
+	$.ajax({
+		type: 'POST',
+		url: '/hideAssgn/',
+		data: {
+			div.
+		}
+		dataType:"json",
+	})*/
   }
 }
 
@@ -115,7 +125,6 @@ for (i = 0; i < close.length; i++) {
 var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
-		console.log("Click Detected, should check")
 		if (ev.target.tagName === 'LI') {
 			ev.target.classList.toggle('checked');
   }
@@ -166,6 +175,14 @@ function newElement() {
     }
   }
   document.getElementsByName("search_abb")[0].addEventListener("keypress", forceKeyPressUppercase, false);
+
+
+
+
+
+
+
+
 
 /*
 //https://www.tutorialspoint.com/ajax/ajax_database.htm

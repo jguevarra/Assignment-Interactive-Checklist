@@ -9,7 +9,7 @@ from django.utils.timezone import now
 from django.test import Client
 
 
-# helper functions -- needa edit
+# helper functions -- need to edit
 def create_event_pub_date(events_name, pub_date):
     """
     Creates a post with a custom published/posted date using pub_date
@@ -24,6 +24,7 @@ def create_event_due_date(events_name, due_date):
     new_due_date = now() + timedelta(days=due_date)
     return Events.objects.create(events_name=events_name, due_date=new_due_date)
 
+# ------------------------------------------------------------------------------------------
 
 # Testing Model View -- these tests are okay!
 class AssignmentnModelTests(TestCase):
@@ -55,6 +56,7 @@ class AssignmentnModelTests(TestCase):
         recent_question = Events(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
 
+# ------------------------------------------------------------------------------------------
 
 # Testing Index View
 class AssignmentIndexViewTests(TestCase):
@@ -66,23 +68,6 @@ class AssignmentIndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No events have been posted.")
         self.assertQuerysetEqual(response.context['latest_events_list'], [])
-
-    # def test_not_recently_posted_events(self):
-        """
-        the posts outside of the "Recently Posted" list should disappear
-        """
-
-    # def test_future_pub_date_events(self):
-        """
-        post with a pub_date in the future aren't displayed on
-        the index page.
-        ERROR: object is not being deleted
-        """
-    #     create_events(events_name="Future Event.", pub_date=30)
-    #     response = self.client.get(reverse('calendar:index'))
-    #     # self.assertContains(response, "No events are available.")
-    #     # self.assertQuerysetEqual(response.context['latest_events_list'], ['<Events: Future Event.>'])
-    #     self.assertQuerysetEqual(response.context['latest_events_list'], [])
 
     def test_past_pub_date_events(self): # works
         """
@@ -96,14 +81,6 @@ class AssignmentIndexViewTests(TestCase):
             ['<Events: Past Event.>']
         )
 
-    #def test_past_due_date_events(self):
-        """
-        post with a due_date in the past are not displayed on the
-        index page.
-        Similar to test_future_assignments(self) test
-        ERROR: object is not being deleted
-        """
-
     def test_future_due_date_events(self): # works
         """
         post with a valid due date includes due date when posted on the index page
@@ -115,9 +92,15 @@ class AssignmentIndexViewTests(TestCase):
             ['<Events: Future Due Date Event.>']
         )
 
+    # def test_button_redirects_to_create_page(self):
+        """
+        tests if the "Post an Assignment" button redirects to the create page
+        """
 
-# # testing detail view
-class EventsDetailViewTests(TestCase):
+# ------------------------------------------------------------------------------------------
+
+# Testing detail view
+class AssignmentDetailViewTests(TestCase):
     # def test_future_events(self):
     #     """
     #     The detail view of an event with a pub_date in the future
@@ -260,7 +243,6 @@ class ScheduleTests(TestCase):
 #         sself.assertContains(response,"Diana Morris")
 
 #     def test_if_enrolled_class_added(self):
-# =======
 #     #def test_class_info(self):
 # 	"""
 # 	testing to make sure all of the info comes up in the class info page
@@ -272,7 +254,6 @@ class ScheduleTests(TestCase):
 #
 # 	"""
 #     #def test_if_enrolled_class_added(self):
-# >>>>>>> ed6cf6eb2fa8a283e3b2d913724bd528165f11a2
 #         """
 #         if the user enrolls in a class, the class is added in their schedule
 #         manually made a specific user a enrolled in this class
@@ -281,28 +262,18 @@ class ScheduleTests(TestCase):
 #         c.login(user="a", password="a")
 #         response = self.client.get(reverse('schedule'))
 #         self.assertContains(response, "APMA 3140")
-#
-# <<<<<<< HEAD
-#     def test_if_enrolled_assignment_shows(self):
-# =======
+
+
 #     #def test_if_enrolled_assignment_shows(self):
-# >>>>>>> ed6cf6eb2fa8a283e3b2d913724bd528165f11a2
 #         """
 #         an assignment post in that class will be shown in the To Do
 #         manually made a specific user enrolled in this class with this assignment
 #         """
-# <<<<<<< HEAD
 #         c = Client()
 #         c.login(user="a", password="a")
 #         response = self.client.get(reverse('schedule'))
 #         self.assertContains(response, "Test Assignment")
-# =======
-# 	c = Client()
-# 	c.login(user="a", password="a")
-# 	response = self.client.get(reverse('schedule'))
-# 	self.assertContains(response, "Test Assignment")
 # 	"""
-# >>>>>>> ed6cf6eb2fa8a283e3b2d913724bd528165f11a2
 
     def test_if_enrolled_in_courses(self):
         c = Client()
@@ -316,7 +287,7 @@ class ScheduleTests(TestCase):
         if a class is removed, the class is removed from their schedule
         """
 
- #   def test_if_assignment_from_removed_class_is_removed(self):
+#   def test_if_assignment_from_removed_class_is_removed(self):
         """
         no assignments from a removed class should be listed in the list
         """
@@ -334,7 +305,11 @@ class ScheduleTests(TestCase):
 #Date: 11/12/2018
 #Code Version:
 #Availability: https://stackoverflow.com/questions/14951356/django-testing-if-the-page-has-redirected-to-the-desired-url
-
+#Title: Testing Tools
+#Author:
+#Date: 11/12/2018
+#Code Version:
+#Availability: https://docs.djangoproject.com/en/2.1/topics/testing/tools/
 #Title: Testing Tools
 #Author:
 #Date: 11/12/2018

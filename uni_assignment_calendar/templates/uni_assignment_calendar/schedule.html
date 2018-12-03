@@ -67,7 +67,7 @@
 				{% for events in events_list %}
 					<li class = assignment><a href="{% url 'detail' events.id %}">{{ events.due_date }}
 						{{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} :
-						<!--{{ events.events_name }}</a><div id="myDIV">Verified</div><i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>-->
+						{{ events.events_name }}</a>
 					</li>
 				{% endfor %}
 			</ul>
@@ -81,14 +81,12 @@
 <script>
 /*
 function myFunction(x) {
-    var x = document.getElementById("myDIV");
-    if (x.innerHTML == "Verified") {
-        x.innerHTML = "Unverified";
-        x.classList.toggle("fa-thumbs-down");
-    } else {
-        x.innerHTML = "Verified";
-        x.classList.toggle("fa fa-thumbs-up")
-    }
+	x.classList.toggle("fa-thumbs-down");
+	var x = document.getElementById("myDIV");
+	if (x.style.display === "none"){
+		x.style.display = block
+	}else{
+		x.style.display = "none"
 }
 */
 	// Create a "close" button and append it to each list item

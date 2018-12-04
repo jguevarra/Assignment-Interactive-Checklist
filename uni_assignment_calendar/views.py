@@ -135,7 +135,7 @@ def hideAssgn(request):
             temp += mystring[i]
             i -= 1     
         hide = temp[::-1]
-        enroll = Enrollment.filter(username=request.user.username)
+        enroll = Enrollment.get(username=request.user.username)
         message = enroll
         #message = 'Assignment deleted'
     else:

@@ -135,9 +135,9 @@ def hideAssgn(request):
             temp += mystring[i]
             i -= 1     
         hide = temp[::-1]
-        enroll = Enrollment.get(username=request.user.username)
-        message = enroll
-        #message = 'Assignment deleted'
+        new_listing = Blacklist(username=request.user.username,block=hide)
+        new_listing.save()
+        message = 'Assignment deleted'
     else:
         message = 'Something went wrong!'
     return HttpResponse(message)

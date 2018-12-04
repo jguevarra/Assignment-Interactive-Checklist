@@ -46,6 +46,11 @@ class Events(models.Model):
 class Enrollment(models.Model):
     username = models.CharField(max_length=200)
     class_id = models.IntegerField(max_length=10)
-    exclude = models.IntegerField(max_length=10,default=-1)
     def __str__(self):
         return self.username + " enrolled in " + str(self.class_id)
+
+class Blacklist(models.Model):
+    username = models.CharField(max_length=200)
+    blacklist = models.IntegerField(max_length=10)
+    def __str__(self):
+        return self.blacklist

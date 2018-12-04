@@ -1,4 +1,4 @@
-from .models import Events, Courses, Enrollment
+from .models import Events, Courses, Enrollment,Blacklist
 from django.shortcuts import render, get_object_or_404
 from .forms import IndexForm, UserForm
 from django.views import generic

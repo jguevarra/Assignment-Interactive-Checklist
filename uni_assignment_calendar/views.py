@@ -136,7 +136,7 @@ def hideAssgn(request):
             i -= 1     
         hide = temp[::-1]
         enroll = Enrollment.objects.filter(username=request.user.username)
-        message = str(enroll.exclude)
+        enroll.objects.add(exclude=hide)
         #message = 'Assignment deleted'
     else:
         message = 'Something went wrong!'

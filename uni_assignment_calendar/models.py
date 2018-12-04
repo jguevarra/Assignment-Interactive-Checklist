@@ -51,6 +51,6 @@ class Enrollment(models.Model):
 
 class Blacklist(models.Model):
     username = models.CharField(max_length=200)
-    blacklist = models.IntegerField(max_length=10)
+    block = models.IntegerField(max_length=10)
     def __str__(self):
-        return self.blacklist
+        return self.block

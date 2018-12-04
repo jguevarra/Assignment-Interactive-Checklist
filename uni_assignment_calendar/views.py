@@ -134,10 +134,12 @@ def hideAssgn(request):
         while mystring[i] != '/':
             temp += mystring[i]
             i -= 1     
-          
-        message = temp[::-1]
+        hide = temp[::-1]
+        enroll = Enrollment.objects.get(username=request.user.username)
+        enroll.exclude.add(int(hide))
+        message = 'Assignment deleted'
     else:
-        message = 'not ajax'
+        message = 'Something went wrong!'
     return HttpResponse(message)
 
 # Form for creating an assignment

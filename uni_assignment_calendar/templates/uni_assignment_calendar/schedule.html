@@ -55,17 +55,22 @@
 		</div>
 
 		<br>
+		
+		<div>
+
+			<form method="get" action="/create">
+				<input type="submit" class="btn btn-primary" value="Post an Assignment">
+			</form>
+
+		</div>
+
+		<br>
 
 		<div>
 			<h2><center>To-Do List</center></h2>
 			<p><center>To see assignment <b>details</b>, click on the assignment link.</center></p>
 			<p><center>To <b>check off</b> an assignment, click on the box area of the assignment.</center></p>
 			<p><center>To <b>delete</b> an assignment, click on the 'x'.</center></p>
-
-			<form method="get" action="/create">
-				<input type="submit" class="btn btn-primary" value="Post an Assignment">
-			</form>
-			
 
 			{% if events_list %}
 			<ul>

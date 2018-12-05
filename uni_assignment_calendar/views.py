@@ -123,6 +123,7 @@ def ScheduleResults(request):
 def schedule(request):
     events_list = []
     course_list = []
+    events = []
     enrollments = Enrollment.objects.filter(username=request.user.username)
 
     for c in enrollments:

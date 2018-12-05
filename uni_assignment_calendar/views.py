@@ -143,7 +143,7 @@ def hideAssgn(request):
             temp += mystring[i]
             i -= 1     
         hide = temp[::-1]
-        assgn = events.objects.get(id = hide)
+        assgn = Events.objects.get(id = hide)
         assgn.objects.filter(users__contains=[request.user.username]).update(users=ArrayRemove('users',request.user.username))
         message = 'Assignment deleted'
     else:

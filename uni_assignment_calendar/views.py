@@ -179,11 +179,17 @@ def create_assignment(request):
             obj.due_date = form.cleaned_data['due_date']
             obj.due_time = form.cleaned_data['due_time']
             obj.description = form.cleaned_data['description']
+            obj.users = []
+            students = Enrollment.objects.filter(class_id = obj.course.class_id)
+            for i in students:
+                obj.users.append(i.username)
             obj.save()
 
             return HttpResponseRedirect("/home")
         else:
             return HttpResponseRedirect("/create")
+
+    #add assignment to everyones schedules
 
     return render(request, 'uni_assignment_calendar/create.html', {'form':form,'courses':courses})
 

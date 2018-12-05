@@ -73,6 +73,7 @@ def course_detail(request, class_id):
                         event.save()
                     else:
                         event.users = [username]
+                        event.save()
                 status = "Course Successfully Added!"        
             if request.POST.get('cancel') != None:   
                 status = "You haven't Enrolled, why click remove?"

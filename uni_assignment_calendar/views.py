@@ -68,7 +68,7 @@ def course_detail(request, class_id):
                 course = Courses.objects.get(class_id=class_id)
                 events_list = Events.objects.filter(course=course) 
                 for event in events_list:
-                    if event.users != None:
+                    if event.users != None and username not in event.users:
                         event.users = event.users.append(username)
                         event.save()
                     else:

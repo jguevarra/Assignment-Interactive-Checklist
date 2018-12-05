@@ -8,12 +8,14 @@ from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields import ArrayField 
 
 class Courses(models.Model):
+    
     class_id = models.IntegerField(primary_key=True, null=False, default=0)
     class_abbrev = models.CharField(max_length=4)
     class_num = models.TextField(max_length=4, blank=True, null=True, default='')
     class_title = models.TextField(max_length=50)
     instructor = models.CharField(max_length=200)
     description = models.TextField(max_length=500)
+    
     class Meta:
         ordering = ["class_title"]
     def __str__(self):

@@ -27,8 +27,8 @@ class Events(models.Model):
     due_time = models.TimeField((u"Due Time"), blank=True, default="11:59")
     pub_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)
-    users = ArrayField(models.CharField(max_length=50))
-    checked_users = ArrayField(models.CharField(max_length=50))
+    users = ArrayField(models.CharField(max_length=50),null=True)
+    checked_users = ArrayField(models.CharField(max_length=50),null=True)
     def __str__(self):
         return self.events_name
 
@@ -48,7 +48,7 @@ class Events(models.Model):
 
 class Enrollment(models.Model):
     username = models.CharField(max_length=200)
-    class_id = models.IntegerField(max_length=10)
+    class_id = models.IntegerField()
     def __str__(self):
         return self.username + " enrolled in " + str(self.class_id)
 '''

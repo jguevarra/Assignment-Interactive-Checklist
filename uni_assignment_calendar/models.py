@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from django.contrib.postgres.fields import ArrayField 
 
 class Courses(models.Model):
     class_id = models.IntegerField(primary_key=True, null=False, default=0)
@@ -26,6 +27,8 @@ class Events(models.Model):
     due_time = models.TimeField((u"Due Time"), blank=True, default="11:59")
     pub_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)
+    users = ArrayField(models.CharField(max_length=50))
+    checked_users = ArrayField(models.CharField(max_length=50))
     def __str__(self):
         return self.events_name
 
@@ -48,9 +51,10 @@ class Enrollment(models.Model):
     class_id = models.IntegerField(max_length=10)
     def __str__(self):
         return self.username + " enrolled in " + str(self.class_id)
-
+'''
 class Blacklist(models.Model):
     username = models.CharField(max_length=200)
     block = models.IntegerField(max_length=10)
     def __str__(self):
         return self.block
+'''

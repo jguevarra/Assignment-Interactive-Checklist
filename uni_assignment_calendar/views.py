@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django_postgres_extensions.models.functions import ArrayRemove
 
 
 def AboutView(request):
@@ -54,15 +55,21 @@ def course_detail(request, class_id):
     if request.method == "POST":
         if enrolled.count() != 0:
             if request.POST.get('add') != None:
-                status = "You have enrolled in this class"
+                status = "You have already enrolled in this class"
             if request.POST.get('cancel') != None:
                 enrolled.delete()
+                #course = get_object_or_404(Courses,class_id=c.class_id)
                 status = "Course Successfully Deleted from Your Schedule!"
 
         else:
             if request.POST.get('add') != None:
                 new_enroll = Enrollment(username=username,class_id=class_id)
                 new_enroll.save()
+                course = Courses.objects.get(class_id=enrolled.class_id)
+                events_list = Events.objects.filter(course=course) 
+                for event in events_list:
+                    event.users.append(username)
+                    event.save()
                 status = "Course Successfully Added!"        
             if request.POST.get('cancel') != None:   
                 status = "You haven't Enrolled, why click remove?"
@@ -113,12 +120,13 @@ def schedule(request):
     events_list = []
     course_list = []
     enrollments = Enrollment.objects.filter(username=request.user.username)
-    
+
     for c in enrollments:
         #course = get_object_or_404(Courses,class_id=c.class_id)
         course = Courses.objects.get(class_id=c.class_id)
         events_list += Events.objects.filter(course=course).order_by('due_date','due_time')
         course_list.append(course)
+
     context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
 
     
@@ -135,8 +143,8 @@ def hideAssgn(request):
             temp += mystring[i]
             i -= 1     
         hide = temp[::-1]
-        new_listing = Blacklist(username=request.user.username,block=hide)
-        new_listing.save()
+        assgn = events.objects.get(id = hide)
+        assgn.objects.filter(users__contains=[request.user.username]).update(users=ArrayRemove('users',request.user.username))
         message = 'Assignment deleted'
     else:
         message = 'Something went wrong!'

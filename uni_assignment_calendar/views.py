@@ -150,11 +150,10 @@ def hideAssgn(request):
         #try:
         assgn = Events.objects.get(id = hide)
         message = assgn.users
-        '''
+        
         assgn.users.remove(request.user.username)
         assgn.save()
-        message = 'Assignment deleted
-        '''
+        message = 'Assignment deleted'
         #except:
         #  message = 'Something went wrong!'
     return HttpResponse(message)

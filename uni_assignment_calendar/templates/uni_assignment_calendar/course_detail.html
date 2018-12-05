@@ -41,8 +41,9 @@
 							{% csrf_token %}
 
 							<!-- Trigger the modal with a button -->
-                            <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" name="cancel">Remove Course</button></center>
-                            <!-- Modal -->
+							<!--<center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" name="cancel">Remove Course</button></center>-->
+							<center><input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Remove Course" name="cancel"></center>
+							<!-- Modal -->
                             <div class="modal fade" id="myModal" role="dialog">
                                 <div class="modal-dialog">
                                     <!-- Modal content-->
@@ -71,7 +72,8 @@
 						<form method="POST">
 							{% csrf_token %}
 							<!-- Trigger the modal with a button -->
-                            <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" name="add">Add Course</button></center>
+                            <!--<center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" name="add">Add Course</button></center>-->
+							<center><input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Add Course" name="add"></center>
                             <!-- Modal -->
                             <div class="modal fade" id="myModal2" role="dialog">
                                 <div class="modal-dialog">
@@ -82,8 +84,8 @@
                                             <h4 class="modal-title">Confirmation</h4>
                                         </div>
                                         <div class="modal-body">
-											<p><b><i>You are <b>enrolling</b> from {{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}.
-											Do you wish to continue?</i></b></p>
+											<p><i>You are <b>enrolling</b> from {{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}.
+											Do you wish to continue?</i></p>
                                         </div>
                                         <div class="modal-footer">
                                             <!--<button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>-->

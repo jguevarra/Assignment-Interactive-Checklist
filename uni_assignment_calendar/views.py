@@ -128,7 +128,9 @@ def schedule(request):
     for c in enrollments:
         #course = get_object_or_404(Courses,class_id=c.class_id)
         course = Courses.objects.get(class_id=c.class_id)
-        events_list += Events.objects.filter(course=course).order_by('due_date','due_time')
+        for i in Events.objects.filter(course=course).order_by('due_date','due_time'):
+            if request.user.username in i.users:
+            events_list += i
         course_list.append(course)
 
     context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
@@ -149,8 +151,7 @@ def hideAssgn(request):
         hide = temp[::-1]
         #try:
         assgn = Events.objects.get(id = hide)
-        message = assgn.users
-        
+        message = assgn.users   
         assgn.users.remove(request.user.username)
         assgn.save()
         message = 'Assignment deleted'

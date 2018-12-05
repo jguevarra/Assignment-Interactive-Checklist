@@ -37,8 +37,24 @@
                         </div>
                     </form>
                 </div>
-                <p class="text-center small">Don't have an account? <a href="/signup/">Sign up here!</a></p>
-            </div>
+
+                <p class="text-center small"><font size="+0.5">Don't have an account? <a href="/signup/">Sign up here!</a></font></p>
+
+                <!--{% if messages %}-->
+                    <!--<ul class="messages">-->
+                        <!--{% for message in messages %}-->
+                            <!--<p><font color="red">{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</font></p>-->
+                        <!--{% endfor %}-->
+                    <!--</ul>-->
+                <!--{% endif %}<br>-->
+            <!--</div>-->
+
+                <!--<p><center>{{ login_status }}</center></p>-->
+
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+                </div>
         </div>
     </div>
 </section>

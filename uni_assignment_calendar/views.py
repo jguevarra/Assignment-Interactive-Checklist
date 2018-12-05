@@ -8,44 +8,64 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-
 def AboutView(request):
+    """
+    View for the about_page.html
+
+    :param request:
+    :return renders the request parameter, html template, and the context list:
+    """
     context = {}
     template = 'uni_assignment_calendar/about_page.html'
     return render(request, template, context)
 
 def GoalsView(request):
+    """
+    View for the goal_page.html
+
+    :param request:
+    :return renders the request parameter, html template, and the context list:
+    """
     context = {}
     template = 'uni_assignment_calendar/goals_page.html'
     return render(request, template, context)
 
-# Index (generic views) -- home page
 class IndexView(generic.ListView):
+    """
+    Generic view for index.html
+    """
     template_name = 'uni_assignment_calendar/index.html'
     context_object_name = "latest_events_list"
 
     def get_queryset(self):
-        """Return the last five published assignments
-        (not including those set to be published in the future)"""
+        """
+        Sorts the query into the top 10 most recent postings
+
+        :return max of 10 recent postings:
+        """
         return Events.objects.filter(
             pub_date__lte=timezone.now()
         ).order_by('-pub_date')[:10]
 
-
-# Detail (generic view)
 class DetailView(generic.DetailView):
+    """
+    Generic view of detail.html
+    """
     model = Events
     template_name = 'uni_assignment_calendar/detail.html'
-# def events_detail(request, pk):
-#     events = get_object_or_404(Events, pk=pk)
-#     courses = events.course
-#     return render(request, 'uni_assignment_calendar/detail.html', {'events':events, 'courses':courses})
 
-
-
-# If GET request, displays the course detail
-# If POST request, enroll user in this class  
 def course_detail(request, class_id):
+    """
+    View for the course_detail.html
+
+    if GET request, displays the course detail
+    if POST request, enroll user in this class
+
+    :param request:
+    :param class_id:
+    :return render of the request parammeter, the template url path, and a list of what will be used in
+    the page content:
+    """
     courses = get_object_or_404(Courses, class_id=class_id)
     status = ""
     username = request.user.username
@@ -73,6 +93,12 @@ def course_detail(request, class_id):
 
 
 def ScheduleResults(request):
+    """
+    View for schedule.html -- For the course results after searching for a course using the search bar
+
+    :param request:
+    :return renders the request parameter, html url path, and the context list:
+    """
     message = ""
     result = []
 
@@ -110,6 +136,12 @@ def ScheduleResults(request):
 
 
 def schedule(request):
+    """
+    View for schedule.html to view the user's schedule of enrolled classes
+
+    :param request:
+    :return renders the request parameter, html url path, and the context list:
+    """
     events_list = []
     course_list = []
     enrollments = Enrollment.objects.filter(username=request.user.username)
@@ -127,6 +159,13 @@ def schedule(request):
 
 # Form for creating an assignment
 def create_assignment(request):
+    """
+    View for create.html
+    Containe the form for creating a new assignment
+
+    :param request:
+    :return renders the request parameter, html url path, and the context list:
+    """
     form = IndexForm()
     courses = set()
     enrollments = Enrollment.objects.filter(username=request.user.username)
@@ -155,6 +194,12 @@ def create_assignment(request):
 
 # Signup
 def signup(request):
+    """
+    View for signup_page.html
+
+    :param request:
+    :return renders the request parameter, html url path, and the context list:
+    """
     registered = False
 
     if request.method == "POST":
@@ -178,6 +223,13 @@ def signup(request):
 
 # Login
 def user_login(request):
+    """
+    View for login_page.html
+
+    :param request:
+    :return renders the request parameter, html url path, and the context list:
+    """
+    login_status = ""
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -188,16 +240,25 @@ def user_login(request):
                 login(request,user)
                 return HttpResponseRedirect("/home")
             else:
-                messages.warning(request, "Warning: Account Not Active")
+                # messages.warning(request, "Warning: Account Not Active")
+                login_status = "Warning: Account not active"
         else:
             return render(request,'uni_assignment_calendar/login_page.html',{})
     
     else:
-        return render(request,'uni_assignment_calendar/login_page.html',{})
+        # messages.warning(request, "Login invalid, Try again!")
+        login_status = "Login invalid. Try Again!"
+        return render(request,'uni_assignment_calendar/login_page.html', {"login_status": login_status})
 
 # Logout
 @login_required
 def user_logout(request):
+    """
+    View for logout.html
+
+    :param request:
+    :return renders the request parameter, html url path, and the context list:
+    """
     logout(request)
     return HttpResponseRedirect("/")
 

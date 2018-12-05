@@ -128,7 +128,8 @@ def schedule(request):
     for c in enrollments:
         #course = get_object_or_404(Courses,class_id=c.class_id)
         course = Courses.objects.get(class_id=c.class_id)
-        for i in Events.objects.filter(course=course).order_by('due_date','due_time'):
+        events = Events.objects.filter(course=course).order_by('due_date','due_time')
+        for i in events:
             if request.user.username in i.users:
                 events_list += i
         course_list.append(course)

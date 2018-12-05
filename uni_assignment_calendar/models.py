@@ -27,8 +27,8 @@ class Events(models.Model):
     due_time = models.TimeField((u"Due Time"), blank=True, default="11:59")
     pub_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)
-    users = ArrayField(models.CharField(max_length=50),null=True)
-    checked_users = ArrayField(models.CharField(max_length=50),null=True)
+    users = ArrayField(models.CharField(max_length=50),default=list)
+    checked_users = ArrayField(models.CharField(max_length=50),default=list)
     def __str__(self):
         return self.events_name
 

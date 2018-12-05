@@ -65,7 +65,7 @@ def course_detail(request, class_id):
             if request.POST.get('add') != None:
                 new_enroll = Enrollment(username=username,class_id=class_id)
                 new_enroll.save()
-                course = Courses.objects.get(class_id=enrolled.class_id)
+                course = Courses.objects.get(class_id=class_id)
                 events_list = Events.objects.filter(course=course) 
                 for event in events_list:
                     event.users.append(username)

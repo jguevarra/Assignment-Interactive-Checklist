@@ -129,8 +129,11 @@ def schedule(request):
         #course = get_object_or_404(Courses,class_id=c.class_id)
         course = Courses.objects.get(class_id=c.class_id)
         for i in Events.objects.filter(course=course).order_by('due_date','due_time'):
-            if request.user.username in i.users:
-                events_list += i
+            try:
+                if request.user.username in i.users:
+                    events_list += i
+            except:
+                pass
         course_list.append(course)
 
     context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}

@@ -2,6 +2,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="main">
 
@@ -54,13 +56,13 @@
     						<input type="submit" class="btn btn-primary" value="View my Schedule" />
 						</form>
 				</div>
-				<div class="col-lg-5">
-					<p><center>{{ status }}</center></p>
+				<div class="col-lg-4">
+					<!--<p><center>{{ status }}</center></p>-->
 					<div class="container">
-  						<div class="alert alert-success alert-dismissible fade in">
-    						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    						<strong>Success!</strong> This alert box could indicate a successful or positive action.
-  						</div>
+    					<div class="alert alert-info alert-dismissible fade in">
+    					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    					{{ status }}
+  					</div>
 					</div>
 				</div>
 			</div>

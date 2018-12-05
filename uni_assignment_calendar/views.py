@@ -143,12 +143,12 @@ def hideAssgn(request):
             temp += mystring[i]
             i -= 1     
         hide = temp[::-1]
-        try:
+        #try:
             assgn = Events.objects.get(id = hide)
             assgn.users.remove(request.user.username)
             message = 'Assignment deleted'
-        except:
-            message = 'Something went wrong!'
+        #except:
+          #  message = 'Something went wrong!'
     return HttpResponse(message)
 
 # Form for creating an assignment

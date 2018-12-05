@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="main">
 	
-	<h1><center>Universal Assignment Scheduler</center></h1>
+	<a href="/home"><h1><center>Universal Assignment Scheduler</center></h1></a>
 
 	<div class="container">
 		<h2><center>Enroll in Courses</center></h2>
@@ -55,6 +55,16 @@
 		</div>
 
 		<br>
+		
+		<div>
+
+			<form method="get" action="/create">
+				<input style="width:145px" type="submit" class="btn btn-primary" value="Post an Assignment">
+			</form>
+
+		</div>
+
+		<br>
 
 		<div>
 			<h2><center>To-Do List</center></h2>
@@ -79,16 +89,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
-/*
-function myFunction(x) {
-	x.classList.toggle("fa-thumbs-down");
-	var x = document.getElementById("myDIV");
-	if (x.style.display === "none"){
-		x.style.display = block
-	}else{
-		x.style.display = "none"
-}
-*/
+
 	// Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByClassName("assignment");
 var i;
@@ -182,101 +183,6 @@ function newElement() {
   }
   document.getElementsByName("search_abb")[0].addEventListener("keypress", forceKeyPressUppercase, false);
 
-
-
-
-
-
-
-/*
-//https://www.tutorialspoint.com/ajax/ajax_database.htm
-function ajaxFunction() {
-	var ajaxFunction();
-	//this variable needs to be here for AJAX to work
-
-	try {
-	ajaxRequest = new XMLHttpRequest();
-	} catch (e) {
-
-	try {
-		ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch (e) {
-		try {
-			ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (e) {
-		alert("Your browser broke!");
-		return false;
-		}
-	}
-}
-
-ajaxRequest.onreadystatechange = function() {
-	if(ajaxRequest.readtState == 4) {
-		var ajaxDisplay = document.getElementById('ajaxDiv');
-		ajaxDisplay.innerHTML = ajaxRequest.responseText;
-	}
-}
-*/
-
-/*
-//https://www.tutorialspoint.com/ajax/ajax_database.htm
-function ajaxFunction() {
-	var ajaxFunction();
-	//this variable needs to be here for AJAX to work
-
-	try {
-	ajaxRequest = new XMLHttpRequest();
-	} catch (e) {
-
-	try {
-		ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch (e) {
-		try {
-			ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (e) {
-		alert("Your browser broke!");
-		return false;
-		}
-	}
-}
-
-ajaxRequest.onreadystatechange = function() {
-	if(ajaxRequest.readtState == 4) {
-		var ajaxDisplay = document.getElementById('ajaxDiv');
-		ajaxDisplay.innerHTML = ajaxRequest.responseText;
-	}
-}
-*/
-
-/*
-//https://www.tutorialspoint.com/ajax/ajax_database.htm
-function ajaxFunction() {
-	var ajaxFunction();
-	//this variable needs to be here for AJAX to work
-
-	try {
-	ajaxRequest = new XMLHttpRequest();
-	} catch (e) {
-
-	try {
-		ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch (e) {
-		try {
-			ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (e) {
-		alert("Your browser broke!");
-		return false;
-		}
-	}
-}
-
-ajaxRequest.onreadystatechange = function() {
-	if(ajaxRequest.readtState == 4) {
-		var ajaxDisplay = document.getElementById('ajaxDiv');
-		ajaxDisplay.innerHTML = ajaxRequest.responseText;
-	}
-}
-*/
 </script>
 
 {% endblock %}

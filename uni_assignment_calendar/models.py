@@ -19,6 +19,11 @@ class Courses(models.Model):
     class Meta:
         ordering = ["class_title"]
     def __str__(self):
+        """
+        Displays the the class title when listed out on the page
+
+        :return the class title:
+        """
         return self.class_title
 
 
@@ -38,6 +43,11 @@ class Events(models.Model):
 
     # returns most recent published post
     def was_published_recently(self):
+        """
+        Filters the most recently published assignment posts to display on the page
+
+        :return the most recently published assignment posts:
+        """
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
@@ -54,6 +64,11 @@ class Enrollment(models.Model):
     username = models.CharField(max_length=200)
     class_id = models.IntegerField()
     def __str__(self):
+        """
+        Displays the courses the user is enrolled in
+
+        :return returns a string:
+        """
         return self.username + " enrolled in " + str(self.class_id)
 '''
 class Blacklist(models.Model):

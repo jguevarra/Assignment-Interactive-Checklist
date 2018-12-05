@@ -41,7 +41,7 @@
 							{% csrf_token %}
 
 							<!-- Trigger the modal with a button -->
-                            <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Remove Course</button></center>
+                            <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" name="cancel">Remove Course</button></center>
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" role="dialog">
                                 <div class="modal-dialog">
@@ -71,7 +71,7 @@
 						<form method="POST">
 							{% csrf_token %}
 							<!-- Trigger the modal with a button -->
-                            <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Add Course</button></center>
+                            <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" name="add">Add Course</button></center>
                             <!-- Modal -->
                             <div class="modal fade" id="myModal2" role="dialog">
                                 <div class="modal-dialog">

@@ -192,6 +192,16 @@ def hideAssgn(request):
         #  message = 'Something went wrong!'
     return HttpResponse(message)
 
+# handle ajax request to save the toggled state of checklist items
+def toggle(request):
+    if request.is_ajax():
+        message = 'Working!'
+
+    else:
+        message = 'Request not ajax'
+    
+    return HttpResponse(message)
+
 # Form for creating an assignment
 def create_assignment(request):
     """

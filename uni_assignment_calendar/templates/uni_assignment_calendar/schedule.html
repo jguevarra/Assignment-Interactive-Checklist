@@ -133,11 +133,13 @@ var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
 		if (ev.target.tagName === 'LI') {
+			console.log(ev.target.firstChild.href)
+			var assignment_url = ev.target.firstChild.href;
 			ev.target.classList.toggle('checked');
 			$.ajax({
 				type: 'GET',
 				url: '/schedule/toggle/',
-				data: { 'data' : exclude },
+				data: { 'data' : assignment_url },
 				dataType:"json",
 				success: function(data) {
 					alert(data);

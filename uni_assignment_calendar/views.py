@@ -195,7 +195,15 @@ def hideAssgn(request):
 # handle ajax request to save the toggled state of checklist items
 def toggle(request):
     if request.is_ajax():
-        message = 'Working!'
+        url = request.GET.get('data')
+        mystring = str(url)
+        temp = ''
+        i = -2
+        while mystring[i] != '/':
+            temp += mystring[i]
+            i -= 1     
+        checked = temp[::-1]
+        message = checked
 
     else:
         message = 'Request not ajax'

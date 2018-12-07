@@ -40,64 +40,64 @@
 						<form method="POST">
 							{% csrf_token %}
 
-							<!-- Trigger the modal with a button -->
-							<!--<center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" name="cancel">Remove Course</button></center>-->
-							<center><input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Remove Course" name="cancel"></center>
-							<!-- Modal -->
-                            <div class="modal fade" id="myModal" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Confirmation</h4>
-                                        </div>
-                                        <div class="modal-body">
-											<p><b><i>You are <b>unenrolling</b> from {{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}.
-											Do you wish to continue?</i></b></p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <!--<button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>-->
-                                            <input type="submit" class="btn btn-default" value="Continue">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-							<!--<center>-->
-								<!--<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">-->
-							<!--</center>-->
+							<!--&lt;!&ndash; Trigger the modal with a button &ndash;&gt;-->
+							<!--&lt;!&ndash;<center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" name="cancel">Remove Course</button></center>&ndash;&gt;-->
+							<!--<center><input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Remove Course" name="cancel"></center>-->
+							<!--&lt;!&ndash; Modal &ndash;&gt;-->
+                            <!--<div class="modal fade" id="myModal" role="dialog">-->
+                                <!--<div class="modal-dialog">-->
+                                    <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+                                    <!--<div class="modal-content">-->
+                                        <!--<div class="modal-header">-->
+                                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                            <!--<h4 class="modal-title">Confirmation</h4>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-body">-->
+											<!--<p><b><i>You are <b>unenrolling</b> from {{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}.-->
+											<!--Do you wish to continue?</i></b></p>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-footer">-->
+                                            <!--&lt;!&ndash;<button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>&ndash;&gt;-->
+                                            <!--<input type="submit" class="btn btn-default" value="Continue">-->
+                                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+							<center>
+								<input type="submit" class="btn btn-primary" value="Remove Course" name="cancel">
+							</center>
 						</form>
 					{% else %}
 						<form method="POST">
 							{% csrf_token %}
-							<!-- Trigger the modal with a button -->
-                            <!--<center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" name="add">Add Course</button></center>-->
-							<center><input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Add Course" name="add"></center>
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal2" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Confirmation</h4>
-                                        </div>
-                                        <div class="modal-body">
-											<p><i>You are <b>enrolling</b> from {{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}.
-											Do you wish to continue?</i></p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <!--<button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>-->
-                                            <input type="submit" class="btn btn-default" value="Continue">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-							<!--<center>-->
-								<!--<input type="submit" class="btn btn-primary" value="Add Course" name="add">-->
-							<!--</center>-->
+							<!--&lt;!&ndash; Trigger the modal with a button &ndash;&gt;-->
+                            <!--&lt;!&ndash;<center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" name="add">Add Course</button></center>&ndash;&gt;-->
+							<!--<center><input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Add Course" name="add"></center>-->
+                            <!--&lt;!&ndash; Modal &ndash;&gt;-->
+                            <!--<div class="modal fade" id="myModal2" role="dialog">-->
+                                <!--<div class="modal-dialog">-->
+                                    <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+                                    <!--<div class="modal-content">-->
+                                        <!--<div class="modal-header">-->
+                                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                            <!--<h4 class="modal-title">Confirmation</h4>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-body">-->
+											<!--<p><i>You are <b>enrolling</b> from {{ courses.class_abbrev }} {{ courses.class_num }} : {{ courses.class_title }}.-->
+											<!--Do you wish to continue?</i></p>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-footer">-->
+                                            <!--&lt;!&ndash;<button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>&ndash;&gt;-->
+                                            <!--<input type="submit" class="btn btn-default" value="Continue">-->
+                                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+							<center>
+								<input type="submit" class="btn btn-primary" value="Add Course" name="add">
+							</center>
 						</form>
 					{% endif %}
 				</div>

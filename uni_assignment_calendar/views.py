@@ -33,6 +33,9 @@ def GoalsView(request):
 
 @login_required
 def index(request):
+    """
+    View for index.html
+    """
     return render(request, 'uni_assignment_calendar/index.html', {})
 
 # class IndexView(generic.ListView):
@@ -54,6 +57,9 @@ def index(request):
 
 @login_required
 def detail(request, events_id):
+    """
+    Generic view of detail.html
+    """
     events = get_object_or_404(Events, pk=events_id)
     return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
 
@@ -180,8 +186,14 @@ def schedule(request):
     
     return render(request,'uni_assignment_calendar/schedule.html',context)
 
-#handle ajax request to hide deleted assignments for active users
+
 def hideAssgn(request):
+    """
+    Handles ajax request to hide deleted assignments for active users
+
+    :param request:
+    :return:
+    """
     if request.is_ajax():
         url = request.GET.get('data')
         mystring = str(url)
@@ -191,18 +203,23 @@ def hideAssgn(request):
             temp += mystring[i]
             i -= 1     
         hide = temp[::-1]
-        #try:
+        # try:
         assgn = Events.objects.get(id = hide)
         message = assgn.users   
         assgn.users.remove(request.user.username)
         assgn.save()
         message = 'Assignment deleted'
-        #except:
+        # except:
         #  message = 'Something went wrong!'
     return HttpResponse(message)
 
-# handle ajax request to save the toggled state of checklist items
 def toggle(request):
+    """
+    Handle ajax request to save the toggled state of checklist items
+
+    :param request:
+    :return:
+    """
     if request.is_ajax():
         url = request.GET.get('data')
         mystring = str(url)
@@ -219,7 +236,6 @@ def toggle(request):
     
     return HttpResponse(message)
 
-# Form for creating an assignment
 @login_required
 def create_assignment(request):
     """
@@ -261,7 +277,6 @@ def create_assignment(request):
     return render(request, 'uni_assignment_calendar/create.html', {'form':form,'courses':courses})
 
 
-# Signup
 def signup(request):
     """
     View for signup_page.html

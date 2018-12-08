@@ -324,13 +324,13 @@ def user_login(request):
                 login(request,user)
                 return HttpResponseRedirect("/home")
             else:
-                # messages.warning(request, "Warning: Account Not Active")
+                messages.warning(request, "Warning: Account Not Active")
                 login_status = "Warning: Account not active"
         else:
             return render(request,'uni_assignment_calendar/login_page.html',{})
     
     else:
-        # messages.warning(request, "Login invalid, Try again!")
+        messages.warning(request, "Login invalid, Try again!")
         login_status = "Login invalid. Try Again!"
         return render(request,'uni_assignment_calendar/login_page.html', {"login_status": login_status})
 

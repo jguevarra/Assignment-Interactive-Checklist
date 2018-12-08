@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'uni_assignment_calendar/todoList.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="main">
 
 	<a href="/home"><h1><center>Universal Assignment Calendar</center></h1></a>
@@ -26,6 +28,7 @@
 				<img src="/static/uni_assignment_calendar/images/img_486548.png" style="width:60px;height:60px;">
 			</div>
 
+			<!--To Do List-->
 			<div class="col-lg-5">
 				<h2><center>To-Do List</center></h2>
 				<p><center>To see assignment <b>details</b>, click on the assignment link.</center></p>
@@ -72,6 +75,74 @@
 	</div><br>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByClassName("assignment");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+	var data = this
+    div.style.display = "none";
+	var exclude = div.firstChild.href
+	console.log(div.firstChild.href)
+	console.log(div.firstChild.text)
+
+	$.ajax({
+		type: 'GET',
+		url: '/schedule/hideAssgn/',
+		data: { 'data' : exclude },
+		dataType:"json",
+		success: function(data) {
+        	alert(data);
+    	},
+    	failure: function(data) {
+        	alert('Got an error dude');
+    }
+	})
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.getElementsByClassName("assignment");
+for (var i = 0; i < list.length;i++){
+	list[i].addEventListener('click', function(ev) {
+		if (ev.target.tagName === 'LI') {
+			console.log(ev.target.firstChild.href)
+			var assignment_url = ev.target.firstChild.href;
+			ev.target.classList.toggle('checked');
+			$.ajax({
+				type: 'GET',
+				url: '/schedule/toggle/',
+				data: { 'data' : assignment_url },
+				dataType:"json",
+				success: function(data) {
+					alert(data);
+				},
+				failure: function(data) {
+					alert('Got an error dude');
+			}
+			})
+
+  }
+}, false);
+}
+
+</script>
 
 
 {% endblock %}

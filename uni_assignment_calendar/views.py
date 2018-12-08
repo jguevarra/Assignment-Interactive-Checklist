@@ -52,12 +52,17 @@ def index(request):
 #             pub_date__lte=timezone.now()
 #         ).order_by('-pub_date')[:10]
 
-class DetailView(generic.DetailView):
-    """
-    Generic view of detail.html
-    """
-    model = Events
-    template_name = 'uni_assignment_calendar/detail.html'
+@login_required
+def detail(request, events_id):
+    events = get_object_or_404(Events, pk=events_id)
+    return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
+
+# class DetailView(generic.DetailView):
+#     """
+#     Generic view of detail.html
+#     """
+#     model = Events
+#     template_name = 'uni_assignment_calendar/detail.html'
 
 def course_detail(request, class_id):
     """

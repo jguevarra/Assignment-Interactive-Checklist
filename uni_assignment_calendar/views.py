@@ -211,6 +211,7 @@ def toggle(request):
     return HttpResponse(message)
 
 # Form for creating an assignment
+@login_required
 def create_assignment(request):
     """
     View for create.html

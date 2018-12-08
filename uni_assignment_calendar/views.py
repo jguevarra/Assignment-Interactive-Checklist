@@ -31,22 +31,26 @@ def GoalsView(request):
     template = 'uni_assignment_calendar/goals_page.html'
     return render(request, template, context)
 
-class IndexView(generic.ListView):
-    """
-    Generic view for index.html
-    """
-    template_name = 'uni_assignment_calendar/index.html'
-    context_object_name = "latest_events_list"
+@login_required
+def index(request):
+    return render(request, 'uni_assignment_calendar/index.html', {})
 
-    def get_queryset(self):
-        """
-        Sorts the query into the top 10 most recent postings
-
-        :return max of 10 recent postings:
-        """
-        return Events.objects.filter(
-            pub_date__lte=timezone.now()
-        ).order_by('-pub_date')[:10]
+# class IndexView(generic.ListView):
+#     """
+#     Generic view for index.html
+#     """
+#     template_name = 'uni_assignment_calendar/index.html'
+#     context_object_name = "latest_events_list"
+#
+#     def get_queryset(self):
+#         """
+#         Sorts the query into the top 10 most recent postings
+#
+#         :return max of 10 recent postings:
+#         """
+#         return Events.objects.filter(
+#             pub_date__lte=timezone.now()
+#         ).order_by('-pub_date')[:10]
 
 class DetailView(generic.DetailView):
     """

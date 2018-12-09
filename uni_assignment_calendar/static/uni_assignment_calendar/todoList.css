@@ -153,9 +153,7 @@ ul .course:nth-child(odd) {
 
 
 /* Results */
-#results {
-    width: 100%;
-    padding: 50px 0;
-    text-align: left;
-    margin-top: 20px;
+#myModal{
+    height: 600px;
+    overflow: auto;
 }

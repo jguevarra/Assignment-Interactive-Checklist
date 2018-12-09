@@ -123,7 +123,7 @@ def course_detail(request, class_id):
                         event.users = [username]
                         event.save()
                     elif username not in event.users:
-                        event.users = event.users.append(username)
+                        event.users.append(username)
                         event.save()
                 status = "Course Successfully Added!"        
             if request.POST.get('cancel') != None:   

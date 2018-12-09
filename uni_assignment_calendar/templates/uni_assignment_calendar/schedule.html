@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="main">
 	
-	<h1><center>My Course Schedule</center></h1>
+	<h1><center>Course Schedule</center></h1>
 
 	<div class="container">
 		<h2><center>Enroll in Courses</center></h2>
@@ -46,7 +46,7 @@
 			{% if course_list %}
 			<ul>
 				{% for item in course_list %}
-				<li class="course"><a href="/course/{{ item.class_id }}/">{{ item.class_abbrev }} {{ item.class_num }} -- {{ item.class_title }}</a></li>
+				<li><a href="/course/{{ item.class_id }}/">{{ item.class_abbrev }} {{ item.class_num }} -- {{ item.class_title }}</a></li>
 				{% endfor %}
 			</ul>
 			{% else %}
@@ -66,25 +66,6 @@
 
 		<br>
 
-		<!--<div>-->
-			<!--<h2><center>To-Do List</center></h2>-->
-			<!--<p><center>To see assignment <b>details</b>, click on the assignment link.</center></p>-->
-			<!--<p><center>To <b>check off</b> an assignment, click on the box area of the assignment.</center></p>-->
-			<!--<p><center>To <b>delete</b> an assignment, click on the 'x'.</center></p>-->
-
-			<!--{% if events_list %}-->
-			<!--<ul>-->
-				<!--{% for events in events_list %}-->
-					<!--<li class = assignment><a href="{% url 'detail' events.id %}">{{ events.due_date }}-->
-						<!--{{ events.due_time }} &#45;&#45; {{ events.course.class_abbrev }} {{ events.course.class_num }} :-->
-						<!--{{ events.events_name }}</a>-->
-					<!--</li>-->
-				<!--{% endfor %}-->
-			<!--</ul>-->
-			<!--{% else %}-->
-			<!--<p><center>No events have been posted.</p>-->
-			<!--{% endif %}			-->
-		<!--</div>-->
 	</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>

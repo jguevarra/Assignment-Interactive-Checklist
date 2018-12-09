@@ -109,8 +109,8 @@ for (i = 0; i < close.length; i++) {
 	var data = this
     div.style.display = "none";
 	var exclude = div.firstChild.href
-	console.log(div.href)
-	console.log(div.firstChild.text)
+	console.log(div)
+	console.log(data)
 
 	$.ajax({
 		type: 'GET',
@@ -134,6 +134,7 @@ for (var i = 0; i < list.length;i++){
 		if (ev.target.className === 'assignment') { // changed from tagname = "LI"
 			console.log(ev.target.firstChild.href)
 			var assignment_url = ev.target.firstChild.href;
+			console.log(ev.target)
 			ev.target.classList.toggle('checked');
 			$.ajax({
 				type: 'GET',

@@ -10,7 +10,7 @@ ul {
 }
 
 /* Style the list items */
-ul .assignment {
+ul li.assignment {
     cursor: pointer;
     position: relative;
     padding: 12px 8px 12px 40px;
@@ -26,24 +26,24 @@ ul .assignment {
 }
 
 /* Set all odd list items to a different color (zebra-stripes) */
-ul .assignment:nth-child(odd) {
+ul li.assignment:nth-child(odd) {
     background: #f9f9f9;
 }
 
 /* Darker background-color on hover */
-ul .assignment:hover {
+ul li.assignment:hover {
     background: #ddd;
 }
 
 /* When clicked on, add a background color and strike out text */
-ul .assignment.checked {
+ul li.assignment.checked {
     background: #888;
     color: #fff;
     text-decoration: line-through;
 }
 
 /* Add a "checked" mark when clicked on */
-ul .assignment.checked::before {
+ul li.assignment.checked::before {
     content: '';
     position: absolute;
     border-color: #fff;

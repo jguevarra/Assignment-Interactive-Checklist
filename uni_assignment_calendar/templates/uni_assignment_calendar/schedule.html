@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="main">
 	
-	<a href="/home"><h1><center>Universal Assignment Scheduler</center></h1></a>
+	<h1><center>My Course Schedule</center></h1>
 
 	<div class="container">
 		<h2><center>Enroll in Courses</center></h2>
@@ -46,7 +46,7 @@
 			{% if course_list %}
 			<ul>
 				{% for item in course_list %}
-				<li><a href="/course/{{ item.class_id }}/">{{ item.class_abbrev }} {{ item.class_num }} -- {{ item.class_title }}</a></li>
+				<li class="assignment"><a href="/course/{{ item.class_id }}/">{{ item.class_abbrev }} {{ item.class_num }} -- {{ item.class_title }}</a></li>
 				{% endfor %}
 			</ul>
 			{% else %}

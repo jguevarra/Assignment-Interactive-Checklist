@@ -84,6 +84,7 @@ def detail(request, events_id):
 #     model = Events
 #     template_name = 'uni_assignment_calendar/detail.html'
 
+@login_required
 def course_detail(request, class_id):
     """
     View for the course_detail.html
@@ -131,7 +132,7 @@ def course_detail(request, class_id):
     
     return render(request, 'uni_assignment_calendar/course_detail.html', {'courses':courses,'status':status,'enrolled':enrolled})
 
-
+@login_required
 def ScheduleResults(request):
     """
     View for schedule.html -- For the course results after searching for a course using the search bar
@@ -174,7 +175,7 @@ def ScheduleResults(request):
 
     return render(request,'uni_assignment_calendar/schedule.html',context)
 
-
+@login_required
 def schedule(request):
     """
     View for schedule.html to view the user's schedule of enrolled classes

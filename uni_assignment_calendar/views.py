@@ -348,7 +348,7 @@ def user_login(request):
     
     else:
         # messages.warning(request, "Login invalid, Try again!")
-        login_status = "Login invalid. Try Again!"
+        # login_status = "Login invalid. Try Again!"
         return render(request,'uni_assignment_calendar/login_page.html', {"login_status": login_status})
 
 # Logout

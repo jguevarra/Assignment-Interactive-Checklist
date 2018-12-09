@@ -109,8 +109,9 @@ for (i = 0; i < close.length; i++) {
 	var data = this
     div.style.display = "none";
 	var exclude = div.firstChild.href
+	console.log(div.href)
 	console.log(div)
-	console.log(data)
+	console.log(exclude)
 
 	$.ajax({
 		type: 'GET',
@@ -131,7 +132,7 @@ for (i = 0; i < close.length; i++) {
 var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
-		if (ev.target.className === 'assignment') { // changed from tagname = "LI"
+		if (ev.target.className === 'assignment' or ev.target.classname === 'assignement checked') { // changed from tagname = "LI"
 			console.log(ev.target.firstChild.href)
 			var assignment_url = ev.target.firstChild.href;
 			console.log(ev.target)

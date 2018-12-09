@@ -16,10 +16,10 @@
 		<div class="row">
 			<div class="col-lg-4">
 
-				<h3>To-Do List</h3>
+				<!--<h3>To-Do List</h3>
 				<p>To see assignment <b>details</b>, click on the assignment link.</p>
 				<p>To <b>check off</b> an assignment, click on the box area of the assignment.</p>
-				<p>To <b>delete</b> an assignment, click on the 'x'.</p>
+				<p>To <b>delete</b> an assignment, click on the 'x'.</p-->
 
 				<br>
 
@@ -41,23 +41,31 @@
 			<div class=""
 			<div class="col-lg-6">
 				<h2><center>My To-Do List</center></h2>
-				<!--<p><center>To see assignment <b>details</b>, click on the assignment link.</center></p>-->
-				<!--<p><center>To <b>check off</b> an assignment, click on the box area of the assignment.</center></p>-->
-				<!--<p><center>To <b>delete</b> an assignment, click on the 'x'.</center></p>-->
 
 				{% if events_list %}
 					<ul>
 						{% for events in events_list %}
-							<div class = "assignment">
-								<a href="{% url 'detail' events.id %}">{{ events.due_date }}
-								{{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} :
-								{{ events.events_name }}</a>
-							</div>
+							{% if request.user.username in events.checked_users %}
+								<div class = "assignment checked">
+									<a href="{% url 'detail' events.id %}">{{ events.due_date }}
+									{{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} :
+									{{ events.events_name }}</a>
+								</div>
+							{% else %}
+								<div class = "assignment">
+									<a href="{% url 'detail' events.id %}">{{ events.due_date }}
+									{{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} :
+									{{ events.events_name }}</a>
+								</div>
+							{% endif %}
 						{% endfor %}
 					</ul>
 				{% else %}
 					<p><center>No events have been posted.</p>
 				{% endif %}
+				<p><center>To see assignment <b>details</b>, click on the assignment link.</center></p>
+				<p><center>To <b>check off</b> an assignment, click on the box area of the assignment.</center></p>
+				<p><center>To <b>delete</b> an assignment, click on the 'x'.</center></p>
 			</div><br>
 
 			<!--&lt;!&ndash;Displays list of Recent Postings&ndash;&gt;-->
@@ -109,12 +117,12 @@ for (i = 0; i < close.length; i++) {
     var div = this.parentElement;
 	var data = this;
     div.style.display = "none";
-	//var exclude = div.firstChild.href;
+	var del = div.childNodes[1].href;
 	console.log(div.childNodes[1].href);
 	$.ajax({
 		type: 'GET',
 		url: '/schedule/hideAssgn/',
-		data: { 'data' : exclude },
+		data: { 'data' : del },
 		dataType:"json",
 		success: function(data) {
         	alert(data);
@@ -130,9 +138,9 @@ for (i = 0; i < close.length; i++) {
 var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
-		if (ev.target.className === 'assignment') { // changed from tagname = "LI"
-			console.log(ev.target.childNodes)
-			var assignment_url = ev.target.firstChild.href;
+		if (ev.target.className === 'assignment' || ev.target.className ==='assignment checked') { // changed from tagname = "LI"
+			console.log(ev.target.childNodes[1].href);
+			var assignment_url = ev.target.childNodes[1].href;
 			ev.target.classList.toggle('checked');
 			$.ajax({
 				type: 'GET',

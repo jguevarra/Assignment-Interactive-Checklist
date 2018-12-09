@@ -225,7 +225,7 @@ def hideAssgn(request):
         assgn.users.remove(request.user.username)
         assgn.save()
         message = 'Assignment deleted'
-    return HttpResponse(message)
+    return HttpResponse(assgn.users)
 
 def toggle(request):
     """

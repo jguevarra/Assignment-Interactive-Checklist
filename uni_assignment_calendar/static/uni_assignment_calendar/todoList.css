@@ -131,7 +131,7 @@ input {
 
 
 /* Style the list items */
-ul li.course {
+ul .course {
     cursor: pointer;
     position: relative;
     padding: 12px 8px 12px 40px;
@@ -147,6 +147,6 @@ ul li.course {
 }
 
 /* Set all odd list items to a different color (zebra-stripes) */
-ul li.course:nth-child(odd) {
+ul .course:nth-child(odd) {
     background: #f9f9f9;
 }

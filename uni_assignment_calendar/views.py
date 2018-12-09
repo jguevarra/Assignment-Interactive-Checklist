@@ -36,7 +36,21 @@ def index(request):
     """
     View for index.html
     """
-    return render(request, 'uni_assignment_calendar/index.html', {})
+    events_list = []
+    enrollments = Enrollment.objects.filter(username=request.user.username)
+
+    for c in enrollments:
+        # course = get_object_or_404(Courses,class_id=c.class_id)
+        events = Events.objects.filter(course=course).order_by('due_date', 'due_time')
+
+        for i in events:
+            if i.users != None and request.user.username in i.users:
+                events_list.append(i)
+        course_list.append(course)
+    context = {'events_list': events_list, 'enrollments': enrollments, 'course_list': course_list}
+
+    return render(request, 'uni_assignment_calendar/index.html', context)
+
 
 # class IndexView(generic.ListView):
 #     """
@@ -326,11 +340,14 @@ def user_login(request):
             else:
                 messages.warning(request, "Warning: Account Not Active")
                 login_status = "Warning: Account not active"
+                return render(request, 'uni_assignment_calendar/login_page.html', {"login_status": login_status})
+
         else:
-            return render(request,'uni_assignment_calendar/login_page.html',{})
+            login_status = "Warning: Username and Password do not match"
+            return render(request,'uni_assignment_calendar/login_page.html',{"login_status": login_status})
     
     else:
-        messages.warning(request, "Login invalid, Try again!")
+        # messages.warning(request, "Login invalid, Try again!")
         login_status = "Login invalid. Try Again!"
         return render(request,'uni_assignment_calendar/login_page.html', {"login_status": login_status})
 

@@ -343,7 +343,7 @@ def user_login(request):
                 return render(request, 'uni_assignment_calendar/login_page.html', {"login_status": login_status})
 
         else:
-            login_status = "Warning: Username and Password do not match"
+            login_status = "Warning: Login Invalid! Username and/or Password do not match!"
             return render(request,'uni_assignment_calendar/login_page.html',{"login_status": login_status})
     
     else:

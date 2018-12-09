@@ -130,7 +130,7 @@ var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
 		if (ev.target.className === 'assignment') { // changed from tagname = "LI"
-			console.log(ev.target.childNodes)
+			console.log(ev.target[1].href)
 			var assignment_url = ev.target.firstChild.href;
 			ev.target.classList.toggle('checked');
 			$.ajax({

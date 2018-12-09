@@ -26,7 +26,7 @@
 				   value='{{ query }}' oninput="this.value = this.value.replace(/[^A-Z]||[^a-z]/g, '')" />
 				<input style="width:400px" type="search" class="searchCourse" placeholder="Search Course # (3240, 2150, etc.)" name="search_num"
 				   value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
-				<button type="submit" class="btn btn-primary">Search</button>
+				<button onclick="myFunction()" type="submit" class="btn btn-primary">Search</button>
 				</form>
 			</div>
 
@@ -74,6 +74,12 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
+
+// Opens the results column
+function myFunction() {
+    var x = document.getElementById("results");
+    x.style.display = "block"
+   }
 
 	// Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByClassName("assignment");

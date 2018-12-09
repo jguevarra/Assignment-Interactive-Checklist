@@ -50,7 +50,7 @@ def index(request):
                 events_list.append(i)
         course_list.append(course)
     context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
-    return render(request,'uni_assignment_calendar/schedule.html',context)
+    return render(request,'uni_assignment_calendar/index.html',context)
 
 
 # class IndexView(generic.ListView):

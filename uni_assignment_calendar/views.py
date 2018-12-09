@@ -37,19 +37,20 @@ def index(request):
     View for index.html
     """
     events_list = []
+    course_list = []
     enrollments = Enrollment.objects.filter(username=request.user.username)
 
     for c in enrollments:
-        # course = get_object_or_404(Courses,class_id=c.class_id)
-        events = Events.objects.filter(course=course).order_by('due_date', 'due_time')
+        #course = get_object_or_404(Courses,class_id=c.class_id)
+        course = Courses.objects.get(class_id=c.class_id)
+        events = Events.objects.filter(course=course).order_by('due_date','due_time')
 
         for i in events:
             if i.users != None and request.user.username in i.users:
                 events_list.append(i)
         course_list.append(course)
-    context = {'events_list': events_list, 'enrollments': enrollments, 'course_list': course_list}
-
-    return render(request, 'uni_assignment_calendar/index.html', context)
+    context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
+    return render(request,'uni_assignment_calendar/schedule.html',context)
 
 
 # class IndexView(generic.ListView):

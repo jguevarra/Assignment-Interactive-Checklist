@@ -225,7 +225,7 @@ def hideAssgn(request):
         assgn.users.remove(request.user.username)
         assgn.save()
         message = 'Assignment deleted'
-    return HttpResponse(assgn.users)
+    return HttpResponse(message)
 
 def toggle(request):
     """
@@ -251,7 +251,7 @@ def toggle(request):
         elif request.user.username not in assignment.checked_users:
             assignment.checked_users.append(request.user.username)    
         assignment.save()
-        message = assignment.checked_users
+        message = assignment.users
 
     else:
         message = 'Request not ajax'

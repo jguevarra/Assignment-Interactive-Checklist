@@ -150,3 +150,12 @@ ul .course {
 ul .course:nth-child(odd) {
     background: #f9f9f9;
 }
+
+
+/* Results */
+#results {
+    width: 100%;
+    padding: 50px 0;
+    text-align: left;
+    margin-top: 20px;
+}

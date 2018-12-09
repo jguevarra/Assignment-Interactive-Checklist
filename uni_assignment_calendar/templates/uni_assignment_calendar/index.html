@@ -108,12 +108,12 @@ for (i = 0; i < close.length; i++) {
     var div = this.parentElement;
 	var data = this;
     div.style.display = "none";
-	//var exclude = div.firstChild.href;
+	var del = div.childNodes[1].href;
 	console.log(div.childNodes[1].href);
 	$.ajax({
 		type: 'GET',
 		url: '/schedule/hideAssgn/',
-		data: { 'data' : exclude },
+		data: { 'data' : del },
 		dataType:"json",
 		success: function(data) {
         	alert(data);
@@ -130,8 +130,8 @@ var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
 		if (ev.target.className === 'assignment' || ev.target.className ==='assignment checked') { // changed from tagname = "LI"
-			console.log(ev.target.childNodes[1].href)
-			var assignment_url = ev.target.firstChild.href;
+			console.log(ev.target.childNodes[1].href);
+			var assignment_url = ev.target.childNodes[1].href;
 			ev.target.classList.toggle('checked');
 			$.ajax({
 				type: 'GET',

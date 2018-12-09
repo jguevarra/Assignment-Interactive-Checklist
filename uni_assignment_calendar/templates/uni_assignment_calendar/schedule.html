@@ -32,10 +32,11 @@
 
 			<div id="results">
 			<div class="col-lg-3">
+				<h2>Search Results</h2>
 				{% if result %}
 					<ul>
 						{% for element in result%}
-							<li><a href="/course/{{ element.class_id }}/">{{element}}</a></li>
+							<a href="/course/{{ element.class_id }}/">{{element}}</a>
 						{% endfor %}
 					</ul>
 				{% else %}
@@ -43,8 +44,8 @@
 				{% endif %}
 			</div>
 			</div>
-			
-			<div class="col-lg-4">
+
+			<div class="col-lg-7">
 				<h2><center>My Schedule</center></h2>
 				{% if course_list %}
 					<ul>

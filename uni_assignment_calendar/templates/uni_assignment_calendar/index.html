@@ -47,7 +47,7 @@
 				{% if events_list %}
 					<ul>
 						{% for events in events_list %}
-							{% if request.user.username in events.checked_users}
+							{% if request.user.username in events.checked_users %}
 								<div class = "assignment">
 									<a href="{% url 'detail' events.id %}">{{ events.due_date }}
 									{{ events.due_time }} -- {{ events.course.class_abbrev }} {{ events.course.class_num }} :

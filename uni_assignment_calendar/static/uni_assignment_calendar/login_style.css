@@ -138,12 +138,13 @@ table {
     border-collapse: collapse;
     width: 70%;
     margin: 1em auto;
+    padding: 20px;
 }
 
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
-    padding: 8px;
+    padding: 20px;
 }
 
 tr:nth-child(even) {

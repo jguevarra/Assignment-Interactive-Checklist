@@ -109,7 +109,6 @@ def course_detail(request, class_id):
                 status = "You have already enrolled in this class"
             if request.POST.get('cancel') != None:
                 enrolled.delete()
-                enrolled.save()
                 #course = get_object_or_404(Courses,class_id=c.class_id)
                 status = "Course Successfully Deleted from Your Schedule!"
 
@@ -120,11 +119,11 @@ def course_detail(request, class_id):
                 course = Courses.objects.get(class_id=class_id)
                 events_list = Events.objects.filter(course=course) 
                 for event in events_list:
-                    if event.users != None and username not in event.users:
-                        event.users = event.users.append(username)
+                    if event.users == None:
+                        event.users = []
                         event.save()
-                    else:
-                        event.users = [username]
+                    elif username not in event.users:
+                        event.users = event.users.append(username)
                         event.save()
                 status = "Course Successfully Added!"        
             if request.POST.get('cancel') != None:   

@@ -106,12 +106,10 @@ var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
-	var data = this
+	var data = this;
     div.style.display = "none";
-	var exclude = div.firstChild.href
-	console.log(div.href)
-	console.log(div.firstChild.text)
-
+	//var exclude = div.firstChild.href;
+	console.log(div.childNodes[1].href);
 	$.ajax({
 		type: 'GET',
 		url: '/schedule/hideAssgn/',
@@ -131,8 +129,8 @@ for (i = 0; i < close.length; i++) {
 var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
-		if (ev.target.className === 'LI') { // changed from tagname = "LI"
-			console.log(ev.target.firstChild.href)
+		if (ev.target.className === 'assignment') { // changed from tagname = "LI"
+			console.log(ev.target.childNodes)
 			var assignment_url = ev.target.firstChild.href;
 			ev.target.classList.toggle('checked');
 			$.ajax({

@@ -128,3 +128,25 @@ input {
 .fa:hover {
   color: lightgreen;
 }
+
+
+/* Style the list items */
+ul li.course {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li.course:nth-child(odd) {
+    background: #f9f9f9;
+}

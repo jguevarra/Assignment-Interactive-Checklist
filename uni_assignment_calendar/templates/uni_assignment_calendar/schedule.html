@@ -46,7 +46,7 @@
 			{% if course_list %}
 			<ul>
 				{% for item in course_list %}
-				<li class="assignment"><a href="/course/{{ item.class_id }}/">{{ item.class_abbrev }} {{ item.class_num }} -- {{ item.class_title }}</a></li>
+				<li class="course"><a href="/course/{{ item.class_id }}/">{{ item.class_abbrev }} {{ item.class_num }} -- {{ item.class_title }}</a></li>
 				{% endfor %}
 			</ul>
 			{% else %}

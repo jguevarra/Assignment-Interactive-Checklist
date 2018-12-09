@@ -118,13 +118,15 @@ def course_detail(request, class_id):
                 new_enroll.save()
                 course = Courses.objects.get(class_id=class_id)
                 events_list = Events.objects.filter(course=course) 
+                enrolled_users = Enrollment.objects.filter(course=course)
                 for event in events_list:
-                    if event.users != None and username not in event.users:
-                        event.users = event.users.append(username)
-                        event.save()
-                    else:
-                        event.users = [username]
-                        event.save()
+                    for user in enrolled_users:
+                        if event.users != None and user not in event.users:
+                            event.users = event.users.append(user)
+                            event.save()
+                        else:
+                            event.users = [user]
+                            event.save()
                 status = "Course Successfully Added!"        
             if request.POST.get('cancel') != None:   
                 status = "You haven't Enrolled, why click remove?"

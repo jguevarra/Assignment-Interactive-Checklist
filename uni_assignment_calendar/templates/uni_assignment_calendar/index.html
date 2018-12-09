@@ -15,11 +15,6 @@
 		<!--Displays Button to post a new assignment-->
 		<div class="row">
 			<div class="col-lg-4">
-				<h2><center>To-Do List</center></h2>
-				<li>To see assignment <b>details</b>, click on the assignment link.</li>
-				<li>To <b>check off</b> an assignment, click on the box area of the assignment.</li>
-				<li>To <b>delete</b> an assignment, click on the 'x'.</li>
-
 				<h3>Post a New Assignment</h3>
 				<p>Help your classmates be up-to-date with their class assignments by adding new assignments to your
 				enrolled classes.</p>
@@ -41,6 +36,11 @@
 
 			<!--To Do List-->
 			<div class="col-lg-5">
+				<h2><center>To-Do List</center></h2>
+				<p><center>To see assignment <b>details</b>, click on the assignment link.</center></p>
+				<p><center>To <b>check off</b> an assignment, click on the box area of the assignment.</center></p>
+				<p><center>To <b>delete</b> an assignment, click on the 'x'.</center></p>
+
 				{% if events_list %}
 					<ul>
 						{% for events in events_list %}

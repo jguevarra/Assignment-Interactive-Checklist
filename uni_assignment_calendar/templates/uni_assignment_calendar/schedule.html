@@ -20,11 +20,11 @@
 				<br>
 
 				<form type="get" action="{% url 'ScheduleResults' %}">
-				<input style="width:300px" type="search" class="searchCourse" placeholder="Search Course ID (10822, etc.)" name="search_id"
+				<input style="width:400px" type="search" class="searchCourse" placeholder="Search Course ID (10822, etc.)" name="search_id"
 				   value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
-				<input style="width:300px" type="search" class="searchCourse" placeholder="Search Course Dept. (MATH, PHYS, etc.)" name="search_abb"
+				<input style="width:400px" type="search" class="searchCourse" placeholder="Search Course Dept. (MATH, PHYS, etc.)" name="search_abb"
 				   value='{{ query }}' oninput="this.value = this.value.replace(/[^A-Z]||[^a-z]/g, '')" />
-				<input style="width:300px" type="search" class="searchCourse" placeholder="Search Course # (3240, 2150, etc.)" name="search_num"
+				<input style="width:400px" type="search" class="searchCourse" placeholder="Search Course # (3240, 2150, etc.)" name="search_num"
 				   value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
 				<button type="submit" class="btn btn-primary">Search</button>
 				</form>

@@ -109,6 +109,7 @@ def course_detail(request, class_id):
                 status = "You have already enrolled in this class"
             if request.POST.get('cancel') != None:
                 enrolled.delete()
+                enrolled.save()
                 #course = get_object_or_404(Courses,class_id=c.class_id)
                 status = "Course Successfully Deleted from Your Schedule!"
 

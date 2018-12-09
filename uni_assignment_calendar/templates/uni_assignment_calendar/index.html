@@ -109,10 +109,7 @@ for (i = 0; i < close.length; i++) {
 	var data = this;
     div.style.display = "none";
 	var exclude = div.firstChild.href;
-	console.log(close.href);
 	console.log(div);
-	console.log(exclude);
-
 	$.ajax({
 		type: 'GET',
 		url: '/schedule/hideAssgn/',
@@ -133,8 +130,7 @@ var list = document.getElementsByClassName("assignment");
 for (var i = 0; i < list.length;i++){
 	list[i].addEventListener('click', function(ev) {
 		if (ev.target.className === 'assignment') { // changed from tagname = "LI"
-			console.log(ev.target.href);
-			console.log(ev.target)
+\			console.log(ev.target)
 			var assignment_url = ev.target.firstChild.href;
 			ev.target.classList.toggle('checked');
 			$.ajax({

@@ -109,8 +109,8 @@ for (i = 0; i < close.length; i++) {
 	var data = this;
     div.style.display = "none";
 	var exclude = div.firstChild.href;
-	console.log(div);
-	$.ajax({
+	console.log(div.firstChild);
+\	$.ajax({
 		type: 'GET',
 		url: '/schedule/hideAssgn/',
 		data: { 'data' : exclude },

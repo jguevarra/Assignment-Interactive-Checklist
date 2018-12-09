@@ -246,10 +246,12 @@ def toggle(request):
             i -= 1     
         checked = temp[::-1]
         assignment = Events.objects.get(id = checked)
-        checked_list = assignment.checked_users
-        if request.user.username in checked_list:
-            pass
-        
+        if assignment.checked_users == None:
+            assignment.checked_users = []
+        elif request.user.username in assignment.checked_users:
+            assignment.checked_users.remove(request.user.username)
+        elif request.user.username not in assignment.checked_users:
+            assignment.checked_users.append(request.user.username)    
 
         message = checked
 

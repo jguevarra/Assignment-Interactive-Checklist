@@ -118,7 +118,7 @@ def course_detail(request, class_id):
                 new_enroll.save()
                 course = Courses.objects.get(class_id=class_id)
                 events_list = Events.objects.filter(course=course) 
-                enrolled_users = Enrollment.objects.filter(course=course)
+                enrolled_users = Enrollment.objects.filter(class_id=class_id)
                 for event in events_list:
                     for user in enrolled_users:
                         if event.users != None and user not in event.users:

@@ -81,6 +81,9 @@ DATABASES = {
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
+        'TEST': {
+            'NAME': 'test_mwt_classes',
+        },
     }
 }
 

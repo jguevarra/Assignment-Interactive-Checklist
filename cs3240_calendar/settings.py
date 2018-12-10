@@ -134,7 +134,7 @@ STATICFILES_FINDERS = (
 
 import dj_database_url
 db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+DATABASES['mwt_classes'].update(db_from_env)
 
 #REFERENCES:
 

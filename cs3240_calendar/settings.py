@@ -86,7 +86,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
         'TEST': {
-            'NAME': 'default',
+            'NAME': 'test_mwt_classes',
         },
     }
 }

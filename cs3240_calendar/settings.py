@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'cs3240_calendar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mwt_classes',
+        'USER': 'mwt_user',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -132,3 +136,18 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
+#REFERENCES:
+
+#Title:  How To Use PostgreSQL with your Django Application on Ubuntu 14.04
+#Date: 12/10/2018
+#Code Version:
+#Availability: https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04
+
+#Title: How to migrate Django from SQLite to PostgreSQL
+#Date: 12/10/2018
+#Availability: https://gist.github.com/sirodoht/f598d14e9644e2d3909629a41e3522ad
+
+#Title: How to start PostgreSQL on Windows
+#Date: 12/10/2018
+#Code Version:
+#Availability: https://stackoverflow.com/questions/36629963/how-to-start-postgresql-on-windows

@@ -122,3 +122,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#REFERENCES:
+
+#Title:  How To Use PostgreSQL with your Django Application on Ubuntu 14.04
+#Date: 12/10/2018
+#Code Version:
+#Availability: https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04
+
+#Title: How to migrate Django from SQLite to PostgreSQL
+#Date: 12/10/2018
+#Availability: https://gist.github.com/sirodoht/f598d14e9644e2d3909629a41e3522ad
+
+#Title: How to start PostgreSQL on Windows
+#Date: 12/10/2018
+#Code Version:
+#Availability: https://stackoverflow.com/questions/36629963/how-to-start-postgresql-on-windows

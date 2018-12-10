@@ -16,6 +16,7 @@
 	<section>
 		<div class="container">
 			<div class="row">
+				<p><center>{{ status }}</center></p>
 				<table>
   					<tr>
 						<td><h4><b>Course ID</b></h4></td>
@@ -101,7 +102,7 @@
 						</form>
 					{% endif %}
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-7">
 					<form action="/schedule/">
 						<input type="submit" class="btn btn-primary" value="View my Schedule" />
 					</form>
@@ -109,9 +110,7 @@
 						<center><input style="width:145px" type="submit" class="btn btn-primary" value="Post an Assignment"></center>
 					</form>
 				</div>
-				<div class="col-lg-4">
-					<p><center>{{ status }}</center></p>
-				</div>
+
 			</div>
 		</div>
 	</section>

@@ -73,6 +73,11 @@
 				{% else %}
 					<p><br>No Results Found.</p>
 				{% endif %}
+
+			</div>
+
+			<div class="col-lg-2">
+				<!--spacer-->
 			</div>
 
 			<div class="col-lg-7">
@@ -88,18 +93,14 @@
 				{% else %}
 					<p>No enrolled courses.</p>
 				{% endif %}
+
+				<form method="get" action="/create">
+				<input style="width:145px" type="submit" class="btn btn-primary" value="Post an Assignment">
+			</form>
 			</div>
 		</div>
 
 		<br>
-
-		<div>
-
-			<form method="get" action="/create">
-				<input style="width:145px" type="submit" class="btn btn-primary" value="Post an Assignment">
-			</form>
-
-		</div>
 
 		<br>
 

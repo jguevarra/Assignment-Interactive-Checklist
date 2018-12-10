@@ -31,7 +31,7 @@
 				<input style="width:400px" type="search" class="searchCourse" placeholder="Search Course # (3240, 2150, etc.)" name="search_num"
 				   value='{{ query }}' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
 
-					<button type="submit" class="btn btn-primary">Search</button>
+					<center><button type="submit" class="btn btn-primary">Search</button></center>
 					<!--<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Search</button>-->
 					<!--&lt;!&ndash; Modal &ndash;&gt;-->
                             <!--<div class="modal fade" id="myModal" role="dialog">-->
@@ -95,8 +95,8 @@
 				{% endif %}
 
 				<form method="get" action="/create">
-				<input style="width:145px" type="submit" class="btn btn-primary" value="Post an Assignment">
-			</form>
+					<center><input style="width:145px" type="submit" class="btn btn-primary" value="Post an Assignment"></center>
+				</form>
 			</div>
 		</div>
 

@@ -26,7 +26,7 @@ def create_event_due_date(events_name, due_date):
 
 # ------------------------------------------------------------------------------------------
 
-# Testing Model View -- these tests are okay!
+# Testing Model View
 # class AssignmentnModelTests(TestCase):
 #
 #     def test_was_published_recently_with_future_events(self):
@@ -62,8 +62,6 @@ class AssignmentIndexViewTests(TestCase):
     # def test_no_assignments(self):
     #     """
     #     If no post exist for any enrolled classes, an appropriate message is displayed.
-    #
-    #     WORKS!!!
     #     """
     #     c = Client()
     #     c.login(user="abc", password="123")
@@ -249,7 +247,7 @@ class LogoutViewTests(TestCase):
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
-class ScheduleTests(TestCase):
+# class ScheduleTests(TestCase):
 
     # def test_no_enrolled_classes(self):
     #     """
@@ -266,14 +264,6 @@ class ScheduleTests(TestCase):
     #     response = self.client.get(reverse('schedule'))
     #     self.assertContains(response, "No enrolled courses.")
 
-    def test_contains_main_header_Course_Schedule(self):
-        """
-        page should contain "Course Schedule" as the main header
-        """
-        c = Client()
-        c.login(user="jazlene", password="jazlene")
-        response = self.client.get(reverse('schedule'))
-        self.assertContains(response, "Course Schedule")
 
 class LoggedOutView(TestCase):
     def test_goals(self):
@@ -303,14 +293,6 @@ class LoggedOutView(TestCase):
         """
         response = self.client.get(reverse("login"))
         self.assertContains(response, "Member Login")
-
-    def test_main_page(self):
-        """
-        tests main page main header
-        """
-        c = Client()
-        response = self.client.get(reverse("login"))
-        self.assertContains(response, "Monkeys with Typewriters: Universal Assignment Calendar")
 
 
 

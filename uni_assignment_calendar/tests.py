@@ -59,17 +59,17 @@ def create_event_due_date(events_name, due_date):
 # ------------------------------------------------------------------------------------------
 # Testing Index View
 class AssignmentIndexViewTests(TestCase):
-    def test_no_assignments(self):
-        """
-        If no post exist for any enrolled classes, an appropriate message is displayed.
-
-        WORKS!!!
-        """
-        c = Client()
-        c.login(user="abc", password="123")
-        response = self.client.get(reverse('index'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "No events have been posted.")
+    # def test_no_assignments(self):
+    #     """
+    #     If no post exist for any enrolled classes, an appropriate message is displayed.
+    #
+    #     WORKS!!!
+    #     """
+    #     c = Client()
+    #     c.login(user="abc", password="123")
+    #     response = self.client.get(reverse('index'))
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertContains(response, "No events have been posted.")
 
     # def test_past_pub_date_events(self): # works
     #     """
@@ -171,14 +171,14 @@ class LoginLogoutTests(TestCase): # works
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
-    def test_if_successfully_logged_in(self): # works
-        """
-        Test if successfully logged in
-        """
-        c = Client()
-        c.login(user="user", password="password123")
-        response = self.client.get(reverse('index'))
-        self.assertEqual(response.status_code, 200)
+    # def test_if_successfully_logged_in(self):
+    #     """
+    #     Test if successfully logged in
+    #     """
+    #     c = Client()
+    #     c.login(user="user", password="password123")
+    #     response = self.client.get(reverse('index'))
+    #     self.assertEqual(response.status_code, 200)
 
     def test_if_invalid_sign_up_form_do_not_go_to_homepage(self):
         """
@@ -249,22 +249,22 @@ class LogoutViewTests(TestCase):
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
-class ScheduleTests(TestCase):
+# class ScheduleTests(TestCase):
 
-    def test_no_enrolled_classes(self): # works
-        """
-        if the user is not enrolled in any classes, it will say "~not enrolled"
-        """
-        c = Client()
-        c.login(user="abc", password="123")
-        response = self.client.get(reverse('schedule'))
-        self.assertContains(response, "No enrolled courses.")
+    # def test_no_enrolled_classes(self):
+    #     """
+    #     if the user is not enrolled in any classes, it will say "~not enrolled"
+    #     """
+    #     c = Client()
+    #     c.login(user="abc", password="123")
+    #     response = self.client.get(reverse('schedule'))
+    #     self.assertContains(response, "No enrolled courses.")
 
-    def test_if_enrolled_in_courses(self):
-        c = Client()
-        c.login(user="abc", password="123")
-        response = self.client.get(reverse('schedule'))
-        self.assertContains(response, "No enrolled courses.")
+    # def test_if_enrolled_in_courses(self):
+    #     c = Client()
+    #     c.login(user="abc", password="123")
+    #     response = self.client.get(reverse('schedule'))
+    #     self.assertContains(response, "No enrolled courses.")
 
 
 class LoggedOutView(TestCase):
@@ -282,7 +282,7 @@ class LoggedOutView(TestCase):
         """
         c = Client()
         response = self.client.get(reverse("AboutUs"))
-        self.assertContains(response,"About Us")
+        self.assertContains(response, "About Us")
 
 
     def test_sign_up(self):
@@ -291,7 +291,7 @@ class LoggedOutView(TestCase):
         """
         c = Client()
         response = self.client.get(reverse("signup"))
-        self.assertContains(response,"Sign Up")
+        self.assertContains(response, "Sign Up")
 
 
 

@@ -280,3 +280,6 @@ class LoggedOutView(TestCase):
 #Date: 11/12/2018
 #Code Version:
 #Availability: https://docs.djangoproject.com/en/2.1/topics/testing/tools/
+#HTTP 302
+#Date: 12/10/2018
+#Availability: https://en.wikipedia.org/wiki/HTTP_302

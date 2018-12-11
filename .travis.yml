@@ -15,7 +15,7 @@ services:
 before_script:
   - psql -U postgres -c "CREATE USER mwt_user WITH PASSWORD 'test';" 
   - psql -U postgres -c "ALTER USER mwt_user CREATEDB;"
-  - psql -U postgres -c "CREATE DATABASE test_db WITH OWNER mwt_user ENCODING 'utf-8';"
+  - psql -U postgres -c "CREATE DATABASE test_mwt_classes WITH OWNER mwt_user ENCODING 'utf-8';"
   - python manage.py makemigrations
   - python manage.py migrate
 

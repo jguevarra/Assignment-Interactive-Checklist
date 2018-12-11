@@ -79,8 +79,15 @@ WSGI_APPLICATION = 'cs3240_calendar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mwt_classes',
+        'USER': 'mwt_user',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
+        'TEST': {
+            'NAME': 'test_mwt_classes',
+        },
     }
 }
 
@@ -132,3 +139,57 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
+#REFERENCES:
+
+#Title:  How To Use PostgreSQL with your Django Application on Ubuntu 14.04
+#Date: 12/10/2018
+#Author: Justin Ellingwood
+#Availability: https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04
+
+#Title: How to migrate Django from SQLite to PostgreSQL
+#Date: 12/10/2018
+#Author: sirodoht
+#Availability: https://gist.github.com/sirodoht/f598d14e9644e2d3909629a41e3522ad
+
+#Title: How to start PostgreSQL on Windows
+#Date: 12/10/2018
+#Author: a_horse_with_no_name, Sean, Community, ALWAN, Santosh Patel, Matthew Lock, Nandan Chaturvedi, Tomasz Plonka
+#Availability: https://stackoverflow.com/questions/36629963/how-to-start-postgresql-on-windows
+
+#Title: How to connect from windows command prompt to mysql command line
+#Date: 12/10/2018
+#Author: washu, Ken White, Code Lღver, Raghvendra Parashar, Wilq, Paul Q. Alvarez, RonaldBarzell, Tomasz, ArifMustafa, et al.
+#Availability: https://stackoverflow.com/questions/13752424/how-to-connect-from-windows-command-prompt-to-mysql-command-line
+#Note:many authors on this thread, did not use all of them
+
+#Title: First steps
+#Date: 12/10/2018
+#Availability: https://wiki.postgresql.org/wiki/First_steps
+
+#Title: PostgreSQL 11 Documentation: ALTER USER
+#Date: 12/10/2018
+#Availability: https://www.postgresql.org/docs/current/sql-alteruser.html
+
+#Title: Postgres user create database
+#Date: 12/10/2018
+#Author: bos, Philip Couling
+#Availability: https://stackoverflow.com/questions/8988495/postgres-user-create-database/8989722#8989722
+
+#Title: django test app error - Got an error creating the test database: permission denied to create database
+#Date: 12/10/2018
+#Author: Andrius, 3cheesewheel, Alasdair, George H., noufal valapra, Chandan, lmiguelvargasf
+#Availability: https://stackoverflow.com/questions/14186055/django-test-app-error-got-an-error-creating-the-test-database-permission-deni
+
+#Title: Permission denied for relation django_migrations using Heroku
+#Date: 12/10/2018
+#Author: drpm, Aur Saraf
+#Availability: https://stackoverflow.com/questions/46679221/permission-denied-for-relation-django-migrations-using-heroku
+
+#Title: Writing and running tests
+#Date: 12/10/2018
+#Availability: https://docs.djangoproject.com/en/2.0/topics/testing/overview/#the-test-database
+
+#Title: 2.3.5.6 Starting MySQL from the Windows Command Line
+#Date: 12/10/2018
+#Author:  Jacob Nikom (User Commment on page, didn't really use)
+#Availability: https://dev.mysql.com/doc/refman/8.0/en/windows-start-command-line.html

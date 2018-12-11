@@ -304,7 +304,7 @@ class LoggedOutView(TestCase):
 #Code Version:
 #Availability: https://stackoverflow.com/questions/14951356/django-testing-if-the-page-has-redirected-to-the-desired-url
 #Title: Testing Tools
-#Author:
+#Author:perror, Deepankar Bajpeyi, imposeren, igniteflow, luc, Alan Viars (Authors updated 12/10/2018)
 #Date: 11/12/2018
 #Code Version:
 #Availability: https://docs.djangoproject.com/en/2.1/topics/testing/tools/

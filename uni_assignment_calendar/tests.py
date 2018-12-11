@@ -64,7 +64,6 @@ class AssignmentIndexViewTests(TestCase):
         If no post exist for any enrolled classes, an appropriate message is displayed.
         """
         response = self.client.get(reverse('index'))
-        # self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No events have been posted.")
 
     # def test_past_pub_date_events(self): # works

@@ -16,6 +16,8 @@ before_script:
   - psql -U postgres -c "CREATE USER mwt_user WITH PASSWORD 'test';" 
   - psql -U postgres -c "ALTER USER mwt_user CREATEDB;"
   - psql -U postgres -c 'create database test_db;'
+  - python manage.py makemigrations
+  - python manage.py migrate
 
 
 # command to run tests

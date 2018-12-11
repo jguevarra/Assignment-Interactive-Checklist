@@ -59,15 +59,15 @@ def create_event_due_date(events_name, due_date):
 # ------------------------------------------------------------------------------------------
 # Testing Index View
 class AssignmentIndexViewTests(TestCase):
-    # def test_no_assignments(self): # works
-    #     """
-    #     If no post exist for any enrolled classes, an appropriate message is displayed.
-    #     """
-    #     response = self.client.get(reverse('index'))
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertContains(response, "No events have been posted.")
-    #     self.assertQuerysetEqual(response.context['latest_events_list'], [])
-    #
+    def test_no_assignments(self): # works
+        """
+        If no post exist for any enrolled classes, an appropriate message is displayed.
+        """
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No events have been posted.")
+        self.assertQuerysetEqual(response.context['latest_events_list'], [])
+
     # def test_past_pub_date_events(self): # works
     #     """
     #     post with a pub_date in the past are displayed on the
@@ -165,7 +165,7 @@ class LoginLogoutTests(TestCase): # works
         """
         c = Client()
         c.login(user="", password="passwd")
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
     def test_if_successfully_logged_in(self): # works

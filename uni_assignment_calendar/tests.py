@@ -59,15 +59,17 @@ def create_event_due_date(events_name, due_date):
 # ------------------------------------------------------------------------------------------
 # Testing Index View
 class AssignmentIndexViewTests(TestCase):
-    def test_no_assignments(self): # works
+    def test_no_assignments(self):
         """
         If no post exist for any enrolled classes, an appropriate message is displayed.
+
+        WORKS!!!
         """
         c = Client()
         c.login(user="abc", password="123")
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
-        # self.assertContains(response, "No events have been posted.")
+        self.assertContains(response, "No events have been posted.")
 
     # def test_past_pub_date_events(self): # works
     #     """
@@ -92,14 +94,14 @@ class AssignmentIndexViewTests(TestCase):
     #         ['<Events: Future Due Date Event.>']
     #     )
 
-    def test_redirects_to_create_page_if_logged_in(self):
-        """
-        tests if the "Post an Assignment" button redirects to the create page
-        """
-        c = Client()
-        c.login(user="a", password="a")
-        response = self.client.get(reverse('create'))
-        self.assertEqual(response.status_code, 200)
+    # def test_redirects_to_create_page_if_logged_in(self):
+    #     """
+    #     tests if the "Post an Assignment" button redirects to the create page
+    #     """
+    #     c = Client()
+    #     c.login(user="a", password="a")
+    #     response = self.client.get(reverse('create'))
+    #     self.assertEqual(response.status_code, 200)
 
     def test_does_not_redirect_to_create_page_if_not_logged_in(self):
         """
@@ -174,7 +176,7 @@ class LoginLogoutTests(TestCase): # works
         Test if successfully logged in
         """
         c = Client()
-        c.login(user="user", password="passwd")
+        c.login(user="user", password="password123")
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
 
@@ -196,14 +198,44 @@ class LoginLogoutTests(TestCase): # works
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
-    def test_if_successfully_signed_up(self): # works
+    def test_accessing_index_page_without_logging_in(self):
         """
-        Test if successfully signed up and redirects to homepage
+        Tests if the page redirects to the login page if the user tries to access
+        the index page
         """
-        c = Client()
-        c.login(user="user123", password="passwd123")
         response = self.client.get(reverse('index'))
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code, 302)
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_accessing_create_page_without_logging_in(self):
+        """
+        Tests if the page redirects to the login page if the user tries to access
+        the create page
+        """
+        response = self.client.get(reverse('create'))
+        self.assertEqual(response.status_code, 302)
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_accessing_schedule_page_without_logging_in(self):
+        """
+        Tests if the page redirects to the login page if the user tries to access
+        the create page
+        """
+        response = self.client.get(reverse('schedule'))
+        self.assertEqual(response.status_code, 302)
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+
+    # def test_if_successfully_signed_up(self): # works
+    #     """
+    #     Test if successfully signed up and redirects to homepage
+    #     """
+    #     c = Client()
+    #     c.login(user="user123", password="passwd123")
+    #     response = self.client.get(reverse('index'))
+    #     self.assertEqual(response.status_code, 200)
 
 
 class LogoutViewTests(TestCase):

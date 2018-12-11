@@ -155,7 +155,7 @@ class LoginLogoutTests(TestCase): # works
         """
         c = Client()
         c.login(user="user", password="")
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
     def test_no_username_input(self):
@@ -225,13 +225,13 @@ class ScheduleTests(TestCase):
         c = Client()
         c.login(user="abc", password="123")
         response = self.client.get(reverse('schedule'))
-        self.assertContains(response, "No enrolled courses")
+        self.assertContains(response, "No enrolled courses.")
 
     def test_if_enrolled_in_courses(self):
         c = Client()
         c.login(user="abc", password="123")
         response = self.client.get(reverse('schedule'))
-        self.assertContains(response, "No enrolled courses")
+        self.assertContains(response, "No enrolled courses.")
 
 
 class LoggedOutView(TestCase):

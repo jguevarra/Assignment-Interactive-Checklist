@@ -41,15 +41,6 @@ class Events(models.Model):
     def __str__(self):
         return self.events_name
 
-    # returns most recent published post
-    def was_published_recently(self):
-        """
-        Filters the most recently published assignment posts to display on the page
-
-        :return the most recently published assignment posts:
-        """
-        now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 # class Choice(models.Model):
 #     events = models.ForeignKey(Events, on_delete=models.CASCADE)

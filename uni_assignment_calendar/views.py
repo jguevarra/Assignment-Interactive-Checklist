@@ -34,7 +34,7 @@ def GoalsView(request):
 @login_required
 def index(request):
     """
-    View for index.html
+    View for index.html -- for the To Do List
     """
     events_list = []
     course_list = []
@@ -52,28 +52,10 @@ def index(request):
     context = {'events_list':events_list,'enrollments':enrollments,'course_list':course_list}
     return render(request,'uni_assignment_calendar/index.html',context)
 
-
-# class IndexView(generic.ListView):
-#     """
-#     Generic view for index.html
-#     """
-#     template_name = 'uni_assignment_calendar/index.html'
-#     context_object_name = "latest_events_list"
-#
-#     def get_queryset(self):
-#         """
-#         Sorts the query into the top 10 most recent postings
-#
-#         :return max of 10 recent postings:
-#         """
-#         return Events.objects.filter(
-#             pub_date__lte=timezone.now()
-#         ).order_by('-pub_date')[:10]
-
 @login_required
 def detail(request, events_id):
     """
-    Generic view of detail.html
+    Generic view of detail.html -- assignment details
     """
     events = get_object_or_404(Events, pk=events_id)
     return render(request, 'uni_assignment_calendar/detail.html', {'events': events})
@@ -355,8 +337,6 @@ def user_login(request):
             return render(request,'uni_assignment_calendar/login_page.html',{"login_status": login_status})
     
     else:
-        # messages.warning(request, "Login invalid, Try again!")
-        # login_status = "Login invalid. Try Again!"
         return render(request,'uni_assignment_calendar/login_page.html', {"login_status": login_status})
 
 # Logout
